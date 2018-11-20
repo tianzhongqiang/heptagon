@@ -23,14 +23,14 @@
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2018/07/17/navigation_tools/</loc>
+    <loc>http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/</loc>
     
     <lastmod>2018-07-16T16:00:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/</loc>
+    <loc>http://www.thinkyixia.com/2018/07/17/navigation_tools/</loc>
     
     <lastmod>2018-07-16T16:00:00.000Z</lastmod>
     
@@ -170,6 +170,13 @@
   </url>
   
   <url>
+    <loc>http://www.thinkyixia.com/2017/11/02/zookeeper-5/</loc>
+    
+    <lastmod>2017-11-01T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.thinkyixia.com/2017/11/02/zookeeper-4/</loc>
     
     <lastmod>2017-11-01T16:00:00.000Z</lastmod>
@@ -178,13 +185,6 @@
   
   <url>
     <loc>http://www.thinkyixia.com/2017/11/02/zookeeper-3/</loc>
-    
-    <lastmod>2017-11-01T16:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.thinkyixia.com/2017/11/02/zookeeper-5/</loc>
     
     <lastmod>2017-11-01T16:00:00.000Z</lastmod>
     
@@ -240,21 +240,7 @@
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2017/08/28/kafka-1/</loc>
-    
-    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.thinkyixia.com/2017/08/28/redis-1/</loc>
-    
-    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.thinkyixia.com/2017/08/25/linux-1/</loc>
+    <loc>http://www.thinkyixia.com/2017/08/25/linux-2/</loc>
     
     <lastmod>2017-08-27T16:00:00.000Z</lastmod>
     
@@ -268,7 +254,21 @@
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2017/08/25/linux-2/</loc>
+    <loc>http://www.thinkyixia.com/2017/08/28/redis-1/</loc>
+    
+    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.thinkyixia.com/2017/08/28/kafka-1/</loc>
+    
+    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.thinkyixia.com/2017/08/25/linux-1/</loc>
     
     <lastmod>2017-08-27T16:00:00.000Z</lastmod>
     
