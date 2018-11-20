@@ -479,7 +479,7 @@
 
       
         <h1 id="今日头条视频页-https-www-365yg-com"><a href="#今日头条视频页-https-www-365yg-com" class="headerlink" title="今日头条视频页 https://www.365yg.com/"></a>今日头条视频页 <a href="https://www.365yg.com/" target="_blank" rel="noopener">https://www.365yg.com/</a></h1><h2 id="1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接"><a href="#1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接" class="headerlink" title="1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接"></a>1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接</h2><p><img src="/images/toutiao_1.png" alt=""></p>
-<h3 id="链接如下"><a href="#链接如下" class="headerlink" title="链接如下"></a>链接如下</h3><p><code>https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;category=video_new&amp;utm_source=toutiao&amp;widen=1&amp;tadrequire=true&amp;as=A1D57BBEAE87838&amp;cp=5BEE7798D358EE1&amp;_signature=RU1MfhAUHqXfJZp0ysi3V0VNTG</code></p>
+<h3 id="链接如下"><a href="#链接如下" class="headerlink" title="链接如下"></a>链接如下</h3><p><a href="https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;category=video_new&amp;utm_source=toutiao&amp;widen=1&amp;tadrequire=true&amp;as=A1D57BBEAE87838&amp;cp=5BEE7798D358EE1&amp;_signature=RU1MfhAUHqXfJZp0ysi3V0VNTG" target="_blank" rel="noopener">https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;category=video_new&amp;utm_source=toutiao&amp;widen=1&amp;tadrequire=true&amp;as=A1D57BBEAE87838&amp;cp=5BEE7798D358EE1&amp;_signature=RU1MfhAUHqXfJZp0ysi3V0VNTG</a></p>
 <table>
 <thead>
 <tr>
@@ -536,7 +536,8 @@
 <h3 id="2、category"><a href="#2、category" class="headerlink" title="2、category"></a>2、category</h3><p>从字段的意思看是视频的频道（分类），video_new 应该是推荐页面，但是从页面上看不到任何分类信息，所以第一个需要找的参数就是视频的频道列表。</p>
 <p><img src="/images/toutiao_2.png" alt=""></p>
 <p>这个参数比较简单，可以直接拿video_new 参数值去视频js文件中搜索一下</p>
-<p><img src="/images/toutiao_3.png" alt=""><br>整理如下：<br>| 频道id | 频道名称 |<br>|—|—|<br>| video_new | 推荐 |<br>| subv_voice | 音乐 |<br>| subv_funny | 搞笑 |<br>| subv_society | 社会 |<br>| subv_comedy | 小品 |<br>| subv_life | 生活 |<br>| subv_movie | 影视 |<br>| subv_entertainment | 娱乐 |<br>| subv_cute | 呆萌 |<br>| subv_game | 游戏 |<br>| subv_boutique | 原创 |<br>| subv_broaden_view | 开眼 |</p>
+<p><img src="/images/toutiao_3.png" alt=""></p>
+<p>整理如下：<br>| 频道id | 频道名称 |<br>|—|—|<br>| video_new | 推荐 |<br>| subv_voice | 音乐 |<br>| subv_funny | 搞笑 |<br>| subv_society | 社会 |<br>| subv_comedy | 小品 |<br>| subv_life | 生活 |<br>| subv_movie | 影视 |<br>| subv_entertainment | 娱乐 |<br>| subv_cute | 呆萌 |<br>| subv_game | 游戏 |<br>| subv_boutique | 原创 |<br>| subv_broaden_view | 开眼 |</p>
 <h4 id="3、as、cp"><a href="#3、as、cp" class="headerlink" title="3、as、cp"></a>3、as、cp</h4><p>按照上面的方法还是去js文件中搜索，不过由于该参数每次变化，所以只能搜索参数名。<br>搜索cp，发现cp和as都找到了，一下逮住俩</p>
 <p><img src="/images/toutiao_4.png" alt=""></p>
 <p>执行的时候，发现找不到<code>s</code>，断点走一遍发现<code>(0, s.default)(t)</code>就是把<code>t</code>做了一遍<code>md5</code></p>
@@ -672,8 +673,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/17/navigation_gif/" rel="next" title="gif图片资源">
-                <i class="fa fa-chevron-left"></i> gif图片资源
+              <a href="/2018/07/17/navigation_img/" rel="next" title="有了这些资源，还需要ui吗？">
+                <i class="fa fa-chevron-left"></i> 有了这些资源，还需要ui吗？
               </a>
             
           </div>
