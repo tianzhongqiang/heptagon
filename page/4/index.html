@@ -370,7 +370,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/28/linux-3/">
+    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/09/06/sparkstreaming-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="那个谁">
@@ -389,7 +389,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/28/linux-3/" itemprop="url">linux 问题汇总三：文件重定向时报权限不够</a></h1>
+                <a class="post-title-link" href="/2017/09/06/sparkstreaming-2/" itemprop="url">spark streaming使用中的问题</a></h1>
         
 
         <div class="post-meta">
@@ -401,8 +401,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T00:00:00+08:00">
-                2017-08-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T00:00:00+08:00">
+                2017-09-06
               </time>
             
 
@@ -463,13 +463,11 @@
       
         
           
-          问题描述（是什么）使用命令sudo &quot;echo &#39;aaaa&#39; &gt; /usr/local/aa.log&quot;重定向文件时报权限不够
-错误信息：
-原因分析（为什么）使用以上命令重定向的时候，sudo只用在了echo上，而重定向并没有用到sudo权限，所以会出现权限不
+          问题描述调用new KafkaCluster(kafkaParams)方法的时候报错。报错代码如下12345val brokers ="ip1:9092,ip2:9092,ip3:9092"    val kafkaParams = Map[String, String](        "meta
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/28/linux-3/#more" rel="contents">
+            <a class="btn" href="/2017/09/06/sparkstreaming-2/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -520,7 +518,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/28/redis-1/">
+    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/28/linux-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="那个谁">
@@ -539,7 +537,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/28/redis-1/" itemprop="url">scala批量操作redis</a></h1>
+                <a class="post-title-link" href="/2017/08/28/linux-4/" itemprop="url">linux 问题汇总四：手动执行脚本成功，但是加入定时任务执行失败</a></h1>
         
 
         <div class="post-meta">
@@ -613,12 +611,12 @@
       
         
           
-          记录一下。。。
-redis批量入库12345678910111213141516object Pipeline &#123;  def main(args: Array[String]): Unit = &#123;    val jedis = new Jedis("192.168.1.7", 6
+          问题描述（是什么）编写的定时脚本，手动执行的时候没有问题，但是加入crontab定时任务之后就执行失败了。
+其中脚本如下：12345678#!/bin/bashlength=`ps -ef | grep com.tzq.Test01 | grep java | wc -l`echo $lengthi
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/28/redis-1/#more" rel="contents">
+            <a class="btn" href="/2017/08/28/linux-4/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -818,7 +816,7 @@ redis批量入库12345678910111213141516object Pipeline &#123;  def main(args: A
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/28/linux-4/">
+    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/28/redis-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="那个谁">
@@ -837,7 +835,7 @@ redis批量入库12345678910111213141516object Pipeline &#123;  def main(args: A
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/28/linux-4/" itemprop="url">linux 问题汇总四：手动执行脚本成功，但是加入定时任务执行失败</a></h1>
+                <a class="post-title-link" href="/2017/08/28/redis-1/" itemprop="url">scala批量操作redis</a></h1>
         
 
         <div class="post-meta">
@@ -911,12 +909,162 @@ redis批量入库12345678910111213141516object Pipeline &#123;  def main(args: A
       
         
           
-          问题描述（是什么）编写的定时脚本，手动执行的时候没有问题，但是加入crontab定时任务之后就执行失败了。
-其中脚本如下：12345678#!/bin/bashlength=`ps -ef | grep com.tzq.Test01 | grep java | wc -l`echo $lengthi
+          记录一下。。。
+redis批量入库12345678910111213141516object Pipeline &#123;  def main(args: Array[String]): Unit = &#123;    val jedis = new Jedis("192.168.1.7", 6
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/28/linux-4/#more" rel="contents">
+            <a class="btn" href="/2017/08/28/redis-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/28/linux-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="那个谁">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="静水流深">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/28/linux-3/" itemprop="url">linux 问题汇总三：文件重定向时报权限不够</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-28T00:00:00+08:00">
+                2017-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          问题描述（是什么）使用命令sudo &quot;echo &#39;aaaa&#39; &gt; /usr/local/aa.log&quot;重定向文件时报权限不够
+错误信息：
+原因分析（为什么）使用以上命令重定向的时候，sudo只用在了echo上，而重定向并没有用到sudo权限，所以会出现权限不
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/28/linux-3/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1699,156 +1847,6 @@ ps参数含义：12-e：
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/14/elk1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="那个谁">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="静水流深">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/14/elk1/" itemprop="url">ELK搭建使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T00:00:00+08:00">
-                2017-08-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.0
-注：Elasticsearch、Kibana、Lostash的下载地址统一为https://www.elastic.co/downloads/
-安装Elasticsearch集群安装Elasticse
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/14/elk1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1899,7 +1897,7 @@ ps参数含义：12-e：
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1921,7 +1919,7 @@ ps参数含义：12-e：
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

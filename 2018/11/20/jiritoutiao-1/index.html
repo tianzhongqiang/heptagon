@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|courier:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="爬虫,视频,今日头条," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="静水流深" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="今日头条视频页 https://www.365yg.com/1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接 链接如下https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;amp;category=video_new&amp;amp;utm_source=toutiao&amp;amp;widen=1&amp;amp;tadrequi">
+<meta name="keywords" content="爬虫,视频,今日头条">
+<meta property="og:type" content="article">
+<meta property="og:title" content="今日头条视频爬虫">
+<meta property="og:url" content="http://www.thinkyixia.com/2018/11/20/jiritoutiao-1/index.html">
+<meta property="og:site_name" content="静水流深">
+<meta property="og:description" content="今日头条视频页 https://www.365yg.com/1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接 链接如下https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;amp;category=video_new&amp;amp;utm_source=toutiao&amp;amp;widen=1&amp;amp;tadrequi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_1.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_2.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_3.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_4.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_5.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_6.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_7.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_8.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_9.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_10.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_11.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_12.png">
+<meta property="og:image" content="http://www.thinkyixia.com/images/toutiao_13.png">
+<meta property="og:updated_time" content="2018-11-19T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="今日头条视频爬虫">
+<meta name="twitter:description" content="今日头条视频页 https://www.365yg.com/1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接 链接如下https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;amp;category=video_new&amp;amp;utm_source=toutiao&amp;amp;widen=1&amp;amp;tadrequi">
+<meta name="twitter:image" content="http://www.thinkyixia.com/images/toutiao_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.thinkyixia.com/2018/11/20/jiritoutiao-1/"/>
+
+
+
+
+
+  <title>今日头条视频爬虫 | 静水流深</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6bb438845012aea06ac1088574d28aa6";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">静水流深</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Just For Fun</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2018/11/20/jiritoutiao-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="那个谁">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="静水流深">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">今日头条视频爬虫</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T00:00:00+08:00">
+                2018-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="今日头条视频页-https-www-365yg-com"><a href="#今日头条视频页-https-www-365yg-com" class="headerlink" title="今日头条视频页 https://www.365yg.com/"></a>今日头条视频页 <a href="https://www.365yg.com/" target="_blank" rel="noopener">https://www.365yg.com/</a></h1><h2 id="1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接"><a href="#1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接" class="headerlink" title="1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接"></a>1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接</h2><p><img src="/images/toutiao_1.png" alt=""></p>
+<h3 id="链接如下"><a href="#链接如下" class="headerlink" title="链接如下"></a>链接如下</h3><p><a href="https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;category=video_new&amp;utm_source=toutiao&amp;widen=1&amp;tadrequire=true&amp;as=A1D57BBEAE87838&amp;cp=5BEE7798D358EE1&amp;_signature=RU1MfhAUHqXfJZp0ysi3V0VNTG" target="_blank" rel="noopener">https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;category=video_new&amp;utm_source=toutiao&amp;widen=1&amp;tadrequire=true&amp;as=A1D57BBEAE87838&amp;cp=5BEE7798D358EE1&amp;_signature=RU1MfhAUHqXfJZp0ysi3V0VNTG</a></p>
+<p>简单的对链接进行拆分，看链接中的参数都有啥，看看哪些变哪些不变</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>取值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max_behot_time</td>
+<td>1542351388</td>
+<td>变</td>
+</tr>
+<tr>
+<td>category</td>
+<td>video_new</td>
+<td>变</td>
+</tr>
+<tr>
+<td>utm_source</td>
+<td>toutiao</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>widen</td>
+<td>1</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>tadrequire</td>
+<td>true</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>as</td>
+<td>A1D57BBEAE87838</td>
+<td>变</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>5BEE7798D358EE1</td>
+<td>变</td>
+</tr>
+<tr>
+<td>_signature</td>
+<td>RU1MfhAUHqXfJZp0ysi3V0VNTG</td>
+<td>变</td>
+</tr>
+</tbody>
+</table>
+<p>一个一个的看</p>
+<h3 id="1、max-behot-time"><a href="#1、max-behot-time" class="headerlink" title="1、max_behot_time"></a>1、max_behot_time</h3><p>从参数的数看应该是一个时间戳，暂时可以不用管</p>
+<h3 id="2、category"><a href="#2、category" class="headerlink" title="2、category"></a>2、category</h3><p>从字段的意思看是视频的频道（分类），video_new 应该是推荐页面，但是从页面上看不到任何分类信息，所以第一个需要找的参数就是视频的频道列表。</p>
+<p><img src="/images/toutiao_2.png" alt=""></p>
+<p>这个参数比较简单，可以直接拿video_new 参数值去视频js文件中搜索一下</p>
+<p><img src="/images/toutiao_3.png" alt=""><br>整理如下：<br>| 频道id | 频道名称 |<br>|—|—|<br>| video_new | 推荐 |<br>| subv_voice | 音乐 |<br>| subv_funny | 搞笑 |<br>| subv_society | 社会 |<br>| subv_comedy | 小品 |<br>| subv_life | 生活 |<br>| subv_movie | 影视 |<br>| subv_entertainment | 娱乐 |<br>| subv_cute | 呆萌 |<br>| subv_game | 游戏 |<br>| subv_boutique | 原创 |<br>| subv_broaden_view | 开眼 |</p>
+<h4 id="3、as、cp"><a href="#3、as、cp" class="headerlink" title="3、as、cp"></a>3、as、cp</h4><p>按照上面的方法还是去js文件中搜索，不过由于该参数每次变化，所以只能搜索参数名。<br>搜索cp，发现cp和as都找到了，一下逮住俩</p>
+<p><img src="/images/toutiao_4.png" alt=""></p>
+<p>执行的时候，发现找不到<code>s</code>，断点走一遍发现<code>(0, s.default)(t)</code>就是把<code>t</code>做了一遍<code>md5</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">i</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> t = <span class="built_in">Math</span>.floor((<span class="keyword">new</span> <span class="built_in">Date</span>).getTime() / <span class="number">1e3</span>),</span><br><span class="line">            e = t.toString(<span class="number">16</span>).toUpperCase(),</span><br><span class="line">            n = (<span class="number">0</span>, s.default)(t).toString().toUpperCase(); <span class="comment">// 直接换成自己对t做md5操作就可以了</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="number">8</span> != e.length)</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                <span class="keyword">as</span>: <span class="string">"479BB4B7254C150"</span>,</span><br><span class="line">                cp: <span class="string">"7E0AC8874BB0985"</span></span><br><span class="line">            &#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> r = n.slice(<span class="number">0</span>, <span class="number">5</span>), i = n.slice(<span class="number">-5</span>), o = <span class="string">""</span>, a = <span class="number">0</span>; a &lt; <span class="number">5</span>; a++)</span><br><span class="line">            o += r[a] + e[a];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> u = <span class="string">""</span>, l = <span class="number">0</span>; l &lt; <span class="number">5</span>; l++)</span><br><span class="line">            u += e[l + <span class="number">3</span>] + i[l];</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="keyword">as</span>: <span class="string">"A1"</span> + o + e.slice(<span class="number">-3</span>),</span><br><span class="line">            cp: e.slice(<span class="number">0</span>, <span class="number">3</span>) + u + <span class="string">"E1"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4、-signature"><a href="#4、-signature" class="headerlink" title="4、_signature"></a>4、<code>_signature</code></h4><p>继续搜索</p>
+<p><img src="/images/toutiao_5.png" alt=""></p>
+<p>看一看到<code>_signature</code>这个参数就是<code>r</code>，而<code>var r = (0, m.sign)(n + &quot;&quot;);</code>然后打断点继续找<code>m</code>，<br>一步一步往上找，最后在下图位置找到</p>
+<p><img src="/images/toutiao_6.png" alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>(<span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'e(e,a,r)&#123;(b[e]||(b[e]=t("x,y","x "+e+" y")(r,a)&#125;a(e,a,r)&#123;(k[r]||(k[r]=t("x,y","new x[y]("+Array(r+1).join(",x[y]")(1)+")")(e,a)&#125;r(e,a,r)&#123;n,t,s=&#123;&#125;,b=s.d=r?r.d+1:0;for(s["$"+b]=s,t=0;t&lt;b;t)s[n="$"+t]=r[n];for(t=0,b=s=a;t&lt;b;t)s[t]=a[t];c(e,0,s)&#125;c(t,b,k)&#123;u(e)&#123;v[x]=e&#125;f&#123;g=,ting(bg)&#125;l&#123;try&#123;y=c(t,b,k)&#125;catch(e)&#123;h=e,y=l&#125;&#125;for(h,y,d,g,v=[],x=0;;)switch(g=)&#123;case 1:u(!)4:f5:u((e)&#123;a=0,r=e;&#123;c=a&lt;r;c&amp;&amp;u(e[a]),c&#125;&#125;(6:y=,u((y8:if(g=,lg,g=,y===c)b+=g;else if(y!==l)y9:c10:u(s(11:y=,u(+y)12:for(y=f,d=[],g=0;g&lt;y;g)d[g]=y.charCodeAt(g)^g+y;u(String.fromCharCode.apply(null,d13:y=,h=delete [y]14:59:u((g=)?(y=x,v.slice(x-=g,y:[])61:u([])62:g=,k[0]=65599*k[0]+k[1].charCodeAt(g)&gt;&gt;&gt;065:h=,y=,[y]=h66:u(e(t[b],,67:y=,d=,u((g=).x===c?r(g.y,y,k):g.apply(d,y68:u(e((g=t[b])&lt;"&lt;"?(b--,f):g+g,,70:u(!1)71:n72:+f73:u(parseInt(f,3675:if()&#123;bcase 74:g=&lt;&lt;16&gt;&gt;16g76:u(k[])77:y=,u([y])78:g=,u(a(v,x-=g+1,g79:g=,u(k["$"+g])81:h=,[f]=h82:u([f])83:h=,k[]=h84:!085:void 086:u(v[x-1])88:h=,y=,h,y89:u(&#123;e&#123;r(e.y,arguments,k)&#125;e.y=f,e.x=c,e&#125;)90:null91:h93:h=0:;default:u((g&lt;&lt;16&gt;&gt;16)-16)&#125;&#125;n=this,t=n.Function,s=Object.keys||(e)&#123;a=&#123;&#125;,r=0;for(c in e)a[r]=c;a=r,a&#125;,b=&#123;&#125;,k=&#123;&#125;;r'</span>.replace(<span class="regexp">/[-]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> t[<span class="number">15</span> &amp; e.charCodeAt(<span class="number">0</span>)]</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;(<span class="string">"v[x++]=v[--x]t.charCodeAt(b++)-32function return ))++.substrvar .length(),b+=;break;case ;break&#125;"</span>.split(<span class="string">""</span>)))()(<span class="string">'gr$Daten Иb/s!l y͒yĹg,(lfi~ah`&#123;mv,-n|jqewVxp&#123;rvmmx,&amp;effkx[!cs"l".Pq%widthl"@q&amp;heightl"vr*getContextx$"2d[!cs#l#,*;?|u.|uc&#123;uq$fontl#vr(fillTextx$$龘ฑภ경2&lt;[#c&#125;l#2q*shadowBlurl#1q-shadowOffsetXl#$$limeq+shadowColorl#vr#arcx88802[%c&#125;l#vr&amp;strokex[ c&#125;l"v,)&#125;eOmyoZB]mx[ cs!0s$l$Pb&lt;k7l l!r&amp;lengthb%^l$1+s$jl  s#i$1ek1s$gr#tack4)zgr#tac$! +0o![#cj?o ]!l$b%s"o ]!l"l$b*b^0d#&gt;&gt;&gt;s!0s%yA0s"l"l!r&amp;lengthb&lt;k+l"^l"1+s"jl  s&amp;l&amp;z0l!$ +["cs\'(0l#i\'1ps9wxb&amp;s() &amp;&#123;s)/s(gr&amp;Stringr,fromCharCodes)0s*yWl ._b&amp;s o!])l l Jb&lt;k$.aj;l .Tb&lt;k$.gj/l .^b&lt;k&amp;i"-4j!+&amp; s+yPo!]+s!l!l Hd&gt;&amp;l!l Bd&gt;&amp;+l!l &lt;d&gt;&amp;+l!l 6d&gt;&amp;+l!l &amp;+ s,y=o!o!]/q"13o!l q"10o!],l 2d&gt;&amp; s.&#123;s-yMo!o!]0q"13o!]*Ld&lt;l 4d#&gt;&gt;&gt;b|s!o!l q"10o!],l!&amp; s/yIo!o!].q"13o!],o!]*Jd&lt;l 6d#&gt;&gt;&gt;b|&amp;o!]+l &amp;+ s0l-l!&amp;l-l!i\'1z141z4b/@d&lt;l"b|&amp;+l-l(l!b^&amp;+l-l&amp;zl\'g,)gk&#125;ejo&#123;cm,)|yn~Lij~em["cl$b%@d&lt;l&amp;zl\'l $ +["cl$b%b|&amp;+l-l%8d&lt;@b|l!b^&amp;+ q$sign '</span>, [<span class="built_in">Object</span>.defineProperty(e, <span class="string">"__esModule"</span>, &#123;</span><br><span class="line">        value: !<span class="number">0</span></span><br><span class="line">    &#125;)])</span><br></pre></td></tr></table></figure>
+<p>看不懂，所以先执行一下，结果如下，报错<code>e is not defined</code> ，e没有定义，把e的模块单独拿出来</p>
+<p><img src="/images/toutiao_7.png" alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">Object</span>.defineProperty(e, <span class="string">"__esModule"</span>, &#123;<span class="attr">value</span>: !<span class="number">0</span> &#125;)]</span><br></pre></td></tr></table></figure>
+<p>搜了一下方法<code>Object.defineProperty</code> 如下：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty</a></p>
+<p><code>Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。</code></p>
+<p>简单说意思就是，<code>e.__esModule=!0</code>，对于单独获取这一个参数来看，好像没啥用，那就先删掉看看。</p>
+<p><img src="/images/toutiao_8.png" alt=""></p>
+<p>没报错，不过什么也没有<br>简化一下代码，把字符串都去掉，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>(<span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="string">'str'</span>.replace(<span class="regexp">/[-]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> t[<span class="number">15</span> &amp; e.charCodeAt(<span class="number">0</span>)]</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;(<span class="string">"str"</span>.split(<span class="string">"str"</span>)))()(<span class="string">'str'</span>, [&#123;&#125;])</span><br></pre></td></tr></table></figure>
+<p>这样就清晰了很多，一点一点看，看里面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="string">'str'</span>.replace(<span class="regexp">/[-]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> t[<span class="number">15</span> &amp; e.charCodeAt(<span class="number">0</span>)]</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;(<span class="string">"str"</span>.split(<span class="string">"str"</span>))</span><br></pre></td></tr></table></figure>
+<p>相当于把 <code>&quot;str&quot;.split(&quot;str&quot;)</code>这个数组传入函数，然后返回一个字符串。再简化如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>(</span><br><span class="line"> <span class="keyword">return</span> str</span><br><span class="line">)()(<span class="string">'str'</span>, [&#123;&#125;])</span><br></pre></td></tr></table></figure>
+<p><code>Function(return str)()</code> 执行结果应该返回一个包含两个参数的的<code>function</code></p>
+<p>所以再简化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)(<span class="params"><span class="string">'str'</span>, [&#123;&#125;]</span>)</span></span><br></pre></td></tr></table></figure>
+<p>第一个参数是一个字符串，所以返回的东西应该在第二个参数里，即<code>function(a,b)(&#39;str&#39;, [a={}])</code></p>
+<p><img src="/images/toutiao_9.png" alt=""></p>
+<p>从上图看，已经找到了<code>sign</code>函数，回到<code>var r = (0, m.sign)(n + &quot;&quot;);</code>，把<code>n</code>传入该方法就可以了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = (<span class="number">0</span>, p.default)(),</span><br><span class="line">    n = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">this</span>.url = <span class="keyword">this</span>._url, <span class="string">"refresh"</span> === t ? (n = <span class="keyword">this</span>.list.length &gt; <span class="number">0</span> ? <span class="keyword">this</span>.list[<span class="number">0</span>].behot_time : <span class="number">0</span>, <span class="keyword">this</span>.url += <span class="string">"min_behot_time="</span> + n) : (n = <span class="keyword">this</span>.list.length &gt; <span class="number">0</span> ? <span class="keyword">this</span>.list[<span class="keyword">this</span>.list.length - <span class="number">1</span>].behot_time : <span class="number">0</span>, <span class="keyword">this</span>.url += <span class="string">"max_behot_time="</span> + n);</span><br><span class="line"><span class="keyword">var</span> r = (<span class="number">0</span>, m.sign)(n + <span class="string">""</span>);</span><br><span class="line">(<span class="number">0</span>, o.default)(<span class="keyword">this</span>.params, &#123;</span><br><span class="line">    <span class="keyword">as</span>: e.as,</span><br><span class="line">    cp: e.cp,</span><br><span class="line">    _signature: r</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>可以看到<code>n</code>就是参数<code>min_behot_time</code>，冤家路窄啊。取一个时间戳就行，顺着js往上找一下也行，找到一个<code>behot_time: Math.floor((new Date).getTime() / 1e3)</code>，确实是一个时间戳。</p>
+<p>终于凑够了，执行的时候提示没有<code>userAgent</code>信息。设置一下就ok了。<br>最终版本js就出来了，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">navigator = &#123;&#125;;</span><br><span class="line">navigator.userAgent = <span class="string">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getsign</span>(<span class="params">userid</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">Function</span>(</span><br><span class="line">			<span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="string">'e(e,a,r)&#123;(b[e]||(b[e]=t("x,y","x "+e+" y")(r,a)&#125;a(e,a,r)&#123;(k[r]||(k[r]=t("x,y","new x[y]("+Array(r+1).join(",x[y]")(1)+")")(e,a)&#125;r(e,a,r)&#123;n,t,s=&#123;&#125;,b=s.d=r?r.d+1:0;for(s["$"+b]=s,t=0;t&lt;b;t)s[n="$"+t]=r[n];for(t=0,b=s=a;t&lt;b;t)s[t]=a[t];c(e,0,s)&#125;c(t,b,k)&#123;u(e)&#123;v[x]=e&#125;f&#123;g=,ting(bg)&#125;l&#123;try&#123;y=c(t,b,k)&#125;catch(e)&#123;h=e,y=l&#125;&#125;for(h,y,d,g,v=[],x=0;;)switch(g=)&#123;case 1:u(!)4:f5:u((e)&#123;a=0,r=e;&#123;c=a&lt;r;c&amp;&amp;u(e[a]),c&#125;&#125;(6:y=,u((y8:if(g=,lg,g=,y===c)b+=g;else if(y!==l)y9:c10:u(s(11:y=,u(+y)12:for(y=f,d=[],g=0;g&lt;y;g)d[g]=y.charCodeAt(g)^g+y;u(String.fromCharCode.apply(null,d13:y=,h=delete [y]14:59:u((g=)?(y=x,v.slice(x-=g,y:[])61:u([])62:g=,k[0]=65599*k[0]+k[1].charCodeAt(g)&gt;&gt;&gt;065:h=,y=,[y]=h66:u(e(t[b],,67:y=,d=,u((g=).x===c?r(g.y,y,k):g.apply(d,y68:u(e((g=t[b])&lt;"&lt;"?(b--,f):g+g,,70:u(!1)71:n72:+f73:u(parseInt(f,3675:if()&#123;bcase 74:g=&lt;&lt;16&gt;&gt;16g76:u(k[])77:y=,u([y])78:g=,u(a(v,x-=g+1,g79:g=,u(k["$"+g])81:h=,[f]=h82:u([f])83:h=,k[]=h84:!085:void 086:u(v[x-1])88:h=,y=,h,y89:u(&#123;e&#123;r(e.y,arguments,k)&#125;e.y=f,e.x=c,e&#125;)90:null91:h93:h=0:;default:u((g&lt;&lt;16&gt;&gt;16)-16)&#125;&#125;n=this,t=n.Function,s=Object.keys||(e)&#123;a=&#123;&#125;,r=0;for(c in e)a[r]=c;a=r,a&#125;,b=&#123;&#125;,k=&#123;&#125;;r'</span></span><br><span class="line">						.replace(<span class="regexp">/[-]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">							<span class="keyword">return</span> t[<span class="number">15</span> &amp; e.charCodeAt(<span class="number">0</span>)]</span><br><span class="line">						&#125;)</span><br><span class="line">			&#125;</span><br><span class="line">					(<span class="string">"v[x++]=v[--x]t.charCodeAt(b++)-32function return ))++.substrvar .length(),b+=;break;case ;break&#125;"</span></span><br><span class="line">							.split(<span class="string">""</span>)))</span><br><span class="line">			()</span><br><span class="line">			(</span><br><span class="line">					<span class="string">'gr$Daten Иb/s!l y͒yĹg,(lfi~ah`&#123;mv,-n|jqewVxp&#123;rvmmx,&amp;effkx[!cs"l".Pq%widthl"@q&amp;heightl"vr*getContextx$"2d[!cs#l#,*;?|u.|uc&#123;uq$fontl#vr(fillTextx$$龘ฑภ경2&lt;[#c&#125;l#2q*shadowBlurl#1q-shadowOffsetXl#$$limeq+shadowColorl#vr#arcx88802[%c&#125;l#vr&amp;strokex[ c&#125;l"v,)&#125;eOmyoZB]mx[ cs!0s$l$Pb&lt;k7l l!r&amp;lengthb%^l$1+s$jl  s#i$1ek1s$gr#tack4)zgr#tac$! +0o![#cj?o ]!l$b%s"o ]!l"l$b*b^0d#&gt;&gt;&gt;s!0s%yA0s"l"l!r&amp;lengthb&lt;k+l"^l"1+s"jl  s&amp;l&amp;z0l!$ +["cs\'(0l#i\'1ps9wxb&amp;s() &amp;&#123;s)/s(gr&amp;Stringr,fromCharCodes)0s*yWl ._b&amp;s o!])l l Jb&lt;k$.aj;l .Tb&lt;k$.gj/l .^b&lt;k&amp;i"-4j!+&amp; s+yPo!]+s!l!l Hd&gt;&amp;l!l Bd&gt;&amp;+l!l &lt;d&gt;&amp;+l!l 6d&gt;&amp;+l!l &amp;+ s,y=o!o!]/q"13o!l q"10o!],l 2d&gt;&amp; s.&#123;s-yMo!o!]0q"13o!]*Ld&lt;l 4d#&gt;&gt;&gt;b|s!o!l q"10o!],l!&amp; s/yIo!o!].q"13o!],o!]*Jd&lt;l 6d#&gt;&gt;&gt;b|&amp;o!]+l &amp;+ s0l-l!&amp;l-l!i\'1z141z4b/@d&lt;l"b|&amp;+l-l(l!b^&amp;+l-l&amp;zl\'g,)gk&#125;ejo&#123;cm,)|yn~Lij~em["cl$b%@d&lt;l&amp;zl\'l $ +["cl$b%b|&amp;+l-l%8d&lt;@b|l!b^&amp;+ q$sign '</span>,</span><br><span class="line">					[ TAC = &#123;&#125; ])</span><br><span class="line">	<span class="keyword">var</span> data = TAC.sign(userid + <span class="string">'0'</span>);</span><br><span class="line">	<span class="keyword">return</span> data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="具体视频链接"><a href="#具体视频链接" class="headerlink" title="具体视频链接"></a>具体视频链接</h2><p>上面的链接拼接完成之后，视频列表可以正常请求了，请求回来的数据取一条看一下。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">"single_mode"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="attr">"abstract"</span>: <span class="string">"八卦象棋：想重炮将死我，只能对炮了，仅此一步棋可以化解"</span>,</span><br><span class="line"><span class="attr">"middle_mode"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="attr">"more_mode"</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="attr">"tag"</span>: <span class="string">"video_sports"</span>,</span><br><span class="line"><span class="attr">"has_gallery"</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="attr">"tag_url"</span>: <span class="string">"video"</span>,</span><br><span class="line"><span class="attr">"title"</span>: <span class="string">"八卦象棋：想重炮将死我，只能对炮了，仅此一步棋可以化解"</span>,</span><br><span class="line"><span class="attr">"has_video"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="attr">"chinese_tag"</span>: <span class="string">"视频"</span>,</span><br><span class="line"><span class="attr">"source"</span>: <span class="string">"八卦讲棋"</span>,</span><br><span class="line"><span class="attr">"group_source"</span>: <span class="number">2</span>,</span><br><span class="line"><span class="attr">"image_url"</span>: <span class="string">"http://p99.pstatp.com/list/190x124/111d9000bc384a1e7c376"</span>,</span><br><span class="line"><span class="attr">"media_url"</span>: <span class="string">"/c/user/63387812477/"</span>,</span><br><span class="line"><span class="attr">"media_avatar_url"</span>: <span class="string">"http://p1.pstatp.com/large/9062000424ee2d9e7539"</span>,</span><br><span class="line"><span class="attr">"video_duration_str"</span>: <span class="string">"15:33"</span>,</span><br><span class="line"><span class="attr">"source_url"</span>: <span class="string">"/group/6622421805481067012/"</span>,</span><br><span class="line"><span class="attr">"article_genre"</span>: <span class="string">"video"</span>,</span><br><span class="line"><span class="attr">"is_feed_ad"</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="attr">"video_id"</span>: <span class="string">"v02004740000bfjp2a8m4cim9gian7o0"</span>,</span><br><span class="line"><span class="attr">"behot_time"</span>: <span class="number">1542366341</span>,</span><br><span class="line"><span class="attr">"comments_count"</span>: <span class="number">11</span>,</span><br><span class="line"><span class="attr">"video_play_count"</span>: <span class="number">3630</span>,</span><br><span class="line"><span class="attr">"group_id"</span>: <span class="string">"6622421805481067012"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发现并没有视频链接。打开视频详情页。找到一个链接<a href="http://ib.365yg.com/video/urls/v/1/toutiao/mp4/v020041d0000bfl6fafrri6cjb9b5rg0?r=990702939595272&amp;s=2968355509&amp;aid=1364&amp;callback=axiosJsonpCallback1&amp;`_`=1542366691315" target="_blank" rel="noopener">http://ib.365yg.com/video/urls/v/1/toutiao/mp4/v020041d0000bfl6fafrri6cjb9b5rg0?r=990702939595272&amp;s=2968355509&amp;aid=1364&amp;callback=axiosJsonpCallback1&amp;`_`=1542366691315</a></p>
+<p><img src="/images/toutiao_10.png" alt=""><br>在返回的数据中看到字段<code>main_url</code>和<code>backup_url_1</code>，这是一个base64加密的链接，解密过后发现正是视频的地址</p>
+<p><a href="http://v11-tt.ixigua.com/14adfc0ca3b2f89aaf37e5eb3a64527b/5beeb5b4/video/m/220a890707eded14f439467e0c47f660c15115ed0f000005bcde4968bf8/?rc=M3VlZWZsdWQ5aTMzZzczM0ApQHRAbzk6Njo3MzUzMzY0NDQ0NDVvQGgzdSlAZjN1KWRzcmd5a3VyZ3lybHh3Zjc2QGQyNmczb2NjaV8tLS4tL3NzLW8jbyMxMjEtMC0tLi4uNjMuNS06I28jOmEtcSM6YHZpXGJmK2BeYmYrXnFsOiMzLl4%3D" target="_blank" rel="noopener">http://v11-tt.ixigua.com/14adfc0ca3b2f89aaf37e5eb3a64527b/5beeb5b4/video/m/220a890707eded14f439467e0c47f660c15115ed0f000005bcde4968bf8/?rc=M3VlZWZsdWQ5aTMzZzczM0ApQHRAbzk6Njo3MzUzMzY0NDQ0NDVvQGgzdSlAZjN1KWRzcmd5a3VyZ3lybHh3Zjc2QGQyNmczb2NjaV8tLS4tL3NzLW8jbyMxMjEtMC0tLi4uNjMuNS06I28jOmEtcSM6YHZpXGJmK2BeYmYrXnFsOiMzLl4%3D</a></p>
+<p>接下来的任务就是解析获取视频信息的链接，继续拆分参数</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>取值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>990702939595272</td>
+<td>变</td>
+</tr>
+<tr>
+<td>s</td>
+<td>2968355509</td>
+<td>变</td>
+</tr>
+<tr>
+<td>aid</td>
+<td>1364</td>
+<td>未知</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>axiosJsonpCallback1</td>
+<td>未知</td>
+</tr>
+<tr>
+<td>_</td>
+<td>1542366691315</td>
+<td>变</td>
+</tr>
+</tbody>
+</table>
+<p>继续上面的过程，找参数</p>
+<h4 id="搜索参数"><a href="#搜索参数" class="headerlink" title="搜索参数"></a>搜索参数</h4><p>搜索r，由于太多，搜<code>?r</code> ，找到的各个可疑位置打断点，跟一下。如下图</p>
+<p><img src="/images/toutiao_11.png" alt=""><br>发现都在这，不仅有<code>r</code>和<code>s</code>，而且最后直接返回了链接。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = <span class="built_in">document</span>.createElement(<span class="string">"a"</span>);</span><br><span class="line">e.href = t;</span><br><span class="line"><span class="keyword">var</span> n = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> t = <span class="number">0</span>, e = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">256</span>), n = <span class="number">0</span>; <span class="number">256</span> !== n; ++n)</span><br><span class="line">            t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = n) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>, e[n] = t;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"undefined"</span> != <span class="keyword">typeof</span> <span class="built_in">Int32Array</span> ? <span class="keyword">new</span> <span class="built_in">Int32Array</span>(e) : e</span><br><span class="line">    &#125;(),</span><br><span class="line">    r = e.pathname + <span class="string">"?r="</span> + <span class="built_in">Math</span>.random().toString(<span class="number">10</span>).substring(<span class="number">2</span>);</span><br><span class="line"><span class="string">"/"</span> !== r[<span class="number">0</span>] &amp;&amp; (r = <span class="string">"/"</span> + r);</span><br><span class="line"><span class="keyword">var</span> i = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> e, r, i = <span class="number">-1</span>, o = <span class="number">0</span>, a = t.length; o &lt; a;)</span><br><span class="line">        (e = t.charCodeAt(o++)) &lt; <span class="number">128</span> ? i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ e)] : e &lt; <span class="number">2048</span> ? i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">192</span> | e &gt;&gt; <span class="number">6</span> &amp; <span class="number">31</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; e))] : e &gt;= <span class="number">55296</span> &amp;&amp; e &lt; <span class="number">57344</span> ? (e = <span class="number">64</span> + (<span class="number">1023</span> &amp; e), r = <span class="number">1023</span> &amp; t.charCodeAt(o++), i = (i = (i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">240</span> | e &gt;&gt; <span class="number">8</span> &amp; <span class="number">7</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | e &gt;&gt; <span class="number">2</span> &amp; <span class="number">63</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | r &gt;&gt; <span class="number">6</span> &amp; <span class="number">15</span> | (<span class="number">3</span> &amp; e) &lt;&lt; <span class="number">4</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; r))]) : i = (i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">224</span> | e &gt;&gt; <span class="number">12</span> &amp; <span class="number">15</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | e &gt;&gt; <span class="number">6</span> &amp; <span class="number">63</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; e))];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span> ^ i</span><br><span class="line">&#125;(r) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line"><span class="keyword">return</span> (location.protocol.indexOf(<span class="string">"http"</span>) &gt; <span class="number">-1</span> ? [location.protocol, e.hostname] : [<span class="string">"http:"</span>, e.hostname]).join(<span class="string">"//"</span>) + r + <span class="string">"&amp;s="</span> + i</span><br></pre></td></tr></table></figure>
+<p>看上面代码发现<code>r</code>、<code>s</code>、<code>_</code>三个参数都有了，然后继续往下找<code>aid</code>，然后断点，发现<code>aid</code>是一个定值</p>
+<p><img src="/images/toutiao_12.png" alt=""></p>
+<p>搜索<code>axiosJsonpCallback</code>发现变化也不大。</p>
+<p><img src="/images/toutiao_13.png" alt=""><br>这样链接就凑够了，简单梳理一下js。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_url</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> index = <span class="number">1</span>,aid=<span class="number">1364</span></span><br><span class="line">	<span class="keyword">var</span> url_split=t.split(<span class="string">"ib.365yg.com"</span>)</span><br><span class="line">    <span class="keyword">var</span> n = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> t = <span class="number">0</span>, e = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">256</span>), n = <span class="number">0</span>; <span class="number">256</span> !== n; ++n)</span><br><span class="line">                t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = n) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>, e[n] = t;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"undefined"</span> != <span class="keyword">typeof</span> <span class="built_in">Int32Array</span> ? <span class="keyword">new</span> <span class="built_in">Int32Array</span>(e) : e</span><br><span class="line">        &#125;(),</span><br><span class="line"></span><br><span class="line">        r = url_split[<span class="number">1</span>] + <span class="string">"?r="</span> + <span class="built_in">Math</span>.random().toString(<span class="number">10</span>).substring(<span class="number">2</span>);</span><br><span class="line">    <span class="string">"/"</span> !== r[<span class="number">0</span>] &amp;&amp; (r = <span class="string">"/"</span> + r);</span><br><span class="line">    print(r)</span><br><span class="line">    <span class="keyword">var</span> i = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> e, r, i = <span class="number">-1</span>, o = <span class="number">0</span>, a = t.length; o &lt; a;)</span><br><span class="line">            (e = t.charCodeAt(o++)) &lt; <span class="number">128</span> ? i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ e)] : e &lt; <span class="number">2048</span> ? i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">192</span> | e &gt;&gt; <span class="number">6</span> &amp; <span class="number">31</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; e))] : e &gt;= <span class="number">55296</span> &amp;&amp; e &lt; <span class="number">57344</span> ? (e = <span class="number">64</span> + (<span class="number">1023</span> &amp; e), r = <span class="number">1023</span> &amp; t.charCodeAt(o++), i = (i = (i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">240</span> | e &gt;&gt; <span class="number">8</span> &amp; <span class="number">7</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | e &gt;&gt; <span class="number">2</span> &amp; <span class="number">63</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | r &gt;&gt; <span class="number">6</span> &amp; <span class="number">15</span> | (<span class="number">3</span> &amp; e) &lt;&lt; <span class="number">4</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; r))]) : i = (i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">224</span> | e &gt;&gt; <span class="number">12</span> &amp; <span class="number">15</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | e &gt;&gt; <span class="number">6</span> &amp; <span class="number">63</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; e))];</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span> ^ i</span><br><span class="line">    &#125;(r) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> _ = (<span class="keyword">new</span> <span class="built_in">Date</span>).getTime()</span><br><span class="line">    <span class="keyword">var</span> callback = <span class="string">"axiosJsonpCallback"</span>+index</span><br><span class="line">    <span class="keyword">return</span>  <span class="string">"http://ib.365yg.com"</span>+r + <span class="string">"&amp;s="</span> + i+<span class="string">"&amp;aid="</span>+aid+<span class="string">"&amp;callback="</span>+callback+<span class="string">"&amp;_="</span>+_</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    那个谁
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.thinkyixia.com/2018/11/20/jiritoutiao-1/" title="今日头条视频爬虫">http://www.thinkyixia.com/2018/11/20/jiritoutiao-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+            <a href="/tags/视频/" rel="tag"># 视频</a>
+          
+            <a href="/tags/今日头条/" rel="tag"># 今日头条</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/17/navigation_gif/" rel="next" title="gif图片资源">
+                <i class="fa fa-chevron-left"></i> gif图片资源
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="那个谁" />
+          <p class="site-author-name" itemprop="name">那个谁</p>
+           
+              <p class="site-description motion-element" itemprop="description">吾资之昏，不逮人也，吾材之庸，不逮人也；旦旦而学之，久而不怠焉，迄乎成，而亦不知其昏与庸也。吾资之聪，倍人也，吾材之敏，倍人也；屏弃而不用，其与昏与庸无以异也。圣人之道，卒于鲁也传之。然则昏庸聪敏之用，岂有常哉？</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dmlcoding.com/" title="Time渐行渐远" target="_blank">Time渐行渐远</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#今日头条视频页-https-www-365yg-com"><span class="nav-number">1.</span> <span class="nav-text">今日头条视频页 https://www.365yg.com/</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接"><span class="nav-number">1.1.</span> <span class="nav-text">1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链接如下"><span class="nav-number">1.1.1.</span> <span class="nav-text">链接如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1、max-behot-time"><span class="nav-number">1.1.2.</span> <span class="nav-text">1、max_behot_time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、category"><span class="nav-number">1.1.3.</span> <span class="nav-text">2、category</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3、as、cp"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">3、as、cp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、-signature"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">4、_signature</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体视频链接"><span class="nav-number">1.2.</span> <span class="nav-text">具体视频链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#搜索参数"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">搜索参数</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">那个谁</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2140943"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.2"></script>
+
+
+</body>
+</html>

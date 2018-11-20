@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.thinkyixia.com/"/>
-  <updated>2018-07-16T16:00:00.000Z</updated>
+  <updated>2018-11-19T16:00:00.000Z</updated>
   <id>http://www.thinkyixia.com/</id>
   
   <author>
@@ -14,6 +14,175 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>今日头条视频爬虫</title>
+    <link href="http://www.thinkyixia.com/2018/11/20/jiritoutiao-1/"/>
+    <id>http://www.thinkyixia.com/2018/11/20/jiritoutiao-1/</id>
+    <published>2018-11-19T16:00:00.000Z</published>
+    <updated>2018-11-19T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="今日头条视频页-https-www-365yg-com"><a href="#今日头条视频页-https-www-365yg-com" class="headerlink" title="今日头条视频页 https://www.365yg.com/"></a>今日头条视频页 <a href="https://www.365yg.com/" target="_blank" rel="noopener">https://www.365yg.com/</a></h1><h2 id="1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接"><a href="#1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接" class="headerlink" title="1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接"></a>1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接</h2><p><img src="/images/toutiao_1.png" alt=""></p>
+<h3 id="链接如下"><a href="#链接如下" class="headerlink" title="链接如下"></a>链接如下</h3><p><a href="https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;category=video_new&amp;utm_source=toutiao&amp;widen=1&amp;tadrequire=true&amp;as=A1D57BBEAE87838&amp;cp=5BEE7798D358EE1&amp;_signature=RU1MfhAUHqXfJZp0ysi3V0VNTG" target="_blank" rel="noopener">https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;category=video_new&amp;utm_source=toutiao&amp;widen=1&amp;tadrequire=true&amp;as=A1D57BBEAE87838&amp;cp=5BEE7798D358EE1&amp;_signature=RU1MfhAUHqXfJZp0ysi3V0VNTG</a></p>
+<p>简单的对链接进行拆分，看链接中的参数都有啥，看看哪些变哪些不变</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>取值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max_behot_time</td>
+<td>1542351388</td>
+<td>变</td>
+</tr>
+<tr>
+<td>category</td>
+<td>video_new</td>
+<td>变</td>
+</tr>
+<tr>
+<td>utm_source</td>
+<td>toutiao</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>widen</td>
+<td>1</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>tadrequire</td>
+<td>true</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>as</td>
+<td>A1D57BBEAE87838</td>
+<td>变</td>
+</tr>
+<tr>
+<td>cp</td>
+<td>5BEE7798D358EE1</td>
+<td>变</td>
+</tr>
+<tr>
+<td>_signature</td>
+<td>RU1MfhAUHqXfJZp0ysi3V0VNTG</td>
+<td>变</td>
+</tr>
+</tbody>
+</table>
+<p>一个一个的看</p>
+<h3 id="1、max-behot-time"><a href="#1、max-behot-time" class="headerlink" title="1、max_behot_time"></a>1、max_behot_time</h3><p>从参数的数看应该是一个时间戳，暂时可以不用管</p>
+<h3 id="2、category"><a href="#2、category" class="headerlink" title="2、category"></a>2、category</h3><p>从字段的意思看是视频的频道（分类），video_new 应该是推荐页面，但是从页面上看不到任何分类信息，所以第一个需要找的参数就是视频的频道列表。</p>
+<p><img src="/images/toutiao_2.png" alt=""></p>
+<p>这个参数比较简单，可以直接拿video_new 参数值去视频js文件中搜索一下</p>
+<p><img src="/images/toutiao_3.png" alt=""><br>整理如下：<br>| 频道id | 频道名称 |<br>|—|—|<br>| video_new | 推荐 |<br>| subv_voice | 音乐 |<br>| subv_funny | 搞笑 |<br>| subv_society | 社会 |<br>| subv_comedy | 小品 |<br>| subv_life | 生活 |<br>| subv_movie | 影视 |<br>| subv_entertainment | 娱乐 |<br>| subv_cute | 呆萌 |<br>| subv_game | 游戏 |<br>| subv_boutique | 原创 |<br>| subv_broaden_view | 开眼 |</p>
+<h4 id="3、as、cp"><a href="#3、as、cp" class="headerlink" title="3、as、cp"></a>3、as、cp</h4><p>按照上面的方法还是去js文件中搜索，不过由于该参数每次变化，所以只能搜索参数名。<br>搜索cp，发现cp和as都找到了，一下逮住俩</p>
+<p><img src="/images/toutiao_4.png" alt=""></p>
+<p>执行的时候，发现找不到<code>s</code>，断点走一遍发现<code>(0, s.default)(t)</code>就是把<code>t</code>做了一遍<code>md5</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">i</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> t = <span class="built_in">Math</span>.floor((<span class="keyword">new</span> <span class="built_in">Date</span>).getTime() / <span class="number">1e3</span>),</span><br><span class="line">            e = t.toString(<span class="number">16</span>).toUpperCase(),</span><br><span class="line">            n = (<span class="number">0</span>, s.default)(t).toString().toUpperCase(); <span class="comment">// 直接换成自己对t做md5操作就可以了</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="number">8</span> != e.length)</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                <span class="keyword">as</span>: <span class="string">"479BB4B7254C150"</span>,</span><br><span class="line">                cp: <span class="string">"7E0AC8874BB0985"</span></span><br><span class="line">            &#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> r = n.slice(<span class="number">0</span>, <span class="number">5</span>), i = n.slice(<span class="number">-5</span>), o = <span class="string">""</span>, a = <span class="number">0</span>; a &lt; <span class="number">5</span>; a++)</span><br><span class="line">            o += r[a] + e[a];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> u = <span class="string">""</span>, l = <span class="number">0</span>; l &lt; <span class="number">5</span>; l++)</span><br><span class="line">            u += e[l + <span class="number">3</span>] + i[l];</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="keyword">as</span>: <span class="string">"A1"</span> + o + e.slice(<span class="number">-3</span>),</span><br><span class="line">            cp: e.slice(<span class="number">0</span>, <span class="number">3</span>) + u + <span class="string">"E1"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4、-signature"><a href="#4、-signature" class="headerlink" title="4、_signature"></a>4、<code>_signature</code></h4><p>继续搜索</p>
+<p><img src="/images/toutiao_5.png" alt=""></p>
+<p>看一看到<code>_signature</code>这个参数就是<code>r</code>，而<code>var r = (0, m.sign)(n + &quot;&quot;);</code>然后打断点继续找<code>m</code>，<br>一步一步往上找，最后在下图位置找到</p>
+<p><img src="/images/toutiao_6.png" alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>(<span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'e(e,a,r)&#123;(b[e]||(b[e]=t("x,y","x "+e+" y")(r,a)&#125;a(e,a,r)&#123;(k[r]||(k[r]=t("x,y","new x[y]("+Array(r+1).join(",x[y]")(1)+")")(e,a)&#125;r(e,a,r)&#123;n,t,s=&#123;&#125;,b=s.d=r?r.d+1:0;for(s["$"+b]=s,t=0;t&lt;b;t)s[n="$"+t]=r[n];for(t=0,b=s=a;t&lt;b;t)s[t]=a[t];c(e,0,s)&#125;c(t,b,k)&#123;u(e)&#123;v[x]=e&#125;f&#123;g=,ting(bg)&#125;l&#123;try&#123;y=c(t,b,k)&#125;catch(e)&#123;h=e,y=l&#125;&#125;for(h,y,d,g,v=[],x=0;;)switch(g=)&#123;case 1:u(!)4:f5:u((e)&#123;a=0,r=e;&#123;c=a&lt;r;c&amp;&amp;u(e[a]),c&#125;&#125;(6:y=,u((y8:if(g=,lg,g=,y===c)b+=g;else if(y!==l)y9:c10:u(s(11:y=,u(+y)12:for(y=f,d=[],g=0;g&lt;y;g)d[g]=y.charCodeAt(g)^g+y;u(String.fromCharCode.apply(null,d13:y=,h=delete [y]14:59:u((g=)?(y=x,v.slice(x-=g,y:[])61:u([])62:g=,k[0]=65599*k[0]+k[1].charCodeAt(g)&gt;&gt;&gt;065:h=,y=,[y]=h66:u(e(t[b],,67:y=,d=,u((g=).x===c?r(g.y,y,k):g.apply(d,y68:u(e((g=t[b])&lt;"&lt;"?(b--,f):g+g,,70:u(!1)71:n72:+f73:u(parseInt(f,3675:if()&#123;bcase 74:g=&lt;&lt;16&gt;&gt;16g76:u(k[])77:y=,u([y])78:g=,u(a(v,x-=g+1,g79:g=,u(k["$"+g])81:h=,[f]=h82:u([f])83:h=,k[]=h84:!085:void 086:u(v[x-1])88:h=,y=,h,y89:u(&#123;e&#123;r(e.y,arguments,k)&#125;e.y=f,e.x=c,e&#125;)90:null91:h93:h=0:;default:u((g&lt;&lt;16&gt;&gt;16)-16)&#125;&#125;n=this,t=n.Function,s=Object.keys||(e)&#123;a=&#123;&#125;,r=0;for(c in e)a[r]=c;a=r,a&#125;,b=&#123;&#125;,k=&#123;&#125;;r'</span>.replace(<span class="regexp">/[-]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> t[<span class="number">15</span> &amp; e.charCodeAt(<span class="number">0</span>)]</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;(<span class="string">"v[x++]=v[--x]t.charCodeAt(b++)-32function return ))++.substrvar .length(),b+=;break;case ;break&#125;"</span>.split(<span class="string">""</span>)))()(<span class="string">'gr$Daten Иb/s!l y͒yĹg,(lfi~ah`&#123;mv,-n|jqewVxp&#123;rvmmx,&amp;effkx[!cs"l".Pq%widthl"@q&amp;heightl"vr*getContextx$"2d[!cs#l#,*;?|u.|uc&#123;uq$fontl#vr(fillTextx$$龘ฑภ경2&lt;[#c&#125;l#2q*shadowBlurl#1q-shadowOffsetXl#$$limeq+shadowColorl#vr#arcx88802[%c&#125;l#vr&amp;strokex[ c&#125;l"v,)&#125;eOmyoZB]mx[ cs!0s$l$Pb&lt;k7l l!r&amp;lengthb%^l$1+s$jl  s#i$1ek1s$gr#tack4)zgr#tac$! +0o![#cj?o ]!l$b%s"o ]!l"l$b*b^0d#&gt;&gt;&gt;s!0s%yA0s"l"l!r&amp;lengthb&lt;k+l"^l"1+s"jl  s&amp;l&amp;z0l!$ +["cs\'(0l#i\'1ps9wxb&amp;s() &amp;&#123;s)/s(gr&amp;Stringr,fromCharCodes)0s*yWl ._b&amp;s o!])l l Jb&lt;k$.aj;l .Tb&lt;k$.gj/l .^b&lt;k&amp;i"-4j!+&amp; s+yPo!]+s!l!l Hd&gt;&amp;l!l Bd&gt;&amp;+l!l &lt;d&gt;&amp;+l!l 6d&gt;&amp;+l!l &amp;+ s,y=o!o!]/q"13o!l q"10o!],l 2d&gt;&amp; s.&#123;s-yMo!o!]0q"13o!]*Ld&lt;l 4d#&gt;&gt;&gt;b|s!o!l q"10o!],l!&amp; s/yIo!o!].q"13o!],o!]*Jd&lt;l 6d#&gt;&gt;&gt;b|&amp;o!]+l &amp;+ s0l-l!&amp;l-l!i\'1z141z4b/@d&lt;l"b|&amp;+l-l(l!b^&amp;+l-l&amp;zl\'g,)gk&#125;ejo&#123;cm,)|yn~Lij~em["cl$b%@d&lt;l&amp;zl\'l $ +["cl$b%b|&amp;+l-l%8d&lt;@b|l!b^&amp;+ q$sign '</span>, [<span class="built_in">Object</span>.defineProperty(e, <span class="string">"__esModule"</span>, &#123;</span><br><span class="line">        value: !<span class="number">0</span></span><br><span class="line">    &#125;)])</span><br></pre></td></tr></table></figure>
+<p>看不懂，所以先执行一下，结果如下，报错<code>e is not defined</code> ，e没有定义，把e的模块单独拿出来</p>
+<p><img src="/images/toutiao_7.png" alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">Object</span>.defineProperty(e, <span class="string">"__esModule"</span>, &#123;<span class="attr">value</span>: !<span class="number">0</span> &#125;)]</span><br></pre></td></tr></table></figure>
+<p>搜了一下方法<code>Object.defineProperty</code> 如下：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty</a></p>
+<p><code>Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。</code></p>
+<p>简单说意思就是，<code>e.__esModule=!0</code>，对于单独获取这一个参数来看，好像没啥用，那就先删掉看看。</p>
+<p><img src="/images/toutiao_8.png" alt=""></p>
+<p>没报错，不过什么也没有<br>简化一下代码，把字符串都去掉，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>(<span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="string">'str'</span>.replace(<span class="regexp">/[-]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> t[<span class="number">15</span> &amp; e.charCodeAt(<span class="number">0</span>)]</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;(<span class="string">"str"</span>.split(<span class="string">"str"</span>)))()(<span class="string">'str'</span>, [&#123;&#125;])</span><br></pre></td></tr></table></figure>
+<p>这样就清晰了很多，一点一点看，看里面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="string">'str'</span>.replace(<span class="regexp">/[-]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> t[<span class="number">15</span> &amp; e.charCodeAt(<span class="number">0</span>)]</span><br><span class="line">        &#125;)</span><br><span class="line">&#125;(<span class="string">"str"</span>.split(<span class="string">"str"</span>))</span><br></pre></td></tr></table></figure>
+<p>相当于把 <code>&quot;str&quot;.split(&quot;str&quot;)</code>这个数组传入函数，然后返回一个字符串。再简化如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>(</span><br><span class="line"> <span class="keyword">return</span> str</span><br><span class="line">)()(<span class="string">'str'</span>, [&#123;&#125;])</span><br></pre></td></tr></table></figure>
+<p><code>Function(return str)()</code> 执行结果应该返回一个包含两个参数的的<code>function</code></p>
+<p>所以再简化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)(<span class="params"><span class="string">'str'</span>, [&#123;&#125;]</span>)</span></span><br></pre></td></tr></table></figure>
+<p>第一个参数是一个字符串，所以返回的东西应该在第二个参数里，即<code>function(a,b)(&#39;str&#39;, [a={}])</code></p>
+<p><img src="/images/toutiao_9.png" alt=""></p>
+<p>从上图看，已经找到了<code>sign</code>函数，回到<code>var r = (0, m.sign)(n + &quot;&quot;);</code>，把<code>n</code>传入该方法就可以了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = (<span class="number">0</span>, p.default)(),</span><br><span class="line">    n = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">this</span>.url = <span class="keyword">this</span>._url, <span class="string">"refresh"</span> === t ? (n = <span class="keyword">this</span>.list.length &gt; <span class="number">0</span> ? <span class="keyword">this</span>.list[<span class="number">0</span>].behot_time : <span class="number">0</span>, <span class="keyword">this</span>.url += <span class="string">"min_behot_time="</span> + n) : (n = <span class="keyword">this</span>.list.length &gt; <span class="number">0</span> ? <span class="keyword">this</span>.list[<span class="keyword">this</span>.list.length - <span class="number">1</span>].behot_time : <span class="number">0</span>, <span class="keyword">this</span>.url += <span class="string">"max_behot_time="</span> + n);</span><br><span class="line"><span class="keyword">var</span> r = (<span class="number">0</span>, m.sign)(n + <span class="string">""</span>);</span><br><span class="line">(<span class="number">0</span>, o.default)(<span class="keyword">this</span>.params, &#123;</span><br><span class="line">    <span class="keyword">as</span>: e.as,</span><br><span class="line">    cp: e.cp,</span><br><span class="line">    _signature: r</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>可以看到<code>n</code>就是参数<code>min_behot_time</code>，冤家路窄啊。取一个时间戳就行，顺着js往上找一下也行，找到一个<code>behot_time: Math.floor((new Date).getTime() / 1e3)</code>，确实是一个时间戳。</p>
+<p>终于凑够了，执行的时候提示没有<code>userAgent</code>信息。设置一下就ok了。<br>最终版本js就出来了，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">navigator = &#123;&#125;;</span><br><span class="line">navigator.userAgent = <span class="string">"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36"</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getsign</span>(<span class="params">userid</span>) </span>&#123;</span><br><span class="line">	<span class="built_in">Function</span>(</span><br><span class="line">			<span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="string">'e(e,a,r)&#123;(b[e]||(b[e]=t("x,y","x "+e+" y")(r,a)&#125;a(e,a,r)&#123;(k[r]||(k[r]=t("x,y","new x[y]("+Array(r+1).join(",x[y]")(1)+")")(e,a)&#125;r(e,a,r)&#123;n,t,s=&#123;&#125;,b=s.d=r?r.d+1:0;for(s["$"+b]=s,t=0;t&lt;b;t)s[n="$"+t]=r[n];for(t=0,b=s=a;t&lt;b;t)s[t]=a[t];c(e,0,s)&#125;c(t,b,k)&#123;u(e)&#123;v[x]=e&#125;f&#123;g=,ting(bg)&#125;l&#123;try&#123;y=c(t,b,k)&#125;catch(e)&#123;h=e,y=l&#125;&#125;for(h,y,d,g,v=[],x=0;;)switch(g=)&#123;case 1:u(!)4:f5:u((e)&#123;a=0,r=e;&#123;c=a&lt;r;c&amp;&amp;u(e[a]),c&#125;&#125;(6:y=,u((y8:if(g=,lg,g=,y===c)b+=g;else if(y!==l)y9:c10:u(s(11:y=,u(+y)12:for(y=f,d=[],g=0;g&lt;y;g)d[g]=y.charCodeAt(g)^g+y;u(String.fromCharCode.apply(null,d13:y=,h=delete [y]14:59:u((g=)?(y=x,v.slice(x-=g,y:[])61:u([])62:g=,k[0]=65599*k[0]+k[1].charCodeAt(g)&gt;&gt;&gt;065:h=,y=,[y]=h66:u(e(t[b],,67:y=,d=,u((g=).x===c?r(g.y,y,k):g.apply(d,y68:u(e((g=t[b])&lt;"&lt;"?(b--,f):g+g,,70:u(!1)71:n72:+f73:u(parseInt(f,3675:if()&#123;bcase 74:g=&lt;&lt;16&gt;&gt;16g76:u(k[])77:y=,u([y])78:g=,u(a(v,x-=g+1,g79:g=,u(k["$"+g])81:h=,[f]=h82:u([f])83:h=,k[]=h84:!085:void 086:u(v[x-1])88:h=,y=,h,y89:u(&#123;e&#123;r(e.y,arguments,k)&#125;e.y=f,e.x=c,e&#125;)90:null91:h93:h=0:;default:u((g&lt;&lt;16&gt;&gt;16)-16)&#125;&#125;n=this,t=n.Function,s=Object.keys||(e)&#123;a=&#123;&#125;,r=0;for(c in e)a[r]=c;a=r,a&#125;,b=&#123;&#125;,k=&#123;&#125;;r'</span></span><br><span class="line">						.replace(<span class="regexp">/[-]/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">							<span class="keyword">return</span> t[<span class="number">15</span> &amp; e.charCodeAt(<span class="number">0</span>)]</span><br><span class="line">						&#125;)</span><br><span class="line">			&#125;</span><br><span class="line">					(<span class="string">"v[x++]=v[--x]t.charCodeAt(b++)-32function return ))++.substrvar .length(),b+=;break;case ;break&#125;"</span></span><br><span class="line">							.split(<span class="string">""</span>)))</span><br><span class="line">			()</span><br><span class="line">			(</span><br><span class="line">					<span class="string">'gr$Daten Иb/s!l y͒yĹg,(lfi~ah`&#123;mv,-n|jqewVxp&#123;rvmmx,&amp;effkx[!cs"l".Pq%widthl"@q&amp;heightl"vr*getContextx$"2d[!cs#l#,*;?|u.|uc&#123;uq$fontl#vr(fillTextx$$龘ฑภ경2&lt;[#c&#125;l#2q*shadowBlurl#1q-shadowOffsetXl#$$limeq+shadowColorl#vr#arcx88802[%c&#125;l#vr&amp;strokex[ c&#125;l"v,)&#125;eOmyoZB]mx[ cs!0s$l$Pb&lt;k7l l!r&amp;lengthb%^l$1+s$jl  s#i$1ek1s$gr#tack4)zgr#tac$! +0o![#cj?o ]!l$b%s"o ]!l"l$b*b^0d#&gt;&gt;&gt;s!0s%yA0s"l"l!r&amp;lengthb&lt;k+l"^l"1+s"jl  s&amp;l&amp;z0l!$ +["cs\'(0l#i\'1ps9wxb&amp;s() &amp;&#123;s)/s(gr&amp;Stringr,fromCharCodes)0s*yWl ._b&amp;s o!])l l Jb&lt;k$.aj;l .Tb&lt;k$.gj/l .^b&lt;k&amp;i"-4j!+&amp; s+yPo!]+s!l!l Hd&gt;&amp;l!l Bd&gt;&amp;+l!l &lt;d&gt;&amp;+l!l 6d&gt;&amp;+l!l &amp;+ s,y=o!o!]/q"13o!l q"10o!],l 2d&gt;&amp; s.&#123;s-yMo!o!]0q"13o!]*Ld&lt;l 4d#&gt;&gt;&gt;b|s!o!l q"10o!],l!&amp; s/yIo!o!].q"13o!],o!]*Jd&lt;l 6d#&gt;&gt;&gt;b|&amp;o!]+l &amp;+ s0l-l!&amp;l-l!i\'1z141z4b/@d&lt;l"b|&amp;+l-l(l!b^&amp;+l-l&amp;zl\'g,)gk&#125;ejo&#123;cm,)|yn~Lij~em["cl$b%@d&lt;l&amp;zl\'l $ +["cl$b%b|&amp;+l-l%8d&lt;@b|l!b^&amp;+ q$sign '</span>,</span><br><span class="line">					[ TAC = &#123;&#125; ])</span><br><span class="line">	<span class="keyword">var</span> data = TAC.sign(userid + <span class="string">'0'</span>);</span><br><span class="line">	<span class="keyword">return</span> data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="具体视频链接"><a href="#具体视频链接" class="headerlink" title="具体视频链接"></a>具体视频链接</h2><p>上面的链接拼接完成之后，视频列表可以正常请求了，请求回来的数据取一条看一下。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">"single_mode"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="attr">"abstract"</span>: <span class="string">"八卦象棋：想重炮将死我，只能对炮了，仅此一步棋可以化解"</span>,</span><br><span class="line"><span class="attr">"middle_mode"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="attr">"more_mode"</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="attr">"tag"</span>: <span class="string">"video_sports"</span>,</span><br><span class="line"><span class="attr">"has_gallery"</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="attr">"tag_url"</span>: <span class="string">"video"</span>,</span><br><span class="line"><span class="attr">"title"</span>: <span class="string">"八卦象棋：想重炮将死我，只能对炮了，仅此一步棋可以化解"</span>,</span><br><span class="line"><span class="attr">"has_video"</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="attr">"chinese_tag"</span>: <span class="string">"视频"</span>,</span><br><span class="line"><span class="attr">"source"</span>: <span class="string">"八卦讲棋"</span>,</span><br><span class="line"><span class="attr">"group_source"</span>: <span class="number">2</span>,</span><br><span class="line"><span class="attr">"image_url"</span>: <span class="string">"http://p99.pstatp.com/list/190x124/111d9000bc384a1e7c376"</span>,</span><br><span class="line"><span class="attr">"media_url"</span>: <span class="string">"/c/user/63387812477/"</span>,</span><br><span class="line"><span class="attr">"media_avatar_url"</span>: <span class="string">"http://p1.pstatp.com/large/9062000424ee2d9e7539"</span>,</span><br><span class="line"><span class="attr">"video_duration_str"</span>: <span class="string">"15:33"</span>,</span><br><span class="line"><span class="attr">"source_url"</span>: <span class="string">"/group/6622421805481067012/"</span>,</span><br><span class="line"><span class="attr">"article_genre"</span>: <span class="string">"video"</span>,</span><br><span class="line"><span class="attr">"is_feed_ad"</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="attr">"video_id"</span>: <span class="string">"v02004740000bfjp2a8m4cim9gian7o0"</span>,</span><br><span class="line"><span class="attr">"behot_time"</span>: <span class="number">1542366341</span>,</span><br><span class="line"><span class="attr">"comments_count"</span>: <span class="number">11</span>,</span><br><span class="line"><span class="attr">"video_play_count"</span>: <span class="number">3630</span>,</span><br><span class="line"><span class="attr">"group_id"</span>: <span class="string">"6622421805481067012"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>发现并没有视频链接。打开视频详情页。找到一个链接<a href="http://ib.365yg.com/video/urls/v/1/toutiao/mp4/v020041d0000bfl6fafrri6cjb9b5rg0?r=990702939595272&amp;s=2968355509&amp;aid=1364&amp;callback=axiosJsonpCallback1&amp;`_`=1542366691315" target="_blank" rel="noopener">http://ib.365yg.com/video/urls/v/1/toutiao/mp4/v020041d0000bfl6fafrri6cjb9b5rg0?r=990702939595272&amp;s=2968355509&amp;aid=1364&amp;callback=axiosJsonpCallback1&amp;`_`=1542366691315</a></p>
+<p><img src="/images/toutiao_10.png" alt=""><br>在返回的数据中看到字段<code>main_url</code>和<code>backup_url_1</code>，这是一个base64加密的链接，解密过后发现正是视频的地址</p>
+<p><a href="http://v11-tt.ixigua.com/14adfc0ca3b2f89aaf37e5eb3a64527b/5beeb5b4/video/m/220a890707eded14f439467e0c47f660c15115ed0f000005bcde4968bf8/?rc=M3VlZWZsdWQ5aTMzZzczM0ApQHRAbzk6Njo3MzUzMzY0NDQ0NDVvQGgzdSlAZjN1KWRzcmd5a3VyZ3lybHh3Zjc2QGQyNmczb2NjaV8tLS4tL3NzLW8jbyMxMjEtMC0tLi4uNjMuNS06I28jOmEtcSM6YHZpXGJmK2BeYmYrXnFsOiMzLl4%3D" target="_blank" rel="noopener">http://v11-tt.ixigua.com/14adfc0ca3b2f89aaf37e5eb3a64527b/5beeb5b4/video/m/220a890707eded14f439467e0c47f660c15115ed0f000005bcde4968bf8/?rc=M3VlZWZsdWQ5aTMzZzczM0ApQHRAbzk6Njo3MzUzMzY0NDQ0NDVvQGgzdSlAZjN1KWRzcmd5a3VyZ3lybHh3Zjc2QGQyNmczb2NjaV8tLS4tL3NzLW8jbyMxMjEtMC0tLi4uNjMuNS06I28jOmEtcSM6YHZpXGJmK2BeYmYrXnFsOiMzLl4%3D</a></p>
+<p>接下来的任务就是解析获取视频信息的链接，继续拆分参数</p>
+<table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>取值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r</td>
+<td>990702939595272</td>
+<td>变</td>
+</tr>
+<tr>
+<td>s</td>
+<td>2968355509</td>
+<td>变</td>
+</tr>
+<tr>
+<td>aid</td>
+<td>1364</td>
+<td>未知</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>axiosJsonpCallback1</td>
+<td>未知</td>
+</tr>
+<tr>
+<td>_</td>
+<td>1542366691315</td>
+<td>变</td>
+</tr>
+</tbody>
+</table>
+<p>继续上面的过程，找参数</p>
+<h4 id="搜索参数"><a href="#搜索参数" class="headerlink" title="搜索参数"></a>搜索参数</h4><p>搜索r，由于太多，搜<code>?r</code> ，找到的各个可疑位置打断点，跟一下。如下图</p>
+<p><img src="/images/toutiao_11.png" alt=""><br>发现都在这，不仅有<code>r</code>和<code>s</code>，而且最后直接返回了链接。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e = <span class="built_in">document</span>.createElement(<span class="string">"a"</span>);</span><br><span class="line">e.href = t;</span><br><span class="line"><span class="keyword">var</span> n = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> t = <span class="number">0</span>, e = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">256</span>), n = <span class="number">0</span>; <span class="number">256</span> !== n; ++n)</span><br><span class="line">            t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = n) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>, e[n] = t;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"undefined"</span> != <span class="keyword">typeof</span> <span class="built_in">Int32Array</span> ? <span class="keyword">new</span> <span class="built_in">Int32Array</span>(e) : e</span><br><span class="line">    &#125;(),</span><br><span class="line">    r = e.pathname + <span class="string">"?r="</span> + <span class="built_in">Math</span>.random().toString(<span class="number">10</span>).substring(<span class="number">2</span>);</span><br><span class="line"><span class="string">"/"</span> !== r[<span class="number">0</span>] &amp;&amp; (r = <span class="string">"/"</span> + r);</span><br><span class="line"><span class="keyword">var</span> i = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> e, r, i = <span class="number">-1</span>, o = <span class="number">0</span>, a = t.length; o &lt; a;)</span><br><span class="line">        (e = t.charCodeAt(o++)) &lt; <span class="number">128</span> ? i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ e)] : e &lt; <span class="number">2048</span> ? i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">192</span> | e &gt;&gt; <span class="number">6</span> &amp; <span class="number">31</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; e))] : e &gt;= <span class="number">55296</span> &amp;&amp; e &lt; <span class="number">57344</span> ? (e = <span class="number">64</span> + (<span class="number">1023</span> &amp; e), r = <span class="number">1023</span> &amp; t.charCodeAt(o++), i = (i = (i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">240</span> | e &gt;&gt; <span class="number">8</span> &amp; <span class="number">7</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | e &gt;&gt; <span class="number">2</span> &amp; <span class="number">63</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | r &gt;&gt; <span class="number">6</span> &amp; <span class="number">15</span> | (<span class="number">3</span> &amp; e) &lt;&lt; <span class="number">4</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; r))]) : i = (i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">224</span> | e &gt;&gt; <span class="number">12</span> &amp; <span class="number">15</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | e &gt;&gt; <span class="number">6</span> &amp; <span class="number">63</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; e))];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span> ^ i</span><br><span class="line">&#125;(r) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line"><span class="keyword">return</span> (location.protocol.indexOf(<span class="string">"http"</span>) &gt; <span class="number">-1</span> ? [location.protocol, e.hostname] : [<span class="string">"http:"</span>, e.hostname]).join(<span class="string">"//"</span>) + r + <span class="string">"&amp;s="</span> + i</span><br></pre></td></tr></table></figure>
+<p>看上面代码发现<code>r</code>、<code>s</code>、<code>_</code>三个参数都有了，然后继续往下找<code>aid</code>，然后断点，发现<code>aid</code>是一个定值</p>
+<p><img src="/images/toutiao_12.png" alt=""></p>
+<p>搜索<code>axiosJsonpCallback</code>发现变化也不大。</p>
+<p><img src="/images/toutiao_13.png" alt=""><br>这样链接就凑够了，简单梳理一下js。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_url</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> index = <span class="number">1</span>,aid=<span class="number">1364</span></span><br><span class="line">	<span class="keyword">var</span> url_split=t.split(<span class="string">"ib.365yg.com"</span>)</span><br><span class="line">    <span class="keyword">var</span> n = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> t = <span class="number">0</span>, e = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">256</span>), n = <span class="number">0</span>; <span class="number">256</span> !== n; ++n)</span><br><span class="line">                t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = <span class="number">1</span> &amp; (t = n) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>) ? <span class="number">-306674912</span> ^ t &gt;&gt;&gt; <span class="number">1</span> : t &gt;&gt;&gt; <span class="number">1</span>, e[n] = t;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"undefined"</span> != <span class="keyword">typeof</span> <span class="built_in">Int32Array</span> ? <span class="keyword">new</span> <span class="built_in">Int32Array</span>(e) : e</span><br><span class="line">        &#125;(),</span><br><span class="line"></span><br><span class="line">        r = url_split[<span class="number">1</span>] + <span class="string">"?r="</span> + <span class="built_in">Math</span>.random().toString(<span class="number">10</span>).substring(<span class="number">2</span>);</span><br><span class="line">    <span class="string">"/"</span> !== r[<span class="number">0</span>] &amp;&amp; (r = <span class="string">"/"</span> + r);</span><br><span class="line">    print(r)</span><br><span class="line">    <span class="keyword">var</span> i = <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> e, r, i = <span class="number">-1</span>, o = <span class="number">0</span>, a = t.length; o &lt; a;)</span><br><span class="line">            (e = t.charCodeAt(o++)) &lt; <span class="number">128</span> ? i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ e)] : e &lt; <span class="number">2048</span> ? i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">192</span> | e &gt;&gt; <span class="number">6</span> &amp; <span class="number">31</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; e))] : e &gt;= <span class="number">55296</span> &amp;&amp; e &lt; <span class="number">57344</span> ? (e = <span class="number">64</span> + (<span class="number">1023</span> &amp; e), r = <span class="number">1023</span> &amp; t.charCodeAt(o++), i = (i = (i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">240</span> | e &gt;&gt; <span class="number">8</span> &amp; <span class="number">7</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | e &gt;&gt; <span class="number">2</span> &amp; <span class="number">63</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | r &gt;&gt; <span class="number">6</span> &amp; <span class="number">15</span> | (<span class="number">3</span> &amp; e) &lt;&lt; <span class="number">4</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; r))]) : i = (i = (i = i &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">224</span> | e &gt;&gt; <span class="number">12</span> &amp; <span class="number">15</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | e &gt;&gt; <span class="number">6</span> &amp; <span class="number">63</span>))]) &gt;&gt;&gt; <span class="number">8</span> ^ n[<span class="number">255</span> &amp; (i ^ (<span class="number">128</span> | <span class="number">63</span> &amp; e))];</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span> ^ i</span><br><span class="line">    &#125;(r) &gt;&gt;&gt; <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> _ = (<span class="keyword">new</span> <span class="built_in">Date</span>).getTime()</span><br><span class="line">    <span class="keyword">var</span> callback = <span class="string">"axiosJsonpCallback"</span>+index</span><br><span class="line">    <span class="keyword">return</span>  <span class="string">"http://ib.365yg.com"</span>+r + <span class="string">"&amp;s="</span> + i+<span class="string">"&amp;aid="</span>+aid+<span class="string">"&amp;callback="</span>+callback+<span class="string">"&amp;_="</span>+_</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;今日头条视频页-https-www-365yg-com&quot;&gt;&lt;a href=&quot;#今日头条视频页-https-www-365yg-com&quot; class=&quot;headerlink&quot; title=&quot;今日头条视频页 https://www.365yg.com/&quot;&gt;&lt;/a&gt;今日
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="爬虫" scheme="http://www.thinkyixia.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="视频" scheme="http://www.thinkyixia.com/tags/%E8%A7%86%E9%A2%91/"/>
+    
+      <category term="今日头条" scheme="http://www.thinkyixia.com/tags/%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>gif图片资源</title>
@@ -264,6 +433,97 @@
   </entry>
   
   <entry>
+    <title>优质公众号必备工具</title>
+    <link href="http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/"/>
+    <id>http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/</id>
+    <published>2018-07-16T16:00:00.000Z</published>
+    <updated>2018-07-16T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.</strong></p>
+<h1 id="你距离优质公众号还有多远？"><a href="#你距离优质公众号还有多远？" class="headerlink" title="你距离优质公众号还有多远？"></a>你距离优质公众号还有多远？</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">网站名</th>
+<th style="text-align:left">网址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">10款好用的神器</td>
+<td style="text-align:left"><a href="http://mp.weixin.qq.com/s/_76OWDlgopBEQfaNjg76Hw" target="_blank" rel="noopener">http://mp.weixin.qq.com/s/_76OWDlgopBEQfaNjg76Hw</a></td>
+</tr>
+<tr>
+<td style="text-align:left">著名icon搜索引擎、海量图标素材</td>
+<td style="text-align:left"><a href="http://iconfinder.com" target="_blank" rel="noopener">http://iconfinder.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">颜文字素材</td>
+<td style="text-align:left"><a href="http://emot.es" target="_blank" rel="noopener">http://emot.es</a></td>
+</tr>
+<tr>
+<td style="text-align:left">公众号文字特效生成器</td>
+<td style="text-align:left"><a href="http://megaemoji.com/cn" target="_blank" rel="noopener">http://megaemoji.com/cn</a></td>
+</tr>
+<tr>
+<td style="text-align:left">平铺背景图片素材</td>
+<td style="text-align:left"><a href="http://thepatternlibrary.com" target="_blank" rel="noopener">http://thepatternlibrary.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">图片制作：创客贴</td>
+<td style="text-align:left"><a href="https://www.chuangkit.com/" target="_blank" rel="noopener">https://www.chuangkit.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">微信插件：新媒体管家</td>
+<td style="text-align:left"><a href="https://xmt.cn/index" target="_blank" rel="noopener">https://xmt.cn/index</a></td>
+</tr>
+<tr>
+<td style="text-align:left">微信编辑：135编辑器</td>
+<td style="text-align:left"><a href="http://www.135editor.com/" target="_blank" rel="noopener">http://www.135editor.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">一键多平台分发：简媒</td>
+<td style="text-align:left"><a href="http://www.ejianmedia.com/s/home" target="_blank" rel="noopener">http://www.ejianmedia.com/s/home</a></td>
+</tr>
+<tr>
+<td style="text-align:left">艺术二维码制作</td>
+<td style="text-align:left"><a href="http://www.9thws.com/" target="_blank" rel="noopener">http://www.9thws.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">二维码生成</td>
+<td style="text-align:left"><a href="https://cli.im/" target="_blank" rel="noopener">https://cli.im/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">短链生成</td>
+<td style="text-align:left"><a href="http://sina.lt/" target="_blank" rel="noopener">http://sina.lt/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">短链生成</td>
+<td style="text-align:left"><a href="http://dwz.cn/" target="_blank" rel="noopener">http://dwz.cn/</a></td>
+</tr>
+</tbody>
+</table>
+<p>持续更新……</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;你距离优质公众号还有多远？&quot;&gt;&lt;a href=&quot;#你距离优质公众号还有多远？&quot; class=&quot;headerlink&quot; title=&quot;你距离优质公
+    
+    </summary>
+    
+      <category term="工具" scheme="http://www.thinkyixia.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
+    
+      <category term="工具" scheme="http://www.thinkyixia.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="微信公众号" scheme="http://www.thinkyixia.com/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>互联网使用小工具</title>
     <link href="http://www.thinkyixia.com/2018/07/17/navigation_tools/"/>
     <id>http://www.thinkyixia.com/2018/07/17/navigation_tools/</id>
@@ -393,125 +653,6 @@
   </entry>
   
   <entry>
-    <title>优质公众号必备工具</title>
-    <link href="http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/"/>
-    <id>http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/</id>
-    <published>2018-07-16T16:00:00.000Z</published>
-    <updated>2018-07-16T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.</strong></p>
-<h1 id="你距离优质公众号还有多远？"><a href="#你距离优质公众号还有多远？" class="headerlink" title="你距离优质公众号还有多远？"></a>你距离优质公众号还有多远？</h1><table>
-<thead>
-<tr>
-<th style="text-align:left">网站名</th>
-<th style="text-align:left">网址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">10款好用的神器</td>
-<td style="text-align:left"><a href="http://mp.weixin.qq.com/s/_76OWDlgopBEQfaNjg76Hw" target="_blank" rel="noopener">http://mp.weixin.qq.com/s/_76OWDlgopBEQfaNjg76Hw</a></td>
-</tr>
-<tr>
-<td style="text-align:left">著名icon搜索引擎、海量图标素材</td>
-<td style="text-align:left">iconfinder.com</td>
-</tr>
-<tr>
-<td style="text-align:left">颜文字素材</td>
-<td style="text-align:left">emot.es</td>
-</tr>
-<tr>
-<td style="text-align:left">公众号文字特效生成器</td>
-<td style="text-align:left">megaemoji.com/cn</td>
-</tr>
-<tr>
-<td style="text-align:left">平铺背景图片素材</td>
-<td style="text-align:left">thepatternlibrary.com</td>
-</tr>
-<tr>
-<td style="text-align:left">图片制作：创客贴</td>
-<td style="text-align:left"><a href="https://www.chuangkit.com/" target="_blank" rel="noopener">https://www.chuangkit.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">微信插件：新媒体管家</td>
-<td style="text-align:left"><a href="https://xmt.cn/index" target="_blank" rel="noopener">https://xmt.cn/index</a></td>
-</tr>
-<tr>
-<td style="text-align:left">微信编辑：135编辑器</td>
-<td style="text-align:left"><a href="http://www.135editor.com/" target="_blank" rel="noopener">http://www.135editor.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">一键多平台分发：简媒</td>
-<td style="text-align:left"><a href="http://www.ejianmedia.com/s/home" target="_blank" rel="noopener">http://www.ejianmedia.com/s/home</a></td>
-</tr>
-<tr>
-<td style="text-align:left">艺术二维码制作</td>
-<td style="text-align:left"><a href="http://www.9thws.com/" target="_blank" rel="noopener">http://www.9thws.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">二维码生成</td>
-<td style="text-align:left"><a href="https://cli.im/" target="_blank" rel="noopener">https://cli.im/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">短链生成</td>
-<td style="text-align:left"><a href="http://sina.lt/" target="_blank" rel="noopener">http://sina.lt/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">短链生成</td>
-<td style="text-align:left"><a href="http://dwz.cn/" target="_blank" rel="noopener">http://dwz.cn/</a></td>
-</tr>
-</tbody>
-</table>
-<p>持续更新……</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;你距离优质公众号还有多远？&quot;&gt;&lt;a href=&quot;#你距离优质公众号还有多远？&quot; class=&quot;headerlink&quot; title=&quot;你距离优质公
-    
-    </summary>
-    
-      <category term="工具" scheme="http://www.thinkyixia.com/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
-    
-      <category term="工具" scheme="http://www.thinkyixia.com/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="微信公众号" scheme="http://www.thinkyixia.com/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>偿一代&amp;偿二代体系下的内含价值计算</title>
-    <link href="http://www.thinkyixia.com/2018/04/18/baoxian-6/"/>
-    <id>http://www.thinkyixia.com/2018/04/18/baoxian-6/</id>
-    <published>2018-04-17T16:00:00.000Z</published>
-    <updated>2018-04-17T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>首先需要搞明白什么是偿一代和偿二代？</p>
-<p>偿一代和偿二代是两种计算内含价值的体系。2005年保监会编制的《人身保险内含价值报告编制指引》，就是我们常说的偿一代体系。不过2016年保监会放开限制后，当年11月有中国精算师协会编制的《精算实践标准》成为了新的内含价值计算的新依据，这个标准就是偿二代体系。</p>
-<hr>
-<p>偿一代体系：<br><a href="http://www.51wf.com/print-law?id=190247" target="_blank" rel="noopener">http://www.51wf.com/print-law?id=190247</a><br>偿二代体系：<br><a href="http://www.e-caa.org.cn/systemNews/show/8a7da90a584878e4015884bd60135306?str=%E4%B8%93%E4%B8%9A%E6%A0%87%E5%87%86" target="_blank" rel="noopener">http://www.e-caa.org.cn/systemNews/show/8a7da90a584878e4015884bd60135306?str=%E4%B8%93%E4%B8%9A%E6%A0%87%E5%87%86</a></p>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先需要搞明白什么是偿一代和偿二代？&lt;/p&gt;
-&lt;p&gt;偿一代和偿二代是两种计算内含价值的体系。2005年保监会编制的《人身保险内含价值报告编制指引》，就是我们常说的偿一代体系。不过2016年保监会放开限制后，当年11月有中国精算师协会编制的《精算实践标准》成为了新的内含价值计
-    
-    </summary>
-    
-      <category term="保险" scheme="http://www.thinkyixia.com/categories/%E4%BF%9D%E9%99%A9/"/>
-    
-    
-      <category term="保险" scheme="http://www.thinkyixia.com/tags/%E4%BF%9D%E9%99%A9/"/>
-    
-  </entry>
-  
-  <entry>
     <title>spark on yarn 在集群资源充足的时候任务提交不上去</title>
     <link href="http://www.thinkyixia.com/2018/04/18/yarn-1/"/>
     <id>http://www.thinkyixia.com/2018/04/18/yarn-1/</id>
@@ -540,6 +681,34 @@
       <category term="spark" scheme="http://www.thinkyixia.com/tags/spark/"/>
     
       <category term="yarn" scheme="http://www.thinkyixia.com/tags/yarn/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>偿一代&amp;偿二代体系下的内含价值计算</title>
+    <link href="http://www.thinkyixia.com/2018/04/18/baoxian-6/"/>
+    <id>http://www.thinkyixia.com/2018/04/18/baoxian-6/</id>
+    <published>2018-04-17T16:00:00.000Z</published>
+    <updated>2018-04-17T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>首先需要搞明白什么是偿一代和偿二代？</p>
+<p>偿一代和偿二代是两种计算内含价值的体系。2005年保监会编制的《人身保险内含价值报告编制指引》，就是我们常说的偿一代体系。不过2016年保监会放开限制后，当年11月有中国精算师协会编制的《精算实践标准》成为了新的内含价值计算的新依据，这个标准就是偿二代体系。</p>
+<hr>
+<p>偿一代体系：<br><a href="http://www.51wf.com/print-law?id=190247" target="_blank" rel="noopener">http://www.51wf.com/print-law?id=190247</a><br>偿二代体系：<br><a href="http://www.e-caa.org.cn/systemNews/show/8a7da90a584878e4015884bd60135306?str=%E4%B8%93%E4%B8%9A%E6%A0%87%E5%87%86" target="_blank" rel="noopener">http://www.e-caa.org.cn/systemNews/show/8a7da90a584878e4015884bd60135306?str=%E4%B8%93%E4%B8%9A%E6%A0%87%E5%87%86</a></p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;首先需要搞明白什么是偿一代和偿二代？&lt;/p&gt;
+&lt;p&gt;偿一代和偿二代是两种计算内含价值的体系。2005年保监会编制的《人身保险内含价值报告编制指引》，就是我们常说的偿一代体系。不过2016年保监会放开限制后，当年11月有中国精算师协会编制的《精算实践标准》成为了新的内含价值计
+    
+    </summary>
+    
+      <category term="保险" scheme="http://www.thinkyixia.com/categories/%E4%BF%9D%E9%99%A9/"/>
+    
+    
+      <category term="保险" scheme="http://www.thinkyixia.com/tags/%E4%BF%9D%E9%99%A9/"/>
     
   </entry>
   
@@ -576,6 +745,92 @@
     
       &lt;p&gt;从财险公司的盈利来看，即使不考虑用保险准备金投资带来的投资收益，财险业务本身就可以盈利，即用保费收入扣除赔付支出和其它费用支出后，业务质量较好的财险公司就可以获得承保利润。&lt;/p&gt;
 &lt;p&gt;这正是财险公司与其它金融中介如商业银行、信托公司、基金公司、资产管理公司的不同之处。&lt;
+    
+    </summary>
+    
+      <category term="保险" scheme="http://www.thinkyixia.com/categories/%E4%BF%9D%E9%99%A9/"/>
+    
+    
+      <category term="保险" scheme="http://www.thinkyixia.com/tags/%E4%BF%9D%E9%99%A9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>保险学习笔记3：保险负债的计量上</title>
+    <link href="http://www.thinkyixia.com/2018/04/14/baoxian-3/"/>
+    <id>http://www.thinkyixia.com/2018/04/14/baoxian-3/</id>
+    <published>2018-04-13T16:00:00.000Z</published>
+    <updated>2018-04-13T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>保险公司的负债主要分为以下三种负债：</p>
+<table>
+<thead>
+<tr>
+<th>保费收入</th>
+<th></th>
+<th>负债</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原保险保费收入</td>
+<td>保险合同准备金</td>
+<td>未到期责任准备金、未决赔款准备金、寿险责任准备金、长期健康险责任准备金</td>
+</tr>
+<tr>
+<td>保户投资款新增交费</td>
+<td></td>
+<td>保户储金及投资款</td>
+</tr>
+<tr>
+<td>投连险独立账户新增交费</td>
+<td></td>
+<td>独立账户负债</td>
+</tr>
+</tbody>
+</table>
+<p>那这三类负债在保险公司负债表中是怎么计量的呢？</p>
+<h1 id="独立账户负债的计量"><a href="#独立账户负债的计量" class="headerlink" title="独立账户负债的计量"></a>独立账户负债的计量</h1><p>由于投连险的投资账户，是有客户承担全部风险，保险公司只收取资产管理费，所以，独立账户负债按公允价值进行初始确认，以公允价值进行后续计量，盈亏都是客户的。</p>
+<h1 id="保户储金及投资款的计量"><a href="#保户储金及投资款的计量" class="headerlink" title="保户储金及投资款的计量"></a>保户储金及投资款的计量</h1><p>除投连险之外的所有非保险合同交费都计入保户储金和投资款。<br>对于保户储金来说，保险公司需要逐年/月为客户支付利息，可能是固定利率也可能是浮动利率。因此，保户储金及投资款按公允价值进行初始确认，按摊余成本进行后续计量。</p>
+<h1 id="保险合同准备金的计量方法"><a href="#保险合同准备金的计量方法" class="headerlink" title="保险合同准备金的计量方法"></a>保险合同准备金的计量方法</h1><p>保险合同准备金，由未到期责任准备金、未决赔款准备金、寿险责任准备金（未到期+未决）、长期健康险责任准备金（未到期+未决）<br>保险合同准备金很特殊：一方面是因为投资收益的不确定性带来的支付给客户的利息的不确定性。二是由于客户群死亡率、发病率、退保率的不确定性带来的给付不确定性。</p>
+<p>总的可以将四类保险合同准备金归并为两类：未决赔款准备金和未到期责任准备金。</p>
+<h2 id="未决赔款准备金的计量方法"><a href="#未决赔款准备金的计量方法" class="headerlink" title="未决赔款准备金的计量方法"></a>未决赔款准备金的计量方法</h2><p>未决赔款准备金包括：已发生已报案未决赔款准备金、已发生未报案未决赔款准备金和理赔费用准备金<br>已发生已报案未决赔款准备金，保险公司采用<strong>逐案估损法、案均赔款法</strong>等方法，已最终赔付的合理估值为基础，计量这部分准备金<br>已发生未报案未决赔款准备金，根据<strong>链梯法、案均赔款法、准备金进展法、B－F法</strong>等方法，已最终赔付的合理估计金额为基础，计量这部分准备金</p>
+<p>对于理赔费用准备金，保险公司可以未来必须发生的理赔费用的合理估计为基础，计量理赔费用准备金。</p>
+<h2 id="未到期责任准备金的计量方法"><a href="#未到期责任准备金的计量方法" class="headerlink" title="未到期责任准备金的计量方法"></a>未到期责任准备金的计量方法</h2><p>未到期责任准备金的计算公式：<br>未到期责任准备金=合理估计负债+风险边际+剩余边际</p>
+<ul>
+<li>合理估计负债<br>是指对保单未来预期净现金流出的现值的合理估计，由于未来净现金流出有不确定性，这个合理估计就是指预期净现金流出的期望值。<br>就是自己估计一个未来这些保单可能产生的赔付有多少</li>
+<li>风险边际<br>是指为应对预期现金流不确定性而提取的准备金。同样，由于未来净现金流出有不确定性，在合理估计负债基础上增加一点准备金（风险边际）会让保险公司对未来感觉心里更踏实。<br>在合理负债的基础上多准备一点钱，为了预防不确定风险的发生</li>
+<li>剩余边际<br>是指保单隐含的未来利润，将在未来保险期间逐渐摊销或实现。正常情况下，保险公司销售保单，由于预收保费的原因，保费中实际都包含着一定额度的未来利润。<strong>按照（《保险合同相关会计处理规定》（财会[2009]15号），保险人在保险合同初始确认日不应当确认首日利得，于是就将本来赚到的“首日利得”作为剩余边际放在准备金里</strong></li>
+</ul>
+<hr>
+<blockquote>
+<p>剩余边际的小案例<br>一家寿险公司向一位40岁的客户销售了一份交费100万元的终身年金保险合同，销售费用是5万，销售结束后，落到保险公司口袋里的是95万元。</p>
+</blockquote>
+<p>保险公司对这张保单的未来给付进行合理估计并折现，合理估计负债为88万元，再考虑风险边际2万元，只要准备90万，未来给付就应该足够了。这样保险公司口袋里有95万，多出来的5万就是潜在利润，如果不出意外，保险公司已经赚了5万，因此称为“<strong>首日利得</strong>”</p>
+<p>如果现在就将这5万元确认为利润，保险公司再未来几十年的保单期限内，就无法从这张保单上获取利润了，这显然不合理。因此，《保险合同相关会记处理规定》明确，保险人再保险合同初始确认日不应当确认首日利得。</p>
+<p>于是，保险公司将这5万元作为剩余边际放在未到期责任准备金里，以后在保险期限内逐步释放，逐步确认为利润。</p>
+<hr>
+<p>未确认概念：<br>摊余成本？</p>
+<hr>
+<p>学习资料来自微信公众号：保险神潭</p>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;保险公司的负债主要分为以下三种负债：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;保费收入&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;负债&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;原保险保费收入&lt;/td&gt;
+&lt;td&gt;保险合同准备金&lt;
     
     </summary>
     
@@ -671,92 +926,6 @@
     
       &lt;p&gt;本文主要还是对未到期责任准备金计量方式进行学习整理。&lt;/p&gt;
 &lt;h1 id=&quot;未到期责任准备金的计量&quot;&gt;&lt;a href=&quot;#未到期责任准备金的计量&quot; class=&quot;headerlink&quot; title=&quot;未到期责任准备金的计量&quot;&gt;&lt;/a&gt;未到期责任准备金的计量&lt;/h1&gt;&lt;p&gt;
-    
-    </summary>
-    
-      <category term="保险" scheme="http://www.thinkyixia.com/categories/%E4%BF%9D%E9%99%A9/"/>
-    
-    
-      <category term="保险" scheme="http://www.thinkyixia.com/tags/%E4%BF%9D%E9%99%A9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>保险学习笔记3：保险负债的计量上</title>
-    <link href="http://www.thinkyixia.com/2018/04/14/baoxian-3/"/>
-    <id>http://www.thinkyixia.com/2018/04/14/baoxian-3/</id>
-    <published>2018-04-13T16:00:00.000Z</published>
-    <updated>2018-04-13T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>保险公司的负债主要分为以下三种负债：</p>
-<table>
-<thead>
-<tr>
-<th>保费收入</th>
-<th></th>
-<th>负债</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>原保险保费收入</td>
-<td>保险合同准备金</td>
-<td>未到期责任准备金、未决赔款准备金、寿险责任准备金、长期健康险责任准备金</td>
-</tr>
-<tr>
-<td>保户投资款新增交费</td>
-<td></td>
-<td>保户储金及投资款</td>
-</tr>
-<tr>
-<td>投连险独立账户新增交费</td>
-<td></td>
-<td>独立账户负债</td>
-</tr>
-</tbody>
-</table>
-<p>那这三类负债在保险公司负债表中是怎么计量的呢？</p>
-<h1 id="独立账户负债的计量"><a href="#独立账户负债的计量" class="headerlink" title="独立账户负债的计量"></a>独立账户负债的计量</h1><p>由于投连险的投资账户，是有客户承担全部风险，保险公司只收取资产管理费，所以，独立账户负债按公允价值进行初始确认，以公允价值进行后续计量，盈亏都是客户的。</p>
-<h1 id="保户储金及投资款的计量"><a href="#保户储金及投资款的计量" class="headerlink" title="保户储金及投资款的计量"></a>保户储金及投资款的计量</h1><p>除投连险之外的所有非保险合同交费都计入保户储金和投资款。<br>对于保户储金来说，保险公司需要逐年/月为客户支付利息，可能是固定利率也可能是浮动利率。因此，保户储金及投资款按公允价值进行初始确认，按摊余成本进行后续计量。</p>
-<h1 id="保险合同准备金的计量方法"><a href="#保险合同准备金的计量方法" class="headerlink" title="保险合同准备金的计量方法"></a>保险合同准备金的计量方法</h1><p>保险合同准备金，由未到期责任准备金、未决赔款准备金、寿险责任准备金（未到期+未决）、长期健康险责任准备金（未到期+未决）<br>保险合同准备金很特殊：一方面是因为投资收益的不确定性带来的支付给客户的利息的不确定性。二是由于客户群死亡率、发病率、退保率的不确定性带来的给付不确定性。</p>
-<p>总的可以将四类保险合同准备金归并为两类：未决赔款准备金和未到期责任准备金。</p>
-<h2 id="未决赔款准备金的计量方法"><a href="#未决赔款准备金的计量方法" class="headerlink" title="未决赔款准备金的计量方法"></a>未决赔款准备金的计量方法</h2><p>未决赔款准备金包括：已发生已报案未决赔款准备金、已发生未报案未决赔款准备金和理赔费用准备金<br>已发生已报案未决赔款准备金，保险公司采用<strong>逐案估损法、案均赔款法</strong>等方法，已最终赔付的合理估值为基础，计量这部分准备金<br>已发生未报案未决赔款准备金，根据<strong>链梯法、案均赔款法、准备金进展法、B－F法</strong>等方法，已最终赔付的合理估计金额为基础，计量这部分准备金</p>
-<p>对于理赔费用准备金，保险公司可以未来必须发生的理赔费用的合理估计为基础，计量理赔费用准备金。</p>
-<h2 id="未到期责任准备金的计量方法"><a href="#未到期责任准备金的计量方法" class="headerlink" title="未到期责任准备金的计量方法"></a>未到期责任准备金的计量方法</h2><p>未到期责任准备金的计算公式：<br>未到期责任准备金=合理估计负债+风险边际+剩余边际</p>
-<ul>
-<li>合理估计负债<br>是指对保单未来预期净现金流出的现值的合理估计，由于未来净现金流出有不确定性，这个合理估计就是指预期净现金流出的期望值。<br>就是自己估计一个未来这些保单可能产生的赔付有多少</li>
-<li>风险边际<br>是指为应对预期现金流不确定性而提取的准备金。同样，由于未来净现金流出有不确定性，在合理估计负债基础上增加一点准备金（风险边际）会让保险公司对未来感觉心里更踏实。<br>在合理负债的基础上多准备一点钱，为了预防不确定风险的发生</li>
-<li>剩余边际<br>是指保单隐含的未来利润，将在未来保险期间逐渐摊销或实现。正常情况下，保险公司销售保单，由于预收保费的原因，保费中实际都包含着一定额度的未来利润。<strong>按照（《保险合同相关会计处理规定》（财会[2009]15号），保险人在保险合同初始确认日不应当确认首日利得，于是就将本来赚到的“首日利得”作为剩余边际放在准备金里</strong></li>
-</ul>
-<hr>
-<blockquote>
-<p>剩余边际的小案例<br>一家寿险公司向一位40岁的客户销售了一份交费100万元的终身年金保险合同，销售费用是5万，销售结束后，落到保险公司口袋里的是95万元。</p>
-</blockquote>
-<p>保险公司对这张保单的未来给付进行合理估计并折现，合理估计负债为88万元，再考虑风险边际2万元，只要准备90万，未来给付就应该足够了。这样保险公司口袋里有95万，多出来的5万就是潜在利润，如果不出意外，保险公司已经赚了5万，因此称为“<strong>首日利得</strong>”</p>
-<p>如果现在就将这5万元确认为利润，保险公司再未来几十年的保单期限内，就无法从这张保单上获取利润了，这显然不合理。因此，《保险合同相关会记处理规定》明确，保险人再保险合同初始确认日不应当确认首日利得。</p>
-<p>于是，保险公司将这5万元作为剩余边际放在未到期责任准备金里，以后在保险期限内逐步释放，逐步确认为利润。</p>
-<hr>
-<p>未确认概念：<br>摊余成本？</p>
-<hr>
-<p>学习资料来自微信公众号：保险神潭</p>
-<hr>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;保险公司的负债主要分为以下三种负债：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;保费收入&lt;/th&gt;
-&lt;th&gt;&lt;/th&gt;
-&lt;th&gt;负债&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;原保险保费收入&lt;/td&gt;
-&lt;td&gt;保险合同准备金&lt;
     
     </summary>
     
@@ -1240,9 +1409,9 @@
       <category term="工具" scheme="http://www.thinkyixia.com/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="广告" scheme="http://www.thinkyixia.com/tags/%E5%B9%BF%E5%91%8A/"/>
-    
       <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
+    
+      <category term="广告" scheme="http://www.thinkyixia.com/tags/%E5%B9%BF%E5%91%8A/"/>
     
   </entry>
   
@@ -1472,30 +1641,6 @@
     
     
       <category term="zookeeper" scheme="http://www.thinkyixia.com/tags/zookeeper/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>复利人生</title>
-    <link href="http://www.thinkyixia.com/2017/11/03/fuli/"/>
-    <id>http://www.thinkyixia.com/2017/11/03/fuli/</id>
-    <published>2017-11-02T16:00:00.000Z</published>
-    <updated>2017-11-02T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>理解时间，不慌不忙，静待时间的复利<br><img src="/images/fuli-1.png" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;理解时间，不慌不忙，静待时间的复利&lt;br&gt;&lt;img src=&quot;/images/fuli-1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="杂说" scheme="http://www.thinkyixia.com/categories/%E6%9D%82%E8%AF%B4/"/>
-    
-    
-      <category term="复利" scheme="http://www.thinkyixia.com/tags/%E5%A4%8D%E5%88%A9/"/>
     
   </entry>
   

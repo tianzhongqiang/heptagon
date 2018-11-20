@@ -520,7 +520,7 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/10/flume-taildir-source/">
+    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/14/elk1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="那个谁">
@@ -539,7 +539,7 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/10/flume-taildir-source/" itemprop="url">flume1.6 taildir source使用</a></h1>
+                <a class="post-title-link" href="/2017/08/14/elk1/" itemprop="url">ELK搭建使用</a></h1>
         
 
         <div class="post-meta">
@@ -551,8 +551,8 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T00:00:00+08:00">
-                2017-08-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T00:00:00+08:00">
+                2017-08-14
               </time>
             
 
@@ -613,13 +613,13 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
       
         
           
-          需求描述文件夹下每分钟生成一个文件，而该文件中的数据需要实时读取上报kafka。
-问题flume1.7中的taildir source正好满足，但是由于线上kafka版本使用的是0.8.2.0，而flume1.7只支持kafka0.9以上的版本。
-官网描述如下：意思就是：该版本flume1.7目前支
+          部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.0
+注：Elasticsearch、Kibana、Lostash的下载地址统一为https://www.elastic.co/downloads/
+安装Elasticsearch集群安装Elasticse
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/10/flume-taildir-source/#more" rel="contents">
+            <a class="btn" href="/2017/08/14/elk1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -820,7 +820,7 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/07/flume-kafka1/">
+    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/10/flume-taildir-source/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="那个谁">
@@ -839,7 +839,7 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/07/flume-kafka1/" itemprop="url">flume1.6向kafka不同分区发送数据</a></h1>
+                <a class="post-title-link" href="/2017/08/10/flume-taildir-source/" itemprop="url">flume1.6 taildir source使用</a></h1>
         
 
         <div class="post-meta">
@@ -851,8 +851,8 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T00:00:00+08:00">
-                2017-08-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T00:00:00+08:00">
+                2017-08-10
               </time>
             
 
@@ -913,12 +913,13 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
       
         
           
-          问题背景Flume1.6向kafka发送数据时，发现kafka接收到的数据总是在一个partition中。
-原因排查Flume的官方文档中说法是：Kafka Sink uses the topic and key properties from the FlumeEvent headers to s
+          需求描述文件夹下每分钟生成一个文件，而该文件中的数据需要实时读取上报kafka。
+问题flume1.7中的taildir source正好满足，但是由于线上kafka版本使用的是0.8.2.0，而flume1.7只支持kafka0.9以上的版本。
+官网描述如下：意思就是：该版本flume1.7目前支
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/08/07/flume-kafka1/#more" rel="contents">
+            <a class="btn" href="/2017/08/10/flume-taildir-source/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1105,6 +1106,155 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.thinkyixia.com/2017/08/07/flume-kafka1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="那个谁">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="静水流深">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/07/flume-kafka1/" itemprop="url">flume1.6向kafka不同分区发送数据</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T00:00:00+08:00">
+                2017-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          问题背景Flume1.6向kafka发送数据时，发现kafka接收到的数据总是在一个partition中。
+原因排查Flume的官方文档中说法是：Kafka Sink uses the topic and key properties from the FlumeEvent headers to s
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/07/flume-kafka1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1155,7 +1305,7 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1177,7 +1327,7 @@ elk搭建（怎么做）部署环境Elasticsearch:2.4.0kibana:4.6.0logstash:2.0.
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
