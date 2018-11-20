@@ -23,8 +23,7 @@
     <updated>2018-11-19T16:00:00.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="今日头条视频页-https-www-365yg-com"><a href="#今日头条视频页-https-www-365yg-com" class="headerlink" title="今日头条视频页 https://www.365yg.com/"></a>今日头条视频页 <a href="https://www.365yg.com/" target="_blank" rel="noopener">https://www.365yg.com/</a></h1><h2 id="1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接"><a href="#1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接" class="headerlink" title="1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接"></a>1、首先打开今日头条视频列表页，往下刷新的时候发现视频列表的请求链接</h2><p><img src="/images/toutiao_1.png" alt=""></p>
-<h3 id="链接如下"><a href="#链接如下" class="headerlink" title="链接如下"></a>链接如下</h3><p><a href="https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;category=video_new&amp;utm_source=toutiao&amp;widen=1&amp;tadrequire=true&amp;as=A1D57BBEAE87838&amp;cp=5BEE7798D358EE1&amp;_signature=RU1MfhAUHqXfJZp0ysi3V0VNTG" target="_blank" rel="noopener">https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;category=video_new&amp;utm_source=toutiao&amp;widen=1&amp;tadrequire=true&amp;as=A1D57BBEAE87838&amp;cp=5BEE7798D358EE1&amp;_signature=RU1MfhAUHqXfJZp0ysi3V0VNTG</a></p>
-<p>简单的对链接进行拆分，看链接中的参数都有啥，看看哪些变哪些不变</p>
+<h3 id="链接如下"><a href="#链接如下" class="headerlink" title="链接如下"></a>链接如下</h3><p><code>https://www.365yg.com/api/pc/feed/?max_behot_time=1542351388&amp;category=video_new&amp;utm_source=toutiao&amp;widen=1&amp;tadrequire=true&amp;as=A1D57BBEAE87838&amp;cp=5BEE7798D358EE1&amp;_signature=RU1MfhAUHqXfJZp0ysi3V0VNTG</code></p>
 <table>
 <thead>
 <tr>
@@ -86,7 +85,7 @@
 <p><img src="/images/toutiao_4.png" alt=""></p>
 <p>执行的时候，发现找不到<code>s</code>，断点走一遍发现<code>(0, s.default)(t)</code>就是把<code>t</code>做了一遍<code>md5</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">i</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> t = <span class="built_in">Math</span>.floor((<span class="keyword">new</span> <span class="built_in">Date</span>).getTime() / <span class="number">1e3</span>),</span><br><span class="line">            e = t.toString(<span class="number">16</span>).toUpperCase(),</span><br><span class="line">            n = (<span class="number">0</span>, s.default)(t).toString().toUpperCase(); <span class="comment">// 直接换成自己对t做md5操作就可以了</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="number">8</span> != e.length)</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                <span class="keyword">as</span>: <span class="string">"479BB4B7254C150"</span>,</span><br><span class="line">                cp: <span class="string">"7E0AC8874BB0985"</span></span><br><span class="line">            &#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> r = n.slice(<span class="number">0</span>, <span class="number">5</span>), i = n.slice(<span class="number">-5</span>), o = <span class="string">""</span>, a = <span class="number">0</span>; a &lt; <span class="number">5</span>; a++)</span><br><span class="line">            o += r[a] + e[a];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> u = <span class="string">""</span>, l = <span class="number">0</span>; l &lt; <span class="number">5</span>; l++)</span><br><span class="line">            u += e[l + <span class="number">3</span>] + i[l];</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="keyword">as</span>: <span class="string">"A1"</span> + o + e.slice(<span class="number">-3</span>),</span><br><span class="line">            cp: e.slice(<span class="number">0</span>, <span class="number">3</span>) + u + <span class="string">"E1"</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="4、-signature"><a href="#4、-signature" class="headerlink" title="4、_signature"></a>4、<code>_signature</code></h4><p>继续搜索</p>
+<h4 id="4、signature"><a href="#4、signature" class="headerlink" title="4、signature"></a>4、signature</h4><p>继续搜索</p>
 <p><img src="/images/toutiao_5.png" alt=""></p>
 <p>看一看到<code>_signature</code>这个参数就是<code>r</code>，而<code>var r = (0, m.sign)(n + &quot;&quot;);</code>然后打断点继续找<code>m</code>，<br>一步一步往上找，最后在下图位置找到</p>
 <p><img src="/images/toutiao_6.png" alt=""></p>
@@ -433,97 +432,6 @@
   </entry>
   
   <entry>
-    <title>优质公众号必备工具</title>
-    <link href="http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/"/>
-    <id>http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/</id>
-    <published>2018-07-16T16:00:00.000Z</published>
-    <updated>2018-07-16T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.</strong></p>
-<h1 id="你距离优质公众号还有多远？"><a href="#你距离优质公众号还有多远？" class="headerlink" title="你距离优质公众号还有多远？"></a>你距离优质公众号还有多远？</h1><table>
-<thead>
-<tr>
-<th style="text-align:left">网站名</th>
-<th style="text-align:left">网址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">10款好用的神器</td>
-<td style="text-align:left"><a href="http://mp.weixin.qq.com/s/_76OWDlgopBEQfaNjg76Hw" target="_blank" rel="noopener">http://mp.weixin.qq.com/s/_76OWDlgopBEQfaNjg76Hw</a></td>
-</tr>
-<tr>
-<td style="text-align:left">著名icon搜索引擎、海量图标素材</td>
-<td style="text-align:left"><a href="http://iconfinder.com" target="_blank" rel="noopener">http://iconfinder.com</a></td>
-</tr>
-<tr>
-<td style="text-align:left">颜文字素材</td>
-<td style="text-align:left"><a href="http://emot.es" target="_blank" rel="noopener">http://emot.es</a></td>
-</tr>
-<tr>
-<td style="text-align:left">公众号文字特效生成器</td>
-<td style="text-align:left"><a href="http://megaemoji.com/cn" target="_blank" rel="noopener">http://megaemoji.com/cn</a></td>
-</tr>
-<tr>
-<td style="text-align:left">平铺背景图片素材</td>
-<td style="text-align:left"><a href="http://thepatternlibrary.com" target="_blank" rel="noopener">http://thepatternlibrary.com</a></td>
-</tr>
-<tr>
-<td style="text-align:left">图片制作：创客贴</td>
-<td style="text-align:left"><a href="https://www.chuangkit.com/" target="_blank" rel="noopener">https://www.chuangkit.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">微信插件：新媒体管家</td>
-<td style="text-align:left"><a href="https://xmt.cn/index" target="_blank" rel="noopener">https://xmt.cn/index</a></td>
-</tr>
-<tr>
-<td style="text-align:left">微信编辑：135编辑器</td>
-<td style="text-align:left"><a href="http://www.135editor.com/" target="_blank" rel="noopener">http://www.135editor.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">一键多平台分发：简媒</td>
-<td style="text-align:left"><a href="http://www.ejianmedia.com/s/home" target="_blank" rel="noopener">http://www.ejianmedia.com/s/home</a></td>
-</tr>
-<tr>
-<td style="text-align:left">艺术二维码制作</td>
-<td style="text-align:left"><a href="http://www.9thws.com/" target="_blank" rel="noopener">http://www.9thws.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">二维码生成</td>
-<td style="text-align:left"><a href="https://cli.im/" target="_blank" rel="noopener">https://cli.im/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">短链生成</td>
-<td style="text-align:left"><a href="http://sina.lt/" target="_blank" rel="noopener">http://sina.lt/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">短链生成</td>
-<td style="text-align:left"><a href="http://dwz.cn/" target="_blank" rel="noopener">http://dwz.cn/</a></td>
-</tr>
-</tbody>
-</table>
-<p>持续更新……</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;你距离优质公众号还有多远？&quot;&gt;&lt;a href=&quot;#你距离优质公众号还有多远？&quot; class=&quot;headerlink&quot; title=&quot;你距离优质公
-    
-    </summary>
-    
-      <category term="工具" scheme="http://www.thinkyixia.com/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
-    
-      <category term="工具" scheme="http://www.thinkyixia.com/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="微信公众号" scheme="http://www.thinkyixia.com/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
-    
-  </entry>
-  
-  <entry>
     <title>互联网使用小工具</title>
     <link href="http://www.thinkyixia.com/2018/07/17/navigation_tools/"/>
     <id>http://www.thinkyixia.com/2018/07/17/navigation_tools/</id>
@@ -653,34 +561,93 @@
   </entry>
   
   <entry>
-    <title>spark on yarn 在集群资源充足的时候任务提交不上去</title>
-    <link href="http://www.thinkyixia.com/2018/04/18/yarn-1/"/>
-    <id>http://www.thinkyixia.com/2018/04/18/yarn-1/</id>
-    <published>2018-04-17T16:00:00.000Z</published>
-    <updated>2018-04-17T16:00:00.000Z</updated>
+    <title>优质公众号必备工具</title>
+    <link href="http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/"/>
+    <id>http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/</id>
+    <published>2018-07-16T16:00:00.000Z</published>
+    <updated>2018-07-16T16:00:00.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h1><p>在跑spark on yarn提交任务的时候，集群资源还有很多，但是一直在排队，始终提交不上去</p>
-<h1 id="原因排查"><a href="#原因排查" class="headerlink" title="原因排查"></a>原因排查</h1><p>发现虽然集群中还有很多资源，但是有几台机器的cpu已经用完了</p>
-<p>查看yarn的配置文件发现,yarn的资源比较器使用的是DefaultResourceCalculator。<br>配置文件中的注解是说：<br>Capacity Scheduler有两种比较器用以比较两个资源的大小（比如比较用户当前使用的资源量是否超过了设置的上限资源量），默认是DefaultResourceCalculator，它只考虑内存资源。另外一种是DominantResourceCalculator，它采用了DRF比较算法，同时考虑内存和CPU两种资源。</p>
-<p>如：在spark on yarn上面进行资源申请，我们申请了10个container(每个container都是1G内存，1个core)，这是集群中有一个nodemanager，有10G内存，5个core。<br>在默认配置情况下，yarn就有可能将这10个container都发送到这个nodemanager上（即使集群上还有其他nodemanager有资源空闲），这就会导致，有5个container需要等到另外5个container用完core之后才能执行其自己的任务。</p>
-<p>这样就很容易确定问题了，应该是有些机器内存空间充足，cpu占用严重，但是yarn去分配container的时候，不去管cpu的情况，而只去找内存充足的机器，<br>所以就会出现集群资源充足的情况下，有一部分container在空等core的情况。</p>
-<p>capacity-scheduler.xml配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">   &lt;name&gt;yarn.scheduler.capacity.resource-calculator&lt;/name&gt;</span><br><span class="line">   &lt;value&gt;org.apache.hadoop.yarn.util.resource.DefaultResourceCalculator&lt;/value&gt;</span><br><span class="line">   &lt;description&gt;</span><br><span class="line">     The ResourceCalculator implementation to be used to compare</span><br><span class="line">     Resources in the scheduler.</span><br><span class="line">     The default i.e. DefaultResourceCalculator only uses Memory while</span><br><span class="line">     DominantResourceCalculator uses dominant-resource to compare</span><br><span class="line">     multi-dimensional resources such as Memory, CPU etc.</span><br><span class="line">   &lt;/description&gt;</span><br><span class="line"> &lt;/property&gt;</span><br></pre></td></tr></table></figure></p>
-<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>我们应该考虑使用DominantResourceCalculator，该资源计算器在计算资源的时候会综合考虑cpu和内存的情况，来决定yarn最后的调度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;yarn.scheduler.capacity.resource-calculator&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;org.apache.hadoop.yarn.util.resource.DominantResourceCalculator&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<p><strong>免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.</strong></p>
+<h1 id="你距离优质公众号还有多远？"><a href="#你距离优质公众号还有多远？" class="headerlink" title="你距离优质公众号还有多远？"></a>你距离优质公众号还有多远？</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">网站名</th>
+<th style="text-align:left">网址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">10款好用的神器</td>
+<td style="text-align:left"><a href="http://mp.weixin.qq.com/s/_76OWDlgopBEQfaNjg76Hw" target="_blank" rel="noopener">http://mp.weixin.qq.com/s/_76OWDlgopBEQfaNjg76Hw</a></td>
+</tr>
+<tr>
+<td style="text-align:left">著名icon搜索引擎、海量图标素材</td>
+<td style="text-align:left"><a href="http://iconfinder.com" target="_blank" rel="noopener">http://iconfinder.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">颜文字素材</td>
+<td style="text-align:left"><a href="http://emot.es" target="_blank" rel="noopener">http://emot.es</a></td>
+</tr>
+<tr>
+<td style="text-align:left">公众号文字特效生成器</td>
+<td style="text-align:left"><a href="http://megaemoji.com/cn" target="_blank" rel="noopener">http://megaemoji.com/cn</a></td>
+</tr>
+<tr>
+<td style="text-align:left">平铺背景图片素材</td>
+<td style="text-align:left"><a href="http://thepatternlibrary.com" target="_blank" rel="noopener">http://thepatternlibrary.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">图片制作：创客贴</td>
+<td style="text-align:left"><a href="https://www.chuangkit.com/" target="_blank" rel="noopener">https://www.chuangkit.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">微信插件：新媒体管家</td>
+<td style="text-align:left"><a href="https://xmt.cn/index" target="_blank" rel="noopener">https://xmt.cn/index</a></td>
+</tr>
+<tr>
+<td style="text-align:left">微信编辑：135编辑器</td>
+<td style="text-align:left"><a href="http://www.135editor.com/" target="_blank" rel="noopener">http://www.135editor.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">一键多平台分发：简媒</td>
+<td style="text-align:left"><a href="http://www.ejianmedia.com/s/home" target="_blank" rel="noopener">http://www.ejianmedia.com/s/home</a></td>
+</tr>
+<tr>
+<td style="text-align:left">艺术二维码制作</td>
+<td style="text-align:left"><a href="http://www.9thws.com/" target="_blank" rel="noopener">http://www.9thws.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">二维码生成</td>
+<td style="text-align:left"><a href="https://cli.im/" target="_blank" rel="noopener">https://cli.im/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">短链生成</td>
+<td style="text-align:left"><a href="http://sina.lt/" target="_blank" rel="noopener">http://sina.lt/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">短链生成</td>
+<td style="text-align:left"><a href="http://dwz.cn/" target="_blank" rel="noopener">http://dwz.cn/</a></td>
+</tr>
+</tbody>
+</table>
+<p>持续更新……</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;问题背景&quot;&gt;&lt;a href=&quot;#问题背景&quot; class=&quot;headerlink&quot; title=&quot;问题背景&quot;&gt;&lt;/a&gt;问题背景&lt;/h1&gt;&lt;p&gt;在跑spark on yarn提交任务的时候，集群资源还有很多，但是一直在排队，始终提交不上去&lt;/p&gt;
-&lt;h1 id=&quot;原因
+      &lt;p&gt;&lt;strong&gt;免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;你距离优质公众号还有多远？&quot;&gt;&lt;a href=&quot;#你距离优质公众号还有多远？&quot; class=&quot;headerlink&quot; title=&quot;你距离优质公
     
     </summary>
     
-      <category term="技术" scheme="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
+      <category term="工具" scheme="http://www.thinkyixia.com/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="spark" scheme="http://www.thinkyixia.com/tags/spark/"/>
+      <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
     
-      <category term="yarn" scheme="http://www.thinkyixia.com/tags/yarn/"/>
+      <category term="工具" scheme="http://www.thinkyixia.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="微信公众号" scheme="http://www.thinkyixia.com/tags/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
     
   </entry>
   
@@ -709,6 +676,38 @@
     
     
       <category term="保险" scheme="http://www.thinkyixia.com/tags/%E4%BF%9D%E9%99%A9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spark on yarn 在集群资源充足的时候任务提交不上去</title>
+    <link href="http://www.thinkyixia.com/2018/04/18/yarn-1/"/>
+    <id>http://www.thinkyixia.com/2018/04/18/yarn-1/</id>
+    <published>2018-04-17T16:00:00.000Z</published>
+    <updated>2018-04-17T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h1><p>在跑spark on yarn提交任务的时候，集群资源还有很多，但是一直在排队，始终提交不上去</p>
+<h1 id="原因排查"><a href="#原因排查" class="headerlink" title="原因排查"></a>原因排查</h1><p>发现虽然集群中还有很多资源，但是有几台机器的cpu已经用完了</p>
+<p>查看yarn的配置文件发现,yarn的资源比较器使用的是DefaultResourceCalculator。<br>配置文件中的注解是说：<br>Capacity Scheduler有两种比较器用以比较两个资源的大小（比如比较用户当前使用的资源量是否超过了设置的上限资源量），默认是DefaultResourceCalculator，它只考虑内存资源。另外一种是DominantResourceCalculator，它采用了DRF比较算法，同时考虑内存和CPU两种资源。</p>
+<p>如：在spark on yarn上面进行资源申请，我们申请了10个container(每个container都是1G内存，1个core)，这是集群中有一个nodemanager，有10G内存，5个core。<br>在默认配置情况下，yarn就有可能将这10个container都发送到这个nodemanager上（即使集群上还有其他nodemanager有资源空闲），这就会导致，有5个container需要等到另外5个container用完core之后才能执行其自己的任务。</p>
+<p>这样就很容易确定问题了，应该是有些机器内存空间充足，cpu占用严重，但是yarn去分配container的时候，不去管cpu的情况，而只去找内存充足的机器，<br>所以就会出现集群资源充足的情况下，有一部分container在空等core的情况。</p>
+<p>capacity-scheduler.xml配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">   &lt;name&gt;yarn.scheduler.capacity.resource-calculator&lt;/name&gt;</span><br><span class="line">   &lt;value&gt;org.apache.hadoop.yarn.util.resource.DefaultResourceCalculator&lt;/value&gt;</span><br><span class="line">   &lt;description&gt;</span><br><span class="line">     The ResourceCalculator implementation to be used to compare</span><br><span class="line">     Resources in the scheduler.</span><br><span class="line">     The default i.e. DefaultResourceCalculator only uses Memory while</span><br><span class="line">     DominantResourceCalculator uses dominant-resource to compare</span><br><span class="line">     multi-dimensional resources such as Memory, CPU etc.</span><br><span class="line">   &lt;/description&gt;</span><br><span class="line"> &lt;/property&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>我们应该考虑使用DominantResourceCalculator，该资源计算器在计算资源的时候会综合考虑cpu和内存的情况，来决定yarn最后的调度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">  &lt;name&gt;yarn.scheduler.capacity.resource-calculator&lt;/name&gt;</span><br><span class="line">  &lt;value&gt;org.apache.hadoop.yarn.util.resource.DominantResourceCalculator&lt;/value&gt;</span><br><span class="line">&lt;/property&gt;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;问题背景&quot;&gt;&lt;a href=&quot;#问题背景&quot; class=&quot;headerlink&quot; title=&quot;问题背景&quot;&gt;&lt;/a&gt;问题背景&lt;/h1&gt;&lt;p&gt;在跑spark on yarn提交任务的时候，集群资源还有很多，但是一直在排队，始终提交不上去&lt;/p&gt;
+&lt;h1 id=&quot;原因
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="spark" scheme="http://www.thinkyixia.com/tags/spark/"/>
+    
+      <category term="yarn" scheme="http://www.thinkyixia.com/tags/yarn/"/>
     
   </entry>
   
@@ -1409,9 +1408,9 @@
       <category term="工具" scheme="http://www.thinkyixia.com/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
-    
       <category term="广告" scheme="http://www.thinkyixia.com/tags/%E5%B9%BF%E5%91%8A/"/>
+    
+      <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
     
   </entry>
   
