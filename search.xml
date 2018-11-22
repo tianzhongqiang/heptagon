@@ -159,29 +159,6 @@
     </entry>
     
     <entry>
-      <title>偿一代&amp;偿二代体系下的内含价值计算</title>
-      <link href="/2018/04/18/baoxian-6/"/>
-      <url>/2018/04/18/baoxian-6/</url>
-      
-        <content type="html"><![CDATA[<p>首先需要搞明白什么是偿一代和偿二代？</p><p>偿一代和偿二代是两种计算内含价值的体系。2005年保监会编制的《人身保险内含价值报告编制指引》，就是我们常说的偿一代体系。不过2016年保监会放开限制后，当年11月有中国精算师协会编制的《精算实践标准》成为了新的内含价值计算的新依据，这个标准就是偿二代体系。</p><hr><p>偿一代体系：<br><a href="http://www.51wf.com/print-law?id=190247" target="_blank" rel="noopener">http://www.51wf.com/print-law?id=190247</a><br>偿二代体系：<br><a href="http://www.e-caa.org.cn/systemNews/show/8a7da90a584878e4015884bd60135306?str=%E4%B8%93%E4%B8%9A%E6%A0%87%E5%87%86" target="_blank" rel="noopener">http://www.e-caa.org.cn/systemNews/show/8a7da90a584878e4015884bd60135306?str=%E4%B8%93%E4%B8%9A%E6%A0%87%E5%87%86</a></p><hr>]]></content>
-      
-      
-      <categories>
-          
-          <category> 保险 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 保险 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>spark on yarn 在集群资源充足的时候任务提交不上去</title>
       <link href="/2018/04/18/yarn-1/"/>
       <url>/2018/04/18/yarn-1/</url>
@@ -201,6 +178,29 @@
             <tag> spark </tag>
             
             <tag> yarn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>偿一代&amp;偿二代体系下的内含价值计算</title>
+      <link href="/2018/04/18/baoxian-6/"/>
+      <url>/2018/04/18/baoxian-6/</url>
+      
+        <content type="html"><![CDATA[<p>首先需要搞明白什么是偿一代和偿二代？</p><p>偿一代和偿二代是两种计算内含价值的体系。2005年保监会编制的《人身保险内含价值报告编制指引》，就是我们常说的偿一代体系。不过2016年保监会放开限制后，当年11月有中国精算师协会编制的《精算实践标准》成为了新的内含价值计算的新依据，这个标准就是偿二代体系。</p><hr><p>偿一代体系：<br><a href="http://www.51wf.com/print-law?id=190247" target="_blank" rel="noopener">http://www.51wf.com/print-law?id=190247</a><br>偿二代体系：<br><a href="http://www.e-caa.org.cn/systemNews/show/8a7da90a584878e4015884bd60135306?str=%E4%B8%93%E4%B8%9A%E6%A0%87%E5%87%86" target="_blank" rel="noopener">http://www.e-caa.org.cn/systemNews/show/8a7da90a584878e4015884bd60135306?str=%E4%B8%93%E4%B8%9A%E6%A0%87%E5%87%86</a></p><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 保险 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 保险 </tag>
             
         </tags>
       
@@ -533,11 +533,11 @@
     </entry>
     
     <entry>
-      <title>Zookeeper的选举二：Leader选举的算法分析</title>
-      <link href="/2017/11/02/zookeeper-4/"/>
-      <url>/2017/11/02/zookeeper-4/</url>
+      <title>Zookeeper的选举一：选举概述</title>
+      <link href="/2017/11/02/zookeeper-3/"/>
+      <url>/2017/11/02/zookeeper-3/</url>
       
-        <content type="html"><![CDATA[<h1 id="leader选举的算法分析"><a href="#leader选举的算法分析" class="headerlink" title="leader选举的算法分析"></a>leader选举的算法分析</h1><p>在zookeeper中有三种算法，分别是LeaderElection、UDP版本的FastLeaderElection和TCP版本的FastLeaderElection。不过3.4.0之后，就只保留了TCP版本的FastLeaderElection选举算法。<br>介绍FastLeaderElection选举算法算法之前，先对一些专业名次做一下解释。<br><strong>术语科普</strong></p><ul><li>SID：服务器ID<br>SID是一个数字，用来唯一标识一台zookeeper集群中的机器，每台机器不能重复，和myid的值一致。</li><li>ZXID：事务ID<br>ZXID是一个事务ID，用来唯一标识一次服务器状态的变更。在某一时刻，集群中每台机器的ZXID值不一定全都一样。</li><li>Vote：投票<br>leader选举通过投票实现。</li><li>Quorum：过半机器数<br>过半，就是大于集群中机器数的一半。<br>quorum = （n/2+1）</li></ul><h2 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h2><p>什么情况下会进入leader选举？</p><ul><li>服务器初始化启动的时候</li><li>服务器运行期间无法和leader保持连接（leader挂掉的时候）</li></ul><p>当一台机器进入leader选举流程时，当前集群处于什么状态？</p><ul><li>集群中本来就已经存在一个leader</li><li>集群中确实不存在leader</li></ul><h1 id="开始一次完整的投票"><a href="#开始一次完整的投票" class="headerlink" title="开始一次完整的投票"></a>开始一次完整的投票</h1><p>假设zookeeper由5台机器组成，SID为1、2、3、4、5，ZXID为9、9、9、8、8，并且此时SID为2的机器是leader。某一时刻1、2所在的机器出现故障，集群开始leader选举。</p><blockquote><p>注：如果要当前机器要选举的SID为1，ZXID为9的服务器为leader，那么它的这次投票信息可以表示为（1，9）</p></blockquote><h2 id="第一次投票"><a href="#第一次投票" class="headerlink" title="第一次投票"></a>第一次投票</h2><p>第一次投票时，由于无法检测到集群中其他机器的状态信息，所以每台机器都会投自己。于是SID为3、4、5的机器，投票情况为（3，9）、（4、8）、（5，9）</p><h2 id="变更投票"><a href="#变更投票" class="headerlink" title="变更投票"></a>变更投票</h2><p>每台机器发出投票后，也会收到投票，根据一定规则，来处理其他机器的投票，并以此来决定是否需要更改自己的投票。<br><strong>术语科普</strong></p><ul><li>vote_sid：接收到的投票中所推举leader服务器的SID</li><li>vote_zxid：接收到的投票中所推举leader服务器的ZXID</li><li>self_sid：当前服务器自己的SID</li><li>self_zxid：当前服务器自己的ZXID</li></ul><p>每次对于收到的投票结果都是一个对（vote_sid,vote_zxid）和（self_sid，self_zxid）对比的过程</p><p><strong>对比规则</strong></p><ul><li>如果vote_zxid大于self_zxid，就认可当前收到的投票，（将自己的投票改投收到的SID），并再次将该投票发送出去</li><li>如果vote_zxid小于self_zxid，那么就坚持自己的投票，不做任何变更</li><li>如果vote_zxid等于self_zxid，那么就对比两者SID。vote_sid大于self_sid，就认可当前收到的投票（将自己的投票改投收到的SID），并再次将该投票发送出去</li><li>vote_sid小于self_sid，坚持自己的投票，不做任何变更</li></ul><p><strong>对应机器投票变更情况</strong></p><ul><li>对于server3（3，9）来说，收到（4，8）和（5，8）两个投票，对比后，由于自己的ZXID大于两者，因此不需要变更，最终还是坚持投票（3，9）</li><li>对于server4（4，8）来说，收到（3，9）和（5，8）两个投票，由于（3，9）这个投票的ZXID大于自己的ZXID，因此需要将投票变更为（3，9），然后继续将投票发送给另外两台机器。</li><li>对于server5 （5，8）来说，收到（3，9）和（4，8）两个投票，对比后，（3，9）这个投票的ZXID大于自己，一次需要变更投票为（3，9），然后继续将这个投票发送给另外两台机器</li></ul><h2 id="确定leader"><a href="#确定leader" class="headerlink" title="确定leader"></a>确定leader</h2><p>经过第二轮投票后，集群中的每台机器会再次收到其他机器的投票，然后开始统计投票。当一台机器收到来超过半数相同的投票，那么这个投票对应的SID机器即为leader。<br>这里，server3、server4、server5的投票都是（3，9），所以server3为leader</p><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>简单来说，就是那台机器的数据越新，就越有可能成为leader，数据越新，ZXID也就越大，也就能够保证数据的恢复。当然，如果集群中有几台服务器有相同的ZXID，那么SID较大的服务器会成为leader。</p>]]></content>
+        <content type="html"><![CDATA[<p>leader选举是zookeeper中最重要的技术之一，也是保证分布式数据一致性的关键所在。<br>我们主要从leader选举概述、算法分析和实现细节三个方面来看一下zookereper leader选举的过程。</p><h1 id="Zookeeper选举概述"><a href="#Zookeeper选举概述" class="headerlink" title="Zookeeper选举概述"></a>Zookeeper选举概述</h1><h2 id="服务器启动时leader的选举"><a href="#服务器启动时leader的选举" class="headerlink" title="服务器启动时leader的选举"></a>服务器启动时leader的选举</h2><p>以3台机器为例，当集群中启动一台机器的时候，是无法进行选举的，当第二台机器也启动后，此时这两台机器已经能相互通信，每台机器试图找到一个leader，于是便进入了leader选举流程。<br>1、每个Server会发出一个投票<br>  投票包含的最基本的元素包括：所推举的服务器的myid和ZXID，我们以（myid，ZXID）形式表示。初始阶段，无论是server1还是server2都会投给自己，即server1的选票（1，0），server2的选票（2，0），然后各自将这个投票发送给集群中其他所有机器。<br>2、接收来自各个服务器的投票<br>  每个服务器都会收到其他服务器的投票。收到投票后，首先判断该投票的有效性，包括检查是否是本轮投票、是否来自looking状态的服务器<br>3、处理投票<br>  在接收到来自其他服务器的投票后，针对每一个投票，服务器都需要将别人的投票和自己的投票进行PK。<br>  PK规则如下：<br>  优先检查ZXID。ZXID比较大的服务器优先作为leader。（选择ZXID大的服务器主要是省去了新的leader产生之后，删除其他服务器上比自己ZXID大Proposal(提议)）<br>  如果ZXID相同的话，那么就比较myid。myid比较大的服务器作为leader。</p><p>  按以上规则，server1的投票为（1，0），收到的server2投票为（2，0）；首先对比ZXID，都是0，然后对比myid，收到的投票myid为2，大于自己的，于是就会更新自己的投票为（2，0），然后重新将投票发出去。<br>  对于server2，不需要更新自己的投票信息，只是再一次向集群中所有机器发出上一次的投票信息即可。<br>4、统计投票<br>  每次投票后，服务器都会统计所有投票，判断是否已经有过半的机器接收到相同的投票信息。<br>  对于server1和server2服务器来说，都统计出集群中已经有两台机器接受了（2，0）这个投票信息。就是说集群中已经有过半的机器收到同样的选票（2，0），即可以认为已经选出了leader。<br>  过半：过半的意思是指大于集群机器数量的一半，即大于（n／2）。这也是zookeeper推举为奇数台的原因，3台允许出问题的机器为1台，4台允许出问题的机器也是1台（需要保证存活的机器大于4/2）；而且还增加了选主的时间。<br>5、一旦确定了leader，每个服务器都会更新自己的状态，如果是follower，更新为FOLLOWING，如果是leader，那么就更改为LEADING。</p><h2 id="服务器运行期间leader选举"><a href="#服务器运行期间leader选举" class="headerlink" title="服务器运行期间leader选举"></a>服务器运行期间leader选举</h2><p>在zookeeper集群正常运行时，一旦选出了一个leader，那么所有服务器的集群角色一般不会发生变化。但是一旦leader所在的机器挂了，那么整个集群将暂时无法对外服务，而是进行新一轮的leader选举。<br>服务器运行期间的leader选举和启动时期的leader选举基本一样。<br>假设当前zookeeper服务器为3台，分别为server1，server2，server3，当前leader为server2。假设某一瞬间，leader挂了，此时就开始leader选举。<br>1、首先是变更状态<br>  当leader挂了，余下的非Observer服务器会将自己的服务器状态变更为LOOKING，然后开始进入Leader选举流程<br>2、每个Server会发出一个投票<br>  每个需要投票的server都生成一个投票信息（myid，ZXID），由于是运行期间，因此每个服务器上的ZXID可能不同，假设server1的ZXID为100，而server3的ZXID为99。在第一轮投票中还是都投给自己，分别产生投票（1，100）和（3，99），然后各自将这个投票发送给集群中所有机器。<br>3、接收来自各自服务器的投票<br>4、处理投票<br>  根据上面的处理规则，由于server1的ZXID为100，大于server3的ZXID，那么server3会成为leader<br>5、统计投票<br>6、改变服务器状态</p>]]></content>
       
       
       <categories>
@@ -556,11 +556,11 @@
     </entry>
     
     <entry>
-      <title>Zookeeper的选举一：选举概述</title>
-      <link href="/2017/11/02/zookeeper-3/"/>
-      <url>/2017/11/02/zookeeper-3/</url>
+      <title>Zookeeper的选举二：Leader选举的算法分析</title>
+      <link href="/2017/11/02/zookeeper-4/"/>
+      <url>/2017/11/02/zookeeper-4/</url>
       
-        <content type="html"><![CDATA[<p>leader选举是zookeeper中最重要的技术之一，也是保证分布式数据一致性的关键所在。<br>我们主要从leader选举概述、算法分析和实现细节三个方面来看一下zookereper leader选举的过程。</p><h1 id="Zookeeper选举概述"><a href="#Zookeeper选举概述" class="headerlink" title="Zookeeper选举概述"></a>Zookeeper选举概述</h1><h2 id="服务器启动时leader的选举"><a href="#服务器启动时leader的选举" class="headerlink" title="服务器启动时leader的选举"></a>服务器启动时leader的选举</h2><p>以3台机器为例，当集群中启动一台机器的时候，是无法进行选举的，当第二台机器也启动后，此时这两台机器已经能相互通信，每台机器试图找到一个leader，于是便进入了leader选举流程。<br>1、每个Server会发出一个投票<br>  投票包含的最基本的元素包括：所推举的服务器的myid和ZXID，我们以（myid，ZXID）形式表示。初始阶段，无论是server1还是server2都会投给自己，即server1的选票（1，0），server2的选票（2，0），然后各自将这个投票发送给集群中其他所有机器。<br>2、接收来自各个服务器的投票<br>  每个服务器都会收到其他服务器的投票。收到投票后，首先判断该投票的有效性，包括检查是否是本轮投票、是否来自looking状态的服务器<br>3、处理投票<br>  在接收到来自其他服务器的投票后，针对每一个投票，服务器都需要将别人的投票和自己的投票进行PK。<br>  PK规则如下：<br>  优先检查ZXID。ZXID比较大的服务器优先作为leader。（选择ZXID大的服务器主要是省去了新的leader产生之后，删除其他服务器上比自己ZXID大Proposal(提议)）<br>  如果ZXID相同的话，那么就比较myid。myid比较大的服务器作为leader。</p><p>  按以上规则，server1的投票为（1，0），收到的server2投票为（2，0）；首先对比ZXID，都是0，然后对比myid，收到的投票myid为2，大于自己的，于是就会更新自己的投票为（2，0），然后重新将投票发出去。<br>  对于server2，不需要更新自己的投票信息，只是再一次向集群中所有机器发出上一次的投票信息即可。<br>4、统计投票<br>  每次投票后，服务器都会统计所有投票，判断是否已经有过半的机器接收到相同的投票信息。<br>  对于server1和server2服务器来说，都统计出集群中已经有两台机器接受了（2，0）这个投票信息。就是说集群中已经有过半的机器收到同样的选票（2，0），即可以认为已经选出了leader。<br>  过半：过半的意思是指大于集群机器数量的一半，即大于（n／2）。这也是zookeeper推举为奇数台的原因，3台允许出问题的机器为1台，4台允许出问题的机器也是1台（需要保证存活的机器大于4/2）；而且还增加了选主的时间。<br>5、一旦确定了leader，每个服务器都会更新自己的状态，如果是follower，更新为FOLLOWING，如果是leader，那么就更改为LEADING。</p><h2 id="服务器运行期间leader选举"><a href="#服务器运行期间leader选举" class="headerlink" title="服务器运行期间leader选举"></a>服务器运行期间leader选举</h2><p>在zookeeper集群正常运行时，一旦选出了一个leader，那么所有服务器的集群角色一般不会发生变化。但是一旦leader所在的机器挂了，那么整个集群将暂时无法对外服务，而是进行新一轮的leader选举。<br>服务器运行期间的leader选举和启动时期的leader选举基本一样。<br>假设当前zookeeper服务器为3台，分别为server1，server2，server3，当前leader为server2。假设某一瞬间，leader挂了，此时就开始leader选举。<br>1、首先是变更状态<br>  当leader挂了，余下的非Observer服务器会将自己的服务器状态变更为LOOKING，然后开始进入Leader选举流程<br>2、每个Server会发出一个投票<br>  每个需要投票的server都生成一个投票信息（myid，ZXID），由于是运行期间，因此每个服务器上的ZXID可能不同，假设server1的ZXID为100，而server3的ZXID为99。在第一轮投票中还是都投给自己，分别产生投票（1，100）和（3，99），然后各自将这个投票发送给集群中所有机器。<br>3、接收来自各自服务器的投票<br>4、处理投票<br>  根据上面的处理规则，由于server1的ZXID为100，大于server3的ZXID，那么server3会成为leader<br>5、统计投票<br>6、改变服务器状态</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="leader选举的算法分析"><a href="#leader选举的算法分析" class="headerlink" title="leader选举的算法分析"></a>leader选举的算法分析</h1><p>在zookeeper中有三种算法，分别是LeaderElection、UDP版本的FastLeaderElection和TCP版本的FastLeaderElection。不过3.4.0之后，就只保留了TCP版本的FastLeaderElection选举算法。<br>介绍FastLeaderElection选举算法算法之前，先对一些专业名次做一下解释。<br><strong>术语科普</strong></p><ul><li>SID：服务器ID<br>SID是一个数字，用来唯一标识一台zookeeper集群中的机器，每台机器不能重复，和myid的值一致。</li><li>ZXID：事务ID<br>ZXID是一个事务ID，用来唯一标识一次服务器状态的变更。在某一时刻，集群中每台机器的ZXID值不一定全都一样。</li><li>Vote：投票<br>leader选举通过投票实现。</li><li>Quorum：过半机器数<br>过半，就是大于集群中机器数的一半。<br>quorum = （n/2+1）</li></ul><h2 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h2><p>什么情况下会进入leader选举？</p><ul><li>服务器初始化启动的时候</li><li>服务器运行期间无法和leader保持连接（leader挂掉的时候）</li></ul><p>当一台机器进入leader选举流程时，当前集群处于什么状态？</p><ul><li>集群中本来就已经存在一个leader</li><li>集群中确实不存在leader</li></ul><h1 id="开始一次完整的投票"><a href="#开始一次完整的投票" class="headerlink" title="开始一次完整的投票"></a>开始一次完整的投票</h1><p>假设zookeeper由5台机器组成，SID为1、2、3、4、5，ZXID为9、9、9、8、8，并且此时SID为2的机器是leader。某一时刻1、2所在的机器出现故障，集群开始leader选举。</p><blockquote><p>注：如果要当前机器要选举的SID为1，ZXID为9的服务器为leader，那么它的这次投票信息可以表示为（1，9）</p></blockquote><h2 id="第一次投票"><a href="#第一次投票" class="headerlink" title="第一次投票"></a>第一次投票</h2><p>第一次投票时，由于无法检测到集群中其他机器的状态信息，所以每台机器都会投自己。于是SID为3、4、5的机器，投票情况为（3，9）、（4、8）、（5，9）</p><h2 id="变更投票"><a href="#变更投票" class="headerlink" title="变更投票"></a>变更投票</h2><p>每台机器发出投票后，也会收到投票，根据一定规则，来处理其他机器的投票，并以此来决定是否需要更改自己的投票。<br><strong>术语科普</strong></p><ul><li>vote_sid：接收到的投票中所推举leader服务器的SID</li><li>vote_zxid：接收到的投票中所推举leader服务器的ZXID</li><li>self_sid：当前服务器自己的SID</li><li>self_zxid：当前服务器自己的ZXID</li></ul><p>每次对于收到的投票结果都是一个对（vote_sid,vote_zxid）和（self_sid，self_zxid）对比的过程</p><p><strong>对比规则</strong></p><ul><li>如果vote_zxid大于self_zxid，就认可当前收到的投票，（将自己的投票改投收到的SID），并再次将该投票发送出去</li><li>如果vote_zxid小于self_zxid，那么就坚持自己的投票，不做任何变更</li><li>如果vote_zxid等于self_zxid，那么就对比两者SID。vote_sid大于self_sid，就认可当前收到的投票（将自己的投票改投收到的SID），并再次将该投票发送出去</li><li>vote_sid小于self_sid，坚持自己的投票，不做任何变更</li></ul><p><strong>对应机器投票变更情况</strong></p><ul><li>对于server3（3，9）来说，收到（4，8）和（5，8）两个投票，对比后，由于自己的ZXID大于两者，因此不需要变更，最终还是坚持投票（3，9）</li><li>对于server4（4，8）来说，收到（3，9）和（5，8）两个投票，由于（3，9）这个投票的ZXID大于自己的ZXID，因此需要将投票变更为（3，9），然后继续将投票发送给另外两台机器。</li><li>对于server5 （5，8）来说，收到（3，9）和（4，8）两个投票，对比后，（3，9）这个投票的ZXID大于自己，一次需要变更投票为（3，9），然后继续将这个投票发送给另外两台机器</li></ul><h2 id="确定leader"><a href="#确定leader" class="headerlink" title="确定leader"></a>确定leader</h2><p>经过第二轮投票后，集群中的每台机器会再次收到其他机器的投票，然后开始统计投票。当一台机器收到来超过半数相同的投票，那么这个投票对应的SID机器即为leader。<br>这里，server3、server4、server5的投票都是（3，9），所以server3为leader</p><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>简单来说，就是那台机器的数据越新，就越有可能成为leader，数据越新，ZXID也就越大，也就能够保证数据的恢复。当然，如果集群中有几台服务器有相同的ZXID，那么SID较大的服务器会成为leader。</p>]]></content>
       
       
       <categories>
@@ -694,31 +694,6 @@
     </entry>
     
     <entry>
-      <title>spark streaming集成kafka的两种方式及区别</title>
-      <link href="/2017/10/16/sparkstreaming-kafka/"/>
-      <url>/2017/10/16/sparkstreaming-kafka/</url>
-      
-        <content type="html"><![CDATA[<p>Spark Streaming 与 Kafka 集成接收数据的方式有两种：</p><ul><li>Receiver-based Approach</li><li>Direct Approach (No Receivers)</li></ul><h1 id="两种方式的区别"><a href="#两种方式的区别" class="headerlink" title="两种方式的区别"></a>两种方式的区别</h1><h2 id="Receiver-based-Approach"><a href="#Receiver-based-Approach" class="headerlink" title="Receiver-based Approach"></a>Receiver-based Approach</h2><p>构造函数为：KafkaUtils.createDstream(ssc, [zk], [consumer group id], [per-topic,partitions] )<br>使用了receivers来接收数据，利用的是Kafka高层次的消费者api，对于所有的receivers接收到的数据将会保存在spark executors中，然后通过Spark Streaming启动job来处理这些数据，默认会丢失，可启用WAL日志（开启后效率会下降），该日志存储在HDFS上。</p><p>1、创建一个receiver来对kafka进行定时拉取数据，ssc的rdd分区和kafka的topic分区不是一个概念，故如果增加特定主体分区数仅仅是增加一个receiver中消费topic的线程数，并不增加spark的并行处理数据数量<br>2、对于不同的group和topic可以使用多个receivers创建不同的DStream<br>3、如果启用了WAL,需要设置存储级别,即<br><code>KafkaUtils.createStream(….,StorageLevel.MEMORY_AND_DISK_SER)</code></p><h2 id="Direct-Approach-No-Receivers"><a href="#Direct-Approach-No-Receivers" class="headerlink" title="Direct Approach (No Receivers)"></a>Direct Approach (No Receivers)</h2><p>区别Receiver接收数据，这种方式定期地从kafka的topic+partition中查询最新的偏移量，再根据偏移量范围在每个batch里面处理数据，使用的是kafka的简单消费者(SimpleConsumer)api</p><p>这种方式有如下优点：<br>1、简化并行读取：<br>如果要读取多个partition,不需要创建多个输入DStream然后对它们进行union操作。Spark会创建跟Kafka partition一样多的RDD partition，并且会并行从Kafka中读取数据。所以在Kafka partition和RDD partition之间，有一个一对一的映射关系。<br>2、高性能：<br>如果要保证零数据丢失，在基于receiver的方式中，需要开启WAL机制。这种方式其实效率低下，因为数据实际上被复制了两份，Kafka自己本身就有高可靠的机制，会对数据复制一份，而这里又会复制一份到WAL中。而基于direct的方式，不依赖Receiver，不需要开启WAL机制，只要Kafka中作了数据的复制，那么就可以通过Kafka的副本进行恢复。<br>3、恰好恰好一次语义(Exactly-once-semantics):<br>基于receiver的方式，读取kafka数据是使用Kafka的高阶API来将消费过的offset保存在ZooKeeper中的。这种方式配合着WAL机制可以保证数据零丢失的高可靠性，但是却无法保证数据被处理恰好一次，这种方式存在zookeeper和spark的偏移量不一致(同步)的情况，导致数据会被多次处理。<br>基于direct的方式，使用kafka的简单api，Spark Streaming自己就负责追踪消费的offset，并保存在checkpoint中，Spark自己一定是同步的，消除了Spark与zookeeper中偏移量不一致的问题，因此可以保证数据消费恰好一次。缺点是无法使用基于zookeeper的kafka监控工具。</p><h1 id="Direct方式代码实现逻辑"><a href="#Direct方式代码实现逻辑" class="headerlink" title="Direct方式代码实现逻辑"></a>Direct方式代码实现逻辑</h1><p>1、通过 <code>val kafkaCluster = new KafkaCluster(kafkaParams)</code> 创建一个kafkaCluster，kafkaCluster负责与kafka交互。<br>2、通过 <code>val kafkaPartitionsE = kafkaCluster.getPartition(topics)</code> 获取该topic集合对应的各个partition集合（一个topic-&gt;partition集合）<br>3、通过 <code>val kafkaPartitions = kafkaPartitionsE.right.get</code> 获取TopicAndPartition的集合<br>4、通过 <code>val consumerOffsetsE = kafkaCluster.getConsumerOffset(groupId,kafkaPartitions)</code> 获取到该groupId在该topic的每个partition中的offset；<br>5、通过 <code>kafkaCluster.getEarliestLeaderOffset(kafkaPartitions).regit.get</code> 或者<br><code>kafkaCluster.getLatestLeaderOffset(kafkaPartitions).regit.get</code>分别获取该topic的每个partition现在的最小、最大offset，对该groupId对应的各topic的各partition的offset是否在区间内进行判断。<br>然后返回一个(TopicAndPartition,offset)的map集合。<br>6、然后根据 <code>val kafkaStream = kafkaUtils.createDirectStream()</code> 方法创建DirectKafkaInputDStream；<br>创建时需要根据情况设置 <code>auto.offset.reset</code> 参数;<br>该处若设置成smallest，从最小的开始消费;若设置为largest，从最新的开始读取；不设置即从上次消费的地方读取;<br>7、数据取出来处理完之后，通过遍历kafkaStream，获取每个分区的offset，使用 <code>kafkaCluster.setConsumerOffsets</code> 方法同步到Zookeeper中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">kafkaStream.foreachRDD(rdd =&gt; &#123;</span><br><span class="line">      //得到已读取的topic每个分区的offset</span><br><span class="line">      val offsetsList = rdd.asInstanceOf[HasOffsetRanges].offsetRanges</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (offsets &lt;- offsetsList) &#123;</span><br><span class="line">        val topicAndPartition = TopicAndPartition(offsets.topic, offsets.partition)</span><br><span class="line"></span><br><span class="line">        // 更新offset到kafkaCluster ,将topic每个分区的offset保存到ZooKeeper中</span><br><span class="line">        val o = kafkaCluster.setConsumerOffsets(groupId, Map(topicAndPartition -&gt; offsets.untilOffset))</span><br><span class="line">        <span class="keyword">if</span> (o.isLeft) &#123;</span><br><span class="line">          println(s<span class="string">"Error updating the offset to Kafka cluster: <span class="variable">$&#123;o.left.get&#125;</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> kafka </tag>
-            
-            <tag> spark streaming </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>更新Xcode导致Git报错的问题</title>
       <link href="/2017/10/16/git-1/"/>
       <url>/2017/10/16/git-1/</url>
@@ -744,6 +719,31 @@
     </entry>
     
     <entry>
+      <title>spark streaming集成kafka的两种方式及区别</title>
+      <link href="/2017/10/16/sparkstreaming-kafka/"/>
+      <url>/2017/10/16/sparkstreaming-kafka/</url>
+      
+        <content type="html"><![CDATA[<p>Spark Streaming 与 Kafka 集成接收数据的方式有两种：</p><ul><li>Receiver-based Approach</li><li>Direct Approach (No Receivers)</li></ul><h1 id="两种方式的区别"><a href="#两种方式的区别" class="headerlink" title="两种方式的区别"></a>两种方式的区别</h1><h2 id="Receiver-based-Approach"><a href="#Receiver-based-Approach" class="headerlink" title="Receiver-based Approach"></a>Receiver-based Approach</h2><p>构造函数为：KafkaUtils.createDstream(ssc, [zk], [consumer group id], [per-topic,partitions] )<br>使用了receivers来接收数据，利用的是Kafka高层次的消费者api，对于所有的receivers接收到的数据将会保存在spark executors中，然后通过Spark Streaming启动job来处理这些数据，默认会丢失，可启用WAL日志（开启后效率会下降），该日志存储在HDFS上。</p><p>1、创建一个receiver来对kafka进行定时拉取数据，ssc的rdd分区和kafka的topic分区不是一个概念，故如果增加特定主体分区数仅仅是增加一个receiver中消费topic的线程数，并不增加spark的并行处理数据数量<br>2、对于不同的group和topic可以使用多个receivers创建不同的DStream<br>3、如果启用了WAL,需要设置存储级别,即<br><code>KafkaUtils.createStream(….,StorageLevel.MEMORY_AND_DISK_SER)</code></p><h2 id="Direct-Approach-No-Receivers"><a href="#Direct-Approach-No-Receivers" class="headerlink" title="Direct Approach (No Receivers)"></a>Direct Approach (No Receivers)</h2><p>区别Receiver接收数据，这种方式定期地从kafka的topic+partition中查询最新的偏移量，再根据偏移量范围在每个batch里面处理数据，使用的是kafka的简单消费者(SimpleConsumer)api</p><p>这种方式有如下优点：<br>1、简化并行读取：<br>如果要读取多个partition,不需要创建多个输入DStream然后对它们进行union操作。Spark会创建跟Kafka partition一样多的RDD partition，并且会并行从Kafka中读取数据。所以在Kafka partition和RDD partition之间，有一个一对一的映射关系。<br>2、高性能：<br>如果要保证零数据丢失，在基于receiver的方式中，需要开启WAL机制。这种方式其实效率低下，因为数据实际上被复制了两份，Kafka自己本身就有高可靠的机制，会对数据复制一份，而这里又会复制一份到WAL中。而基于direct的方式，不依赖Receiver，不需要开启WAL机制，只要Kafka中作了数据的复制，那么就可以通过Kafka的副本进行恢复。<br>3、恰好恰好一次语义(Exactly-once-semantics):<br>基于receiver的方式，读取kafka数据是使用Kafka的高阶API来将消费过的offset保存在ZooKeeper中的。这种方式配合着WAL机制可以保证数据零丢失的高可靠性，但是却无法保证数据被处理恰好一次，这种方式存在zookeeper和spark的偏移量不一致(同步)的情况，导致数据会被多次处理。<br>基于direct的方式，使用kafka的简单api，Spark Streaming自己就负责追踪消费的offset，并保存在checkpoint中，Spark自己一定是同步的，消除了Spark与zookeeper中偏移量不一致的问题，因此可以保证数据消费恰好一次。缺点是无法使用基于zookeeper的kafka监控工具。</p><h1 id="Direct方式代码实现逻辑"><a href="#Direct方式代码实现逻辑" class="headerlink" title="Direct方式代码实现逻辑"></a>Direct方式代码实现逻辑</h1><p>1、通过 <code>val kafkaCluster = new KafkaCluster(kafkaParams)</code> 创建一个kafkaCluster，kafkaCluster负责与kafka交互。<br>2、通过 <code>val kafkaPartitionsE = kafkaCluster.getPartition(topics)</code> 获取该topic集合对应的各个partition集合（一个topic-&gt;partition集合）<br>3、通过 <code>val kafkaPartitions = kafkaPartitionsE.right.get</code> 获取TopicAndPartition的集合<br>4、通过 <code>val consumerOffsetsE = kafkaCluster.getConsumerOffset(groupId,kafkaPartitions)</code> 获取到该groupId在该topic的每个partition中的offset；<br>5、通过 <code>kafkaCluster.getEarliestLeaderOffset(kafkaPartitions).regit.get</code> 或者<br><code>kafkaCluster.getLatestLeaderOffset(kafkaPartitions).regit.get</code>分别获取该topic的每个partition现在的最小、最大offset，对该groupId对应的各topic的各partition的offset是否在区间内进行判断。<br>然后返回一个(TopicAndPartition,offset)的map集合。<br>6、然后根据 <code>val kafkaStream = kafkaUtils.createDirectStream()</code> 方法创建DirectKafkaInputDStream；<br>创建时需要根据情况设置 <code>auto.offset.reset</code> 参数;<br>该处若设置成smallest，从最小的开始消费;若设置为largest，从最新的开始读取；不设置即从上次消费的地方读取;<br>7、数据取出来处理完之后，通过遍历kafkaStream，获取每个分区的offset，使用 <code>kafkaCluster.setConsumerOffsets</code> 方法同步到Zookeeper中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">kafkaStream.foreachRDD(rdd =&gt; &#123;</span><br><span class="line">      //得到已读取的topic每个分区的offset</span><br><span class="line">      val offsetsList = rdd.asInstanceOf[HasOffsetRanges].offsetRanges</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (offsets &lt;- offsetsList) &#123;</span><br><span class="line">        val topicAndPartition = TopicAndPartition(offsets.topic, offsets.partition)</span><br><span class="line"></span><br><span class="line">        // 更新offset到kafkaCluster ,将topic每个分区的offset保存到ZooKeeper中</span><br><span class="line">        val o = kafkaCluster.setConsumerOffsets(groupId, Map(topicAndPartition -&gt; offsets.untilOffset))</span><br><span class="line">        <span class="keyword">if</span> (o.isLeft) &#123;</span><br><span class="line">          println(s<span class="string">"Error updating the offset to Kafka cluster: <span class="variable">$&#123;o.left.get&#125;</span>"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> kafka </tag>
+            
+            <tag> spark streaming </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>spark streaming使用中的问题</title>
       <link href="/2017/09/06/sparkstreaming-2/"/>
       <url>/2017/09/06/sparkstreaming-2/</url>
@@ -763,54 +763,6 @@
             <tag> spark </tag>
             
             <tag> spark streaming </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>linux 问题汇总四：手动执行脚本成功，但是加入定时任务执行失败</title>
-      <link href="/2017/08/28/linux-4/"/>
-      <url>/2017/08/28/linux-4/</url>
-      
-        <content type="html"><![CDATA[<h1 id="问题描述（是什么）"><a href="#问题描述（是什么）" class="headerlink" title="问题描述（是什么）"></a>问题描述（是什么）</h1><p>编写的定时脚本，手动执行的时候没有问题，但是加入crontab定时任务之后就执行失败了。</p><p>其中脚本如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">length=`ps -ef | grep com.tzq.Test01 | grep java | wc -l`</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$length</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$length</span>"</span> -eq <span class="string">"0"</span> ];<span class="keyword">then</span>  </span><br><span class="line">        <span class="built_in">kill</span> -9 $(ps -ef|grep com.tzq.Test02 |gawk <span class="string">'$0 !~/grep/ &#123;print $2&#125;'</span> |tr -s <span class="string">'\n'</span> <span class="string">' '</span>)</span><br><span class="line">        sleep 1</span><br><span class="line">        nohup /home/<span class="built_in">test</span>/Test02.sh &amp;</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p><p>脚本是监控Test01进程的数量，当数量为0的时候，就将Test02进程重新启动。每次手动执行的时候，Test02进程都正常重启，但是放到定时任务里，程序就启动失败。</p><h1 id="原因分析（为什么）"><a href="#原因分析（为什么）" class="headerlink" title="原因分析（为什么）"></a>原因分析（为什么）</h1><ul><li>命令没有用全路径，没有引入环境变量，crontab不知道执行的是哪个目录下的命令。</li><li>需要自行加载环境变量</li></ul><h1 id="解决（怎么做）"><a href="#解决（怎么做）" class="headerlink" title="解决（怎么做）"></a>解决（怎么做）</h1><ul><li>所有命令使用全路径</li><li>使用<code>export</code>或者<code>source</code>命令加载环境变量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">export</span> PATH=/sbin:/bin:/usr/sbin:/usr/bin <span class="comment">#加载环境变量</span></span><br><span class="line">length=`/bin/ps -ef | grep com.tzq.Test01 | grep /usr/<span class="built_in">local</span>/jdk1.7.0_67/bin/java | wc -l`</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$length</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$length</span>"</span> -eq <span class="string">"0"</span> ];<span class="keyword">then</span>  </span><br><span class="line">        /bin/<span class="built_in">kill</span> -9 $(/bin/ps -ef|grep com.tzq.Test02|gawk <span class="string">'$0 !~/grep/ &#123;print $2&#125;'</span> |tr -s <span class="string">'\n'</span> <span class="string">' '</span>)</span><br><span class="line">        /bin/sleep 1</span><br><span class="line">        /usr/bin/nohup /home/<span class="built_in">test</span>/Test02.sh &amp;</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> linux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>三国</title>
-      <link href="/2017/08/28/sanguo-2/"/>
-      <url>/2017/08/28/sanguo-2/</url>
-      
-        <content type="html"><![CDATA[<p>记录一下。。。</p><h1 id="redis批量入库"><a href="#redis批量入库" class="headerlink" title="redis批量入库"></a>redis批量入库</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">object Pipeline &#123;</span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line">    val jedis = new Jedis(<span class="string">"192.168.1.7"</span>, 6379)</span><br><span class="line">    val p = jedis.pipelined()</span><br><span class="line">    val key = <span class="string">"KEY"</span></span><br><span class="line">    var index = 0</span><br><span class="line">    <span class="keyword">for</span> (i &lt;- 1 to 100000) &#123;</span><br><span class="line">      p.hset(key, i.toString(), <span class="string">"Value:"</span> + i)</span><br><span class="line">      index = index + 1</span><br><span class="line">      <span class="keyword">if</span> (index % 1000 == 0) &#123; //1000条插入一次</span><br><span class="line">        p.sync()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    p.sync()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="redis批量查询"><a href="#redis批量查询" class="headerlink" title="redis批量查询"></a>redis批量查询</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 使用hscan批量读取数据，速度很快，而且不会堵塞客户端，当数据量比较大的时候，不适合一次加载出所有的数据和所有的key，可以使用hscan</span><br><span class="line"> */</span><br><span class="line">def main(args: Array[String]): Unit = &#123;</span><br><span class="line">  val KEY = <span class="string">"KEY"</span></span><br><span class="line">  var ip = <span class="string">"192.168.1.7"</span></span><br><span class="line">  val jedis = new Jedis(ip, 6379)</span><br><span class="line">  var index = 0</span><br><span class="line">  val <span class="built_in">set</span>: Set[String] = Set()</span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    val scanParams = new ScanParams()</span><br><span class="line">    scanParams.count(3000) //设置每次scan的条数</span><br><span class="line">    val info = jedis.hscan(KEY, String.valueOf(index), scanParams)</span><br><span class="line">    index = Integer.parseInt(info.getStringCursor()) //scan完之后的下一个数字</span><br><span class="line">    val list = info.getResult //获取一次读出来的3000条数据</span><br><span class="line">    val iter = list.iterator()</span><br><span class="line">    <span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">      val info = iter.next()</span><br><span class="line">      val key = info.getKey</span><br><span class="line">      val value = info.getValue</span><br><span class="line">      val json = new JSONObject(value)</span><br><span class="line">      val keys = json.keys()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">while</span> (index &gt; 0) //当index为0的时候说明数据已经全部读完</span><br><span class="line">  jedis.close()</span><br></pre></td></tr></table></figure><h1 id="redis批量删除"><a href="#redis批量删除" class="headerlink" title="redis批量删除"></a>redis批量删除</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">val arr: ArrayBuffer[String] = ArrayBuffer()</span><br><span class="line">arr.+=(<span class="string">"AA"</span>)</span><br><span class="line">arr.+=(<span class="string">"BB"</span>)</span><br><span class="line">arr.+=(<span class="string">"CC"</span>)</span><br><span class="line"><span class="keyword">if</span> (arr.size != 0 &amp;&amp; arr.size % 1000 == 0) &#123;</span><br><span class="line">       jedis.hdel(getKey, arr: _*) //arr: _* 相当于将数组变成了可变参数的形式，类似AA,BB,CC</span><br><span class="line">       arr.clear()</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> redis </tag>
-            
-            <tag> scala </tag>
             
         </tags>
       
@@ -888,6 +840,77 @@
     </entry>
     
     <entry>
+      <title>linux 问题汇总四：手动执行脚本成功，但是加入定时任务执行失败</title>
+      <link href="/2017/08/28/linux-4/"/>
+      <url>/2017/08/28/linux-4/</url>
+      
+        <content type="html"><![CDATA[<h1 id="问题描述（是什么）"><a href="#问题描述（是什么）" class="headerlink" title="问题描述（是什么）"></a>问题描述（是什么）</h1><p>编写的定时脚本，手动执行的时候没有问题，但是加入crontab定时任务之后就执行失败了。</p><p>其中脚本如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">length=`ps -ef | grep com.tzq.Test01 | grep java | wc -l`</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$length</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$length</span>"</span> -eq <span class="string">"0"</span> ];<span class="keyword">then</span>  </span><br><span class="line">        <span class="built_in">kill</span> -9 $(ps -ef|grep com.tzq.Test02 |gawk <span class="string">'$0 !~/grep/ &#123;print $2&#125;'</span> |tr -s <span class="string">'\n'</span> <span class="string">' '</span>)</span><br><span class="line">        sleep 1</span><br><span class="line">        nohup /home/<span class="built_in">test</span>/Test02.sh &amp;</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p><p>脚本是监控Test01进程的数量，当数量为0的时候，就将Test02进程重新启动。每次手动执行的时候，Test02进程都正常重启，但是放到定时任务里，程序就启动失败。</p><h1 id="原因分析（为什么）"><a href="#原因分析（为什么）" class="headerlink" title="原因分析（为什么）"></a>原因分析（为什么）</h1><ul><li>命令没有用全路径，没有引入环境变量，crontab不知道执行的是哪个目录下的命令。</li><li>需要自行加载环境变量</li></ul><h1 id="解决（怎么做）"><a href="#解决（怎么做）" class="headerlink" title="解决（怎么做）"></a>解决（怎么做）</h1><ul><li>所有命令使用全路径</li><li>使用<code>export</code>或者<code>source</code>命令加载环境变量<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">export</span> PATH=/sbin:/bin:/usr/sbin:/usr/bin <span class="comment">#加载环境变量</span></span><br><span class="line">length=`/bin/ps -ef | grep com.tzq.Test01 | grep /usr/<span class="built_in">local</span>/jdk1.7.0_67/bin/java | wc -l`</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$length</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$length</span>"</span> -eq <span class="string">"0"</span> ];<span class="keyword">then</span>  </span><br><span class="line">        /bin/<span class="built_in">kill</span> -9 $(/bin/ps -ef|grep com.tzq.Test02|gawk <span class="string">'$0 !~/grep/ &#123;print $2&#125;'</span> |tr -s <span class="string">'\n'</span> <span class="string">' '</span>)</span><br><span class="line">        /bin/sleep 1</span><br><span class="line">        /usr/bin/nohup /home/<span class="built_in">test</span>/Test02.sh &amp;</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>三国</title>
+      <link href="/2017/08/28/sanguo-2/"/>
+      <url>/2017/08/28/sanguo-2/</url>
+      
+        <content type="html"><![CDATA[<p>记录一下。。。</p><h1 id="redis批量入库"><a href="#redis批量入库" class="headerlink" title="redis批量入库"></a>redis批量入库</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">object Pipeline &#123;</span><br><span class="line">  def main(args: Array[String]): Unit = &#123;</span><br><span class="line">    val jedis = new Jedis(<span class="string">"192.168.1.7"</span>, 6379)</span><br><span class="line">    val p = jedis.pipelined()</span><br><span class="line">    val key = <span class="string">"KEY"</span></span><br><span class="line">    var index = 0</span><br><span class="line">    <span class="keyword">for</span> (i &lt;- 1 to 100000) &#123;</span><br><span class="line">      p.hset(key, i.toString(), <span class="string">"Value:"</span> + i)</span><br><span class="line">      index = index + 1</span><br><span class="line">      <span class="keyword">if</span> (index % 1000 == 0) &#123; //1000条插入一次</span><br><span class="line">        p.sync()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    p.sync()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="redis批量查询"><a href="#redis批量查询" class="headerlink" title="redis批量查询"></a>redis批量查询</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 使用hscan批量读取数据，速度很快，而且不会堵塞客户端，当数据量比较大的时候，不适合一次加载出所有的数据和所有的key，可以使用hscan</span><br><span class="line"> */</span><br><span class="line">def main(args: Array[String]): Unit = &#123;</span><br><span class="line">  val KEY = <span class="string">"KEY"</span></span><br><span class="line">  var ip = <span class="string">"192.168.1.7"</span></span><br><span class="line">  val jedis = new Jedis(ip, 6379)</span><br><span class="line">  var index = 0</span><br><span class="line">  val <span class="built_in">set</span>: Set[String] = Set()</span><br><span class="line">  <span class="keyword">do</span> &#123;</span><br><span class="line">    val scanParams = new ScanParams()</span><br><span class="line">    scanParams.count(3000) //设置每次scan的条数</span><br><span class="line">    val info = jedis.hscan(KEY, String.valueOf(index), scanParams)</span><br><span class="line">    index = Integer.parseInt(info.getStringCursor()) //scan完之后的下一个数字</span><br><span class="line">    val list = info.getResult //获取一次读出来的3000条数据</span><br><span class="line">    val iter = list.iterator()</span><br><span class="line">    <span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">      val info = iter.next()</span><br><span class="line">      val key = info.getKey</span><br><span class="line">      val value = info.getValue</span><br><span class="line">      val json = new JSONObject(value)</span><br><span class="line">      val keys = json.keys()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">while</span> (index &gt; 0) //当index为0的时候说明数据已经全部读完</span><br><span class="line">  jedis.close()</span><br></pre></td></tr></table></figure><h1 id="redis批量删除"><a href="#redis批量删除" class="headerlink" title="redis批量删除"></a>redis批量删除</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">val arr: ArrayBuffer[String] = ArrayBuffer()</span><br><span class="line">arr.+=(<span class="string">"AA"</span>)</span><br><span class="line">arr.+=(<span class="string">"BB"</span>)</span><br><span class="line">arr.+=(<span class="string">"CC"</span>)</span><br><span class="line"><span class="keyword">if</span> (arr.size != 0 &amp;&amp; arr.size % 1000 == 0) &#123;</span><br><span class="line">       jedis.hdel(getKey, arr: _*) //arr: _* 相当于将数组变成了可变参数的形式，类似AA,BB,CC</span><br><span class="line">       arr.clear()</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> redis </tag>
+            
+            <tag> scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>spark work目录定期清理</title>
+      <link href="/2017/08/25/spark-1/"/>
+      <url>/2017/08/25/spark-1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="问题背景（是什么）"><a href="#问题背景（是什么）" class="headerlink" title="问题背景（是什么）"></a>问题背景（是什么）</h1><p>在跑spark任务的时候发现任务不能执行。在查看的时候发现spark work节点的/usr/ 目录满了。</p><h1 id="原因排查（为什么）"><a href="#原因排查（为什么）" class="headerlink" title="原因排查（为什么）"></a>原因排查（为什么）</h1><p>使用spark standalone模式执行任务，没提交一次任务，在每个节点work目录下都会生成一个文件夹，命名规则app-20160614191730-0249。该文件夹下是任务提交时，各节点从主节点下载的程序所需要的资源文件。<font color="#FF0000"> 这些目录每次执行都会生成，且不会自动清理</font>，执行任务过多会将内存撑爆。</p><p>spark work目录：<br><img src="/images/spark-1-1.png" alt=""></p><p>每一个application的目录中都是该spark任务运行所需要的依赖包：<br><img src="/images/spark-1-2.png" alt=""></p><h1 id="解决方案（怎么做）"><a href="#解决方案（怎么做）" class="headerlink" title="解决方案（怎么做）"></a>解决方案（怎么做）</h1><p>解决：<br>添加配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> SPARK_WORKER_OPTS=<span class="string">"</span></span><br><span class="line"><span class="string">-Dspark.worker.cleanup.enabled=true</span></span><br><span class="line"><span class="string">-Dspark.worker.cleanup.interval=1800</span></span><br><span class="line"><span class="string">-Dspark.worker.cleanup.appDataTtl=3600"</span></span><br></pre></td></tr></table></figure></p><p><strong>注: </strong><br>-Dspark.worker.cleanup.enabled=true：是否开启自动清理<br>-Dspark.worker.cleanup.interval=1800：清理周期，每隔多长时间清理一次，单位秒<br>-Dspark.worker.cleanup.appDataTtl=3600：保留最近多长时间的数据</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> spark </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>linux 问题汇总二：如何处理僵尸进程</title>
       <link href="/2017/08/25/linux-2/"/>
       <url>/2017/08/25/linux-2/</url>
@@ -928,29 +951,6 @@
         <tags>
             
             <tag> linux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>spark work目录定期清理</title>
-      <link href="/2017/08/25/spark-1/"/>
-      <url>/2017/08/25/spark-1/</url>
-      
-        <content type="html"><![CDATA[<h1 id="问题背景（是什么）"><a href="#问题背景（是什么）" class="headerlink" title="问题背景（是什么）"></a>问题背景（是什么）</h1><p>在跑spark任务的时候发现任务不能执行。在查看的时候发现spark work节点的/usr/ 目录满了。</p><h1 id="原因排查（为什么）"><a href="#原因排查（为什么）" class="headerlink" title="原因排查（为什么）"></a>原因排查（为什么）</h1><p>使用spark standalone模式执行任务，没提交一次任务，在每个节点work目录下都会生成一个文件夹，命名规则app-20160614191730-0249。该文件夹下是任务提交时，各节点从主节点下载的程序所需要的资源文件。<font color="#FF0000"> 这些目录每次执行都会生成，且不会自动清理</font>，执行任务过多会将内存撑爆。</p><p>spark work目录：<br><img src="/images/spark-1-1.png" alt=""></p><p>每一个application的目录中都是该spark任务运行所需要的依赖包：<br><img src="/images/spark-1-2.png" alt=""></p><h1 id="解决方案（怎么做）"><a href="#解决方案（怎么做）" class="headerlink" title="解决方案（怎么做）"></a>解决方案（怎么做）</h1><p>解决：<br>添加配置：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> SPARK_WORKER_OPTS=<span class="string">"</span></span><br><span class="line"><span class="string">-Dspark.worker.cleanup.enabled=true</span></span><br><span class="line"><span class="string">-Dspark.worker.cleanup.interval=1800</span></span><br><span class="line"><span class="string">-Dspark.worker.cleanup.appDataTtl=3600"</span></span><br></pre></td></tr></table></figure></p><p><strong>注: </strong><br>-Dspark.worker.cleanup.enabled=true：是否开启自动清理<br>-Dspark.worker.cleanup.interval=1800：清理周期，每隔多长时间清理一次，单位秒<br>-Dspark.worker.cleanup.appDataTtl=3600：保留最近多长时间的数据</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> spark </tag>
             
         </tags>
       
