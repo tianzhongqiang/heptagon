@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.thinkyixia.com/"/>
-  <updated>2018-11-25T16:00:00.000Z</updated>
+  <updated>2018-11-30T16:00:00.000Z</updated>
   <id>http://www.thinkyixia.com/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>优酷视频爬虫</title>
+    <link href="http://www.thinkyixia.com/2018/12/01/youku-1/"/>
+    <id>http://www.thinkyixia.com/2018/12/01/youku-1/</id>
+    <published>2018-11-30T16:00:00.000Z</published>
+    <updated>2018-11-30T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>优酷视频抓取主要分为3步，列表页、详情页、视频源解析</p>
+<p>该视频抓取主要是根据用户id获取该用户下所有的视频。跟获取全部视频没有任何差别。</p>
+<h2 id="首先是列表页"><a href="#首先是列表页" class="headerlink" title="首先是列表页"></a>首先是列表页</h2><p><a href="http://i.youku.com/i/UMTI5OTA2MzIwOA==/videos" target="_blank" rel="noopener">http://i.youku.com/i/UMTI5OTA2MzIwOA==/videos</a></p>
+<p>中间的参数就是用户id，根据用户的id获取视频列表。</p>
+<p>列表上边的视频信息很容易获取到，包括视频的名称、详情、播放次数、上传时间等，最重要的是可以获取到视频详情页的地址，如下：<br><img src="/images/youku_1.png" alt=""></p>
+<h3 id="列表翻页"><a href="#列表翻页" class="headerlink" title="列表翻页"></a>列表翻页</h3><p>列表翻页比较容易找，页面中没有做任何隐藏，如下<br><img src="/images/youku_5.png" alt=""></p>
+<h2 id="视频详情页链接"><a href="#视频详情页链接" class="headerlink" title="视频详情页链接"></a>视频详情页链接</h2><p>从列表页可以很容易获取到视频详情页链接<br><img src="/images/youku_2.png" alt=""></p>
+<p>详情页可以看到视频的地址，如下：<br><a href="http://pl-ali.youku.com/playlist/m3u8?vid=XMzkxNzY2MDIxMg&amp;type=flvhdv3&amp;ups_client_netip=daf70985&amp;utid=SjxXFGz%2FUnECAWX%2B8woFwZ8Z&amp;ccode=0502&amp;psid=63b8b4da2b8eb3ecc93879e59c186598&amp;ups_userid=1075200454&amp;ups_ytid=1075200454&amp;duration=1019&amp;expire=18000&amp;drm_type=1&amp;drm_device=7&amp;ups_ts=1543646420&amp;onOff=0&amp;encr=0&amp;ups_key=0f6e70dd048b3606eef5beec65644549" target="_blank" rel="noopener">http://pl-ali.youku.com/playlist/m3u8?vid=XMzkxNzY2MDIxMg&amp;type=flvhdv3&amp;ups_client_netip=daf70985&amp;utid=SjxXFGz%2FUnECAWX%2B8woFwZ8Z&amp;ccode=0502&amp;psid=63b8b4da2b8eb3ecc93879e59c186598&amp;ups_userid=1075200454&amp;ups_ytid=1075200454&amp;duration=1019&amp;expire=18000&amp;drm_type=1&amp;drm_device=7&amp;ups_ts=1543646420&amp;onOff=0&amp;encr=0&amp;ups_key=0f6e70dd048b3606eef5beec65644549</a></p>
+<p>但是看到，却拿不到该地址，需要通过请求接口才可以拿到。</p>
+<h2 id="拼接视频解析链接"><a href="#拼接视频解析链接" class="headerlink" title="拼接视频解析链接"></a>拼接视频解析链接</h2><p>使用如下请求接口，获取视频源地址：</p>
+<p><a href="https://ups.youku.com/ups/get.json?vid=XMzkxNzY2MDIxMg==&amp;ccode=0502&amp;client_ip=192.168.1.1&amp;utid=CSqJFEfc5CgCAdr3CYXvTZbD&amp;client_ts=1543650312&amp;ckey=DIl58SLFxFNndSV1GFNnMQVYkx1PP5tKe1siZu%2F86PR1u%2FWh1Ptd%2BWOZsHHWxysSfAOhNJpdVWsdVJNsfJ8Sxd8WKVvNfAS8aS8fAOzYARzPyPc3JvtnPHjTdKfESTdnuTW6ZPvk2pNDh4uFzotgdMEFkzQ5wZVXl2Pf1%2FY6hLK0OnCNxBj3%2Bnb0v72gZ6b0td%2BWOZsHHWxysSo%2F0y9D2K42SaB8Y%2F%2BaD2K42SaB8Y%2F%2BahU%2BWOZsHcrxysooUeND" target="_blank" rel="noopener">https://ups.youku.com/ups/get.json?vid=XMzkxNzY2MDIxMg==&amp;ccode=0502&amp;client_ip=192.168.1.1&amp;utid=CSqJFEfc5CgCAdr3CYXvTZbD&amp;client_ts=1543650312&amp;ckey=DIl58SLFxFNndSV1GFNnMQVYkx1PP5tKe1siZu%2F86PR1u%2FWh1Ptd%2BWOZsHHWxysSfAOhNJpdVWsdVJNsfJ8Sxd8WKVvNfAS8aS8fAOzYARzPyPc3JvtnPHjTdKfESTdnuTW6ZPvk2pNDh4uFzotgdMEFkzQ5wZVXl2Pf1%2FY6hLK0OnCNxBj3%2Bnb0v72gZ6b0td%2BWOZsHHWxysSo%2F0y9D2K42SaB8Y%2F%2BaD2K42SaB8Y%2F%2BahU%2BWOZsHcrxysooUeND</a></p>
+<p>具体参数情况</p>
+<p><img src="/images/youku_7.png" alt=""></p>
+<p>由上图可以看出，可变的参数只有vid、client_ts、utid、ckey三个。</p>
+<h3 id="vid"><a href="#vid" class="headerlink" title="vid"></a>vid</h3><p>vid是视频的id，从列表页和视频详情页均可获取。</p>
+<h3 id="client-ts"><a href="#client-ts" class="headerlink" title="client_ts"></a>client_ts</h3><p>该参数是时间戳，当前时间戳即可</p>
+<h3 id="utid"><a href="#utid" class="headerlink" title="utid"></a>utid</h3><p>该参数可以通过请求 <a href="https://log.mmstat.com/eg.js" target="_blank" rel="noopener">https://log.mmstat.com/eg.js</a> 链接获取</p>
+<p>请求结果：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.goldlog=(<span class="built_in">window</span>.goldlog||&#123;&#125;);goldlog.Etag=<span class="string">"Hre6ErRmgVQCAXb364XhncX+"</span>;goldlog.stag=<span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="ckey"><a href="#ckey" class="headerlink" title="ckey"></a>ckey</h3><p>通过打断点跟踪可以发现，该参数就是浏览器的ua信息，如果获取不到就默认给一个，所以可以写死，或者提供其他的ua信息。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getCkey: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.uabModule ? <span class="keyword">this</span>.uabModule.getUA() : <span class="string">"DIl58SLFxFNndSV1GFNnMQVYkx1PP5tKe1siZu/86PR1u/Wh1Ptd+WOZsHHWxysSfAOhNJpdVWsdVJNsfJ8Sxd8WKVvNfAS8aS8fAOzYARzPyPc3JvtnPHjTdKfESTdnuTW6ZPvk2pNDh4uFzotgdMEFkzQ5wZVXl2Pf1/Y6hLK0OnCNxBj3+nb0v72gZ6b0td+WOZsHHWxysSo/0y9D2K42SaB8Y/+aD2K42SaB8Y/+ahU+WOZsHcrxysooUeND"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/youku_4.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;优酷视频抓取主要分为3步，列表页、详情页、视频源解析&lt;/p&gt;
+&lt;p&gt;该视频抓取主要是根据用户id获取该用户下所有的视频。跟获取全部视频没有任何差别。&lt;/p&gt;
+&lt;h2 id=&quot;首先是列表页&quot;&gt;&lt;a href=&quot;#首先是列表页&quot; class=&quot;headerlink&quot; title
+    
+    </summary>
+    
+      <category term="技术" scheme="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="爬虫" scheme="http://www.thinkyixia.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="视频" scheme="http://www.thinkyixia.com/tags/%E8%A7%86%E9%A2%91/"/>
+    
+      <category term="优酷" scheme="http://www.thinkyixia.com/tags/%E4%BC%98%E9%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>凯恩斯与弗里德曼</title>
@@ -496,6 +544,135 @@
   </entry>
   
   <entry>
+    <title>互联网使用小工具</title>
+    <link href="http://www.thinkyixia.com/2018/07/17/navigation_tools/"/>
+    <id>http://www.thinkyixia.com/2018/07/17/navigation_tools/</id>
+    <published>2018-07-16T16:00:00.000Z</published>
+    <updated>2018-07-16T16:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.</strong></p>
+<h1 id="小工具、大用途"><a href="#小工具、大用途" class="headerlink" title="小工具、大用途"></a>小工具、大用途</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">网站名</th>
+<th style="text-align:left">网址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">PDF转PPT、转word</td>
+<td style="text-align:left"><a href="https://smallpdf.com/cn" target="_blank" rel="noopener">https://smallpdf.com/cn</a></td>
+</tr>
+<tr>
+<td style="text-align:left">youtobe视频下载</td>
+<td style="text-align:left"><a href="http://www.clipconverter.cc/" target="_blank" rel="noopener">http://www.clipconverter.cc/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">字体转换器在线转换</td>
+<td style="text-align:left"><a href="http://www.diyiziti.com/" target="_blank" rel="noopener">http://www.diyiziti.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">去除水印</td>
+<td style="text-align:left"><a href="http://xiuxiu.web.meitu.com/" target="_blank" rel="noopener">http://xiuxiu.web.meitu.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">配色方案查询</td>
+<td style="text-align:left"><a href="http://nipponcolors.com/#fujisusutake" target="_blank" rel="noopener">http://nipponcolors.com/#fujisusutake</a></td>
+</tr>
+<tr>
+<td style="text-align:left">语音转文字：讯飞听见</td>
+<td style="text-align:left"><a href="https://www.iflyrec.com/" target="_blank" rel="noopener">https://www.iflyrec.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">免费好看PPT、word、excel模板</td>
+<td style="text-align:left"><a href="http://www.officeplus.cn/Template/Home.shtml" target="_blank" rel="noopener">http://www.officeplus.cn/Template/Home.shtml</a></td>
+</tr>
+<tr>
+<td style="text-align:left">资源搜索：胖次</td>
+<td style="text-align:left"><a href="http://panc.cc/" target="_blank" rel="noopener">http://panc.cc/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">百度识图</td>
+<td style="text-align:left"><a href="http://image.baidu.com/?fr=shitu" target="_blank" rel="noopener">http://image.baidu.com/?fr=shitu</a></td>
+</tr>
+<tr>
+<td style="text-align:left">价格对比：比一比价</td>
+<td style="text-align:left"><a href="http://www.b1bj.com/" target="_blank" rel="noopener">http://www.b1bj.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">店铺宝贝排名查询</td>
+<td style="text-align:left"><a href="http://www.chapaiming.com/" target="_blank" rel="noopener">http://www.chapaiming.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">腾讯移动分析</td>
+<td style="text-align:left"><a href="http://mta.qq.com/mta/" target="_blank" rel="noopener">http://mta.qq.com/mta/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">百度指数</td>
+<td style="text-align:left"><a href="http://index.baidu.com/" target="_blank" rel="noopener">http://index.baidu.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">友盟数据</td>
+<td style="text-align:left"><a href="http://www.umindex.com/" target="_blank" rel="noopener">http://www.umindex.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">易观数据</td>
+<td style="text-align:left"><a href="http://www.analysys.cn/view/home/home.html" target="_blank" rel="noopener">http://www.analysys.cn/view/home/home.html</a></td>
+</tr>
+<tr>
+<td style="text-align:left">中国互联网数据平台</td>
+<td style="text-align:left"><a href="http://www.cnidp.cn/enteruser/checkCookie.do?flag=1" target="_blank" rel="noopener">http://www.cnidp.cn/enteruser/checkCookie.do?flag=1</a></td>
+</tr>
+<tr>
+<td style="text-align:left">市场研究数据报告：企鹅智酷</td>
+<td style="text-align:left"><a href="http://re.qq.com/" target="_blank" rel="noopener">http://re.qq.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">协同写作：石墨</td>
+<td style="text-align:left"><a href="https://shimo.im/" target="_blank" rel="noopener">https://shimo.im/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">脑图制作：百度脑图</td>
+<td style="text-align:left"><a href="http://naotu.baidu.com/" target="_blank" rel="noopener">http://naotu.baidu.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">脑图制作：幕布</td>
+<td style="text-align:left"><a href="https://mubu.com/" target="_blank" rel="noopener">https://mubu.com/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">团队协作：Tower</td>
+<td style="text-align:left"><a href="https://tower.im/" target="_blank" rel="noopener">https://tower.im/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">小程序制作、网站搭建：上线了</td>
+<td style="text-align:left"><a href="https://www.sxl.cn/" target="_blank" rel="noopener">https://www.sxl.cn/</a></td>
+</tr>
+<tr>
+<td style="text-align:left">H5制作：人人秀</td>
+<td style="text-align:left"><a href="https://www.rrxiu.net/" target="_blank" rel="noopener">https://www.rrxiu.net/</a></td>
+</tr>
+</tbody>
+</table>
+<p>持续更新……</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;小工具、大用途&quot;&gt;&lt;a href=&quot;#小工具、大用途&quot; class=&quot;headerlink&quot; title=&quot;小工具、大用途&quot;&gt;&lt;/a&gt;小工具、大
+    
+    </summary>
+    
+      <category term="工具" scheme="http://www.thinkyixia.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
+    
+      <category term="工具" scheme="http://www.thinkyixia.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
     <title>有了这些资源，还需要ui吗？</title>
     <link href="http://www.thinkyixia.com/2018/07/17/navigation_img/"/>
     <id>http://www.thinkyixia.com/2018/07/17/navigation_img/</id>
@@ -665,135 +842,6 @@
       <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
     
       <category term="图片" scheme="http://www.thinkyixia.com/tags/%E5%9B%BE%E7%89%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>互联网使用小工具</title>
-    <link href="http://www.thinkyixia.com/2018/07/17/navigation_tools/"/>
-    <id>http://www.thinkyixia.com/2018/07/17/navigation_tools/</id>
-    <published>2018-07-16T16:00:00.000Z</published>
-    <updated>2018-07-16T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.</strong></p>
-<h1 id="小工具、大用途"><a href="#小工具、大用途" class="headerlink" title="小工具、大用途"></a>小工具、大用途</h1><table>
-<thead>
-<tr>
-<th style="text-align:left">网站名</th>
-<th style="text-align:left">网址</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">PDF转PPT、转word</td>
-<td style="text-align:left"><a href="https://smallpdf.com/cn" target="_blank" rel="noopener">https://smallpdf.com/cn</a></td>
-</tr>
-<tr>
-<td style="text-align:left">youtobe视频下载</td>
-<td style="text-align:left"><a href="http://www.clipconverter.cc/" target="_blank" rel="noopener">http://www.clipconverter.cc/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">字体转换器在线转换</td>
-<td style="text-align:left"><a href="http://www.diyiziti.com/" target="_blank" rel="noopener">http://www.diyiziti.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">去除水印</td>
-<td style="text-align:left"><a href="http://xiuxiu.web.meitu.com/" target="_blank" rel="noopener">http://xiuxiu.web.meitu.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">配色方案查询</td>
-<td style="text-align:left"><a href="http://nipponcolors.com/#fujisusutake" target="_blank" rel="noopener">http://nipponcolors.com/#fujisusutake</a></td>
-</tr>
-<tr>
-<td style="text-align:left">语音转文字：讯飞听见</td>
-<td style="text-align:left"><a href="https://www.iflyrec.com/" target="_blank" rel="noopener">https://www.iflyrec.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">免费好看PPT、word、excel模板</td>
-<td style="text-align:left"><a href="http://www.officeplus.cn/Template/Home.shtml" target="_blank" rel="noopener">http://www.officeplus.cn/Template/Home.shtml</a></td>
-</tr>
-<tr>
-<td style="text-align:left">资源搜索：胖次</td>
-<td style="text-align:left"><a href="http://panc.cc/" target="_blank" rel="noopener">http://panc.cc/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">百度识图</td>
-<td style="text-align:left"><a href="http://image.baidu.com/?fr=shitu" target="_blank" rel="noopener">http://image.baidu.com/?fr=shitu</a></td>
-</tr>
-<tr>
-<td style="text-align:left">价格对比：比一比价</td>
-<td style="text-align:left"><a href="http://www.b1bj.com/" target="_blank" rel="noopener">http://www.b1bj.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">店铺宝贝排名查询</td>
-<td style="text-align:left"><a href="http://www.chapaiming.com/" target="_blank" rel="noopener">http://www.chapaiming.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">腾讯移动分析</td>
-<td style="text-align:left"><a href="http://mta.qq.com/mta/" target="_blank" rel="noopener">http://mta.qq.com/mta/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">百度指数</td>
-<td style="text-align:left"><a href="http://index.baidu.com/" target="_blank" rel="noopener">http://index.baidu.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">友盟数据</td>
-<td style="text-align:left"><a href="http://www.umindex.com/" target="_blank" rel="noopener">http://www.umindex.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">易观数据</td>
-<td style="text-align:left"><a href="http://www.analysys.cn/view/home/home.html" target="_blank" rel="noopener">http://www.analysys.cn/view/home/home.html</a></td>
-</tr>
-<tr>
-<td style="text-align:left">中国互联网数据平台</td>
-<td style="text-align:left"><a href="http://www.cnidp.cn/enteruser/checkCookie.do?flag=1" target="_blank" rel="noopener">http://www.cnidp.cn/enteruser/checkCookie.do?flag=1</a></td>
-</tr>
-<tr>
-<td style="text-align:left">市场研究数据报告：企鹅智酷</td>
-<td style="text-align:left"><a href="http://re.qq.com/" target="_blank" rel="noopener">http://re.qq.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">协同写作：石墨</td>
-<td style="text-align:left"><a href="https://shimo.im/" target="_blank" rel="noopener">https://shimo.im/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">脑图制作：百度脑图</td>
-<td style="text-align:left"><a href="http://naotu.baidu.com/" target="_blank" rel="noopener">http://naotu.baidu.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">脑图制作：幕布</td>
-<td style="text-align:left"><a href="https://mubu.com/" target="_blank" rel="noopener">https://mubu.com/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">团队协作：Tower</td>
-<td style="text-align:left"><a href="https://tower.im/" target="_blank" rel="noopener">https://tower.im/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">小程序制作、网站搭建：上线了</td>
-<td style="text-align:left"><a href="https://www.sxl.cn/" target="_blank" rel="noopener">https://www.sxl.cn/</a></td>
-</tr>
-<tr>
-<td style="text-align:left">H5制作：人人秀</td>
-<td style="text-align:left"><a href="https://www.rrxiu.net/" target="_blank" rel="noopener">https://www.rrxiu.net/</a></td>
-</tr>
-</tbody>
-</table>
-<p>持续更新……</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;免责声明: 以下网站皆收集于互联网,若无意触犯相关法律,告知立即删除.&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;小工具、大用途&quot;&gt;&lt;a href=&quot;#小工具、大用途&quot; class=&quot;headerlink&quot; title=&quot;小工具、大用途&quot;&gt;&lt;/a&gt;小工具、大
-    
-    </summary>
-    
-      <category term="工具" scheme="http://www.thinkyixia.com/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
-    
-      <category term="工具" scheme="http://www.thinkyixia.com/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
@@ -1645,9 +1693,9 @@
       <category term="工具" scheme="http://www.thinkyixia.com/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="广告" scheme="http://www.thinkyixia.com/tags/%E5%B9%BF%E5%91%8A/"/>
-    
       <category term="资源" scheme="http://www.thinkyixia.com/tags/%E8%B5%84%E6%BA%90/"/>
+    
+      <category term="广告" scheme="http://www.thinkyixia.com/tags/%E5%B9%BF%E5%91%8A/"/>
     
   </entry>
   
@@ -1695,31 +1743,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;需求描述&quot;&gt;&lt;a href=&quot;#需求描述&quot; class=&quot;headerlink&quot; title=&quot;需求描述&quot;&gt;&lt;/a&gt;需求描述&lt;/h1&gt;&lt;p&gt;最近遇到了这样一个场景，用spark去处理多个数据源的数据，但是这些数据都掺杂在一起，需要根据不同数据源将数据存储在不同的目
-    
-    </summary>
-    
-      <category term="技术" scheme="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="spark" scheme="http://www.thinkyixia.com/tags/spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spark 任务提交过程</title>
-    <link href="http://www.thinkyixia.com/2017/11/29/spark-2/"/>
-    <id>http://www.thinkyixia.com/2017/11/29/spark-2/</id>
-    <published>2017-11-28T16:00:00.000Z</published>
-    <updated>2017-11-28T16:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Spark任务提交的过程"><a href="#Spark任务提交的过程" class="headerlink" title="Spark任务提交的过程"></a>Spark任务提交的过程</h1><p>试着画图描述一个spark任务提交的完整过程……</p>
-<p>Spark任务提交流程如下图：<br><img src="/images/spark任务提交过程.png" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Spark任务提交的过程&quot;&gt;&lt;a href=&quot;#Spark任务提交的过程&quot; class=&quot;headerlink&quot; title=&quot;Spark任务提交的过程&quot;&gt;&lt;/a&gt;Spark任务提交的过程&lt;/h1&gt;&lt;p&gt;试着画图描述一个spark任务提交的完整过程……&lt;/p&gt;
-&lt;
     
     </summary>
     
