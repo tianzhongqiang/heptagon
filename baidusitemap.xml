@@ -159,16 +159,18 @@
 
     
   <url>
-    <loc>http://www.thinkyixia.com/2018/07/17/navigation_tools/</loc>
+    <loc>http://www.thinkyixia.com/2018/07/17/navigation_gif/</loc>
     <lastmod>2018-07-16T16:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>互联网使用小工具</title>
+        <title>gif图片资源</title>
         <pubTime>2018-07-16T16:00:00.000Z</pubTime>
         
         <tag>资源</tag>
          
-        <tag>工具</tag>
+        <tag>图片</tag>
+         
+        <tag>git动图</tag>
          
          
            
@@ -203,18 +205,16 @@
 
     
   <url>
-    <loc>http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/</loc>
+    <loc>http://www.thinkyixia.com/2018/07/17/navigation_tools/</loc>
     <lastmod>2018-07-16T16:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>优质公众号必备工具</title>
+        <title>互联网使用小工具</title>
         <pubTime>2018-07-16T16:00:00.000Z</pubTime>
         
         <tag>资源</tag>
          
         <tag>工具</tag>
-         
-        <tag>微信公众号</tag>
          
          
            
@@ -227,18 +227,18 @@
 
     
   <url>
-    <loc>http://www.thinkyixia.com/2018/07/17/navigation_gif/</loc>
+    <loc>http://www.thinkyixia.com/2018/07/17/navigation_wx_tools/</loc>
     <lastmod>2018-07-16T16:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>gif图片资源</title>
+        <title>优质公众号必备工具</title>
         <pubTime>2018-07-16T16:00:00.000Z</pubTime>
         
         <tag>资源</tag>
          
-        <tag>图片</tag>
+        <tag>工具</tag>
          
-        <tag>git动图</tag>
+        <tag>微信公众号</tag>
          
          
            
@@ -601,11 +601,11 @@
 
     
   <url>
-    <loc>http://www.thinkyixia.com/2017/11/02/zookeeper-5/</loc>
+    <loc>http://www.thinkyixia.com/2017/11/02/zookeeper-4/</loc>
     <lastmod>2017-11-01T16:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>Zookeeper的选举三：Leader选举的实现细节</title>
+        <title>Zookeeper的选举二：Leader选举的算法分析</title>
         <pubTime>2017-11-01T16:00:00.000Z</pubTime>
         
         <tag>zookeeper</tag>
@@ -641,11 +641,11 @@
 
     
   <url>
-    <loc>http://www.thinkyixia.com/2017/11/02/zookeeper-4/</loc>
+    <loc>http://www.thinkyixia.com/2017/11/02/zookeeper-5/</loc>
     <lastmod>2017-11-01T16:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>Zookeeper的选举二：Leader选举的算法分析</title>
+        <title>Zookeeper的选举三：Leader选举的实现细节</title>
         <pubTime>2017-11-01T16:00:00.000Z</pubTime>
         
         <tag>zookeeper</tag>
@@ -807,68 +807,6 @@
 
     
   <url>
-    <loc>http://www.thinkyixia.com/2017/08/28/kafka-1/</loc>
-    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>Kafka监控工具-KafkaOffsetMonitor</title>
-        <pubTime>2017-08-27T16:00:00.000Z</pubTime>
-        
-        <tag>kafka</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.thinkyixia.com/2017/08/28/redis-1/</loc>
-    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>scala批量操作redis</title>
-        <pubTime>2017-08-27T16:00:00.000Z</pubTime>
-        
-        <tag>redis</tag>
-         
-        <tag>scala</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.thinkyixia.com/2017/08/28/linux-3/</loc>
-    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>linux 问题汇总三：文件重定向时报权限不够</title>
-        <pubTime>2017-08-27T16:00:00.000Z</pubTime>
-        
-        <tag>linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.thinkyixia.com/2017/08/25/linux-1/</loc>
     <lastmod>2017-08-27T16:00:00.000Z</lastmod>
     <data>
@@ -909,6 +847,48 @@
 
     
   <url>
+    <loc>http://www.thinkyixia.com/2017/08/28/linux-3/</loc>
+    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>linux 问题汇总三：文件重定向时报权限不够</title>
+        <pubTime>2017-08-27T16:00:00.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.thinkyixia.com/2017/08/28/redis-1/</loc>
+    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>scala批量操作redis</title>
+        <pubTime>2017-08-27T16:00:00.000Z</pubTime>
+        
+        <tag>scala</tag>
+         
+        <tag>redis</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.thinkyixia.com/2017/08/28/linux-4/</loc>
     <lastmod>2017-08-27T16:00:00.000Z</lastmod>
     <data>
@@ -917,6 +897,26 @@
         <pubTime>2017-08-27T16:00:00.000Z</pubTime>
         
         <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://www.thinkyixia.com/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.thinkyixia.com/2017/08/28/kafka-1/</loc>
+    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Kafka监控工具-KafkaOffsetMonitor</title>
+        <pubTime>2017-08-27T16:00:00.000Z</pubTime>
+        
+        <tag>kafka</tag>
          
          
            
