@@ -9,6 +9,13 @@
   </url>
   
   <url>
+    <loc>http://www.thinkyixia.com/2018/12/04/baoxian-8/</loc>
+    
+    <lastmod>2018-12-03T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.thinkyixia.com/2018/12/02/iqiyi-1/</loc>
     
     <lastmod>2018-12-01T16:00:00.000Z</lastmod>
@@ -58,13 +65,6 @@
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2018/07/17/navigation_gif/</loc>
-    
-    <lastmod>2018-07-16T16:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.thinkyixia.com/2018/07/17/navigation_img/</loc>
     
     <lastmod>2018-07-16T16:00:00.000Z</lastmod>
@@ -72,7 +72,7 @@
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2018/07/17/navigation_tools/</loc>
+    <loc>http://www.thinkyixia.com/2018/07/17/navigation_gif/</loc>
     
     <lastmod>2018-07-16T16:00:00.000Z</lastmod>
     
@@ -86,14 +86,21 @@
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2018/04/18/yarn-1/</loc>
+    <loc>http://www.thinkyixia.com/2018/07/17/navigation_tools/</loc>
+    
+    <lastmod>2018-07-16T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.thinkyixia.com/2018/04/18/baoxian-6/</loc>
     
     <lastmod>2018-04-17T16:00:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2018/04/18/baoxian-6/</loc>
+    <loc>http://www.thinkyixia.com/2018/04/18/yarn-1/</loc>
     
     <lastmod>2018-04-17T16:00:00.000Z</lastmod>
     
@@ -107,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2018/04/14/baoxian-4/</loc>
+    <loc>http://www.thinkyixia.com/2018/04/14/baoxian-3/</loc>
     
     <lastmod>2018-04-13T16:00:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2018/04/14/baoxian-3/</loc>
+    <loc>http://www.thinkyixia.com/2018/04/14/baoxian-4/</loc>
     
     <lastmod>2018-04-13T16:00:00.000Z</lastmod>
     
@@ -268,14 +275,14 @@
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2017/10/16/git-1/</loc>
+    <loc>http://www.thinkyixia.com/2017/10/16/sparkstreaming-kafka/</loc>
     
     <lastmod>2017-10-15T16:00:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2017/10/16/sparkstreaming-kafka/</loc>
+    <loc>http://www.thinkyixia.com/2017/10/16/git-1/</loc>
     
     <lastmod>2017-10-15T16:00:00.000Z</lastmod>
     
@@ -285,6 +292,20 @@
     <loc>http://www.thinkyixia.com/2017/09/06/sparkstreaming-2/</loc>
     
     <lastmod>2017-09-05T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.thinkyixia.com/2017/08/28/linux-4/</loc>
+    
+    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.thinkyixia.com/2017/08/28/linux-3/</loc>
+    
+    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
     
   </url>
   
@@ -303,7 +324,7 @@
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2017/08/28/linux-3/</loc>
+    <loc>http://www.thinkyixia.com/2017/08/28/kafka-1/</loc>
     
     <lastmod>2017-08-27T16:00:00.000Z</lastmod>
     
@@ -311,20 +332,6 @@
   
   <url>
     <loc>http://www.thinkyixia.com/2017/08/28/redis-1/</loc>
-    
-    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.thinkyixia.com/2017/08/28/linux-4/</loc>
-    
-    <lastmod>2017-08-27T16:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.thinkyixia.com/2017/08/28/kafka-1/</loc>
     
     <lastmod>2017-08-27T16:00:00.000Z</lastmod>
     
@@ -359,14 +366,14 @@
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2017/08/14/elk-1/</loc>
+    <loc>http://www.thinkyixia.com/2017/08/14/elk1/</loc>
     
     <lastmod>2017-08-13T16:00:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.thinkyixia.com/2017/08/14/elk1/</loc>
+    <loc>http://www.thinkyixia.com/2017/08/14/elk-1/</loc>
     
     <lastmod>2017-08-13T16:00:00.000Z</lastmod>
     
